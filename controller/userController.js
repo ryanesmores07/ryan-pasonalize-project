@@ -1,17 +1,19 @@
+import { StatusCodes } from "http-status-codes";
 import User from "../model/UserModel.js";
+import { NotFoundError } from "../errors/customErrors.js";
 
 export const getAllUsers = async (req, res) => {
   const users = await User.find();
-  res.status(200).json({ users });
+  res.status(StatusCodes.OK).json({ users });
 };
 
 export const getSingleUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
   if (!user) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    throw new NotFoundError(`no job with id: ${id}`);
   }
-  res.status(200).json({ user });
+  res.status(StatusCodes.OK).json({ user });
 };
 
 export const updateUser = async (req, res) => {
@@ -20,7 +22,7 @@ export const updateUser = async (req, res) => {
     new: true,
   });
   if (!updateUser) {
-    return res.status(404).json({ msg: `no job with id ${id}` });
+    throw new NotFoundError(`no job with id: ${id}`);
   }
-  res.status(200).json({ user: updateUser });
+  res.status(StatusCodes.OK).json({ user: updateUser });
 };

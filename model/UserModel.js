@@ -1,19 +1,22 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  name: String,
+  firstName: {
+    type: String,
+    default: "firstName",
+  },
   email: String,
   password: String,
   lastName: {
     type: String,
     default: "lastName",
   },
-  location: String,
   role: {
     type: String,
     enum: ["user", "admin"],
     default: "user",
   },
+  location: String,
   avatar: String,
   avatarPublicId: String,
 });
