@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     enum: Object.values(JOB_POSITION),
     default: JOB_POSITION.DEVELOPER,
   },
-  JOB_DEPARTMENT: {
+  jobDepartment: {
     type: String,
     enum: Object.values(JOB_DEPARTMENT),
     default: JOB_DEPARTMENT.POWER_PLATFORM,

@@ -17,6 +17,9 @@ const withValidationErrors = (validateValues) => {
         if (errorMessages[0].startsWith("no user")) {
           throw new NotFoundError(errorMessages);
         }
+        if (errorMessages[0].startsWith("not authorized")) {
+          throw new UnauthorizedError("not authorized to access this route");
+        }
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -51,5 +54,9 @@ export const validateIdParam = withValidationErrors([
     if (!isValid) throw new BadRequestError("invalid MongoDB id");
     const user = await User.findById(value);
     if (!user) throw new NotFoundError(`no user with id: ${value}`);
+    const isAdmin = req.user.role === "admin";
+    const isOwner = req.user.userId === user._id.toString();
+    if (!isAdmin && !isOwner)
+      throw UnauthorizedError("not authorized to access this route");
   }),
 ]);
