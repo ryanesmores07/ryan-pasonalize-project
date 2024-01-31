@@ -49,7 +49,7 @@ export const validationRegisterInput = withValidationErrors([
 ]);
 
 export const validateIdParam = withValidationErrors([
-  param("id").custom(async (value) => {
+  param("id").custom(async (value, { req }) => {
     const isValid = mongoose.Types.ObjectId.isValid(value);
     if (!isValid) throw new BadRequestError("invalid MongoDB id");
     const user = await User.findById(value);
@@ -57,6 +57,6 @@ export const validateIdParam = withValidationErrors([
     const isAdmin = req.user.role === "admin";
     const isOwner = req.user.userId === user._id.toString();
     if (!isAdmin && !isOwner)
-      throw UnauthorizedError("not authorized to access this route");
+      throw new UnauthorizedError("not authorized to access this route");
   }),
 ]);

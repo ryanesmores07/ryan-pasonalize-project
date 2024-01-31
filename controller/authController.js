@@ -19,7 +19,6 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  console.log(user);
 
   if (!user) throw new UnauthenticatedError("invalid credentials");
 

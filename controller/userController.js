@@ -1,6 +1,15 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../model/UserModel.js";
 
+export const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+
+  console.log(user);
+  const userWithoutPassword = user.toJSON();
+
+  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
+};
+
 export const getAllUsers = async (req, res) => {
   const users = await User.find();
   res.status(StatusCodes.OK).json({ users });
