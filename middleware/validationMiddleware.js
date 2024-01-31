@@ -14,6 +14,9 @@ const withValidationErrors = (validateValues) => {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         const errorMessages = errors.array().map((error) => error.msg);
+        if (errorMessages[0].startsWith("no user")) {
+          throw new NotFoundError(errorMessages);
+        }
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -40,4 +43,13 @@ export const validationRegisterInput = withValidationErrors([
     .isLength({ min: 8 })
     .withMessage("password must be at least 8 characters long"),
   body("lastName").notEmpty().withMessage("last name is required"),
+]);
+
+export const validateIdParam = withValidationErrors([
+  param("id").custom(async (value) => {
+    const isValid = mongoose.Types.ObjectId.isValid(value);
+    if (!isValid) throw new BadRequestError("invalid MongoDB id");
+    const user = await User.findById(value);
+    if (!user) throw new NotFoundError(`no user with id: ${value}`);
+  }),
 ]);

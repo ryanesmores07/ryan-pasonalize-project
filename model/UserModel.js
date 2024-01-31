@@ -1,4 +1,9 @@
 import mongoose from "mongoose";
+import {
+  JOB_BRANCH,
+  JOB_DEPARTMENT,
+  JOB_POSITION,
+} from "../utils/constants.js";
 
 const UserSchema = new mongoose.Schema({
   firstName: {
@@ -17,6 +22,21 @@ const UserSchema = new mongoose.Schema({
     default: "user",
   },
   location: String,
+  jobBranch: {
+    type: String,
+    enum: Object.values(JOB_BRANCH),
+    default: JOB_BRANCH.AWAJI,
+  },
+  jobPosition: {
+    type: String,
+    enum: Object.values(JOB_POSITION),
+    default: JOB_POSITION.DEVELOPER,
+  },
+  JOB_DEPARTMENT: {
+    type: String,
+    enum: Object.values(JOB_DEPARTMENT),
+    default: JOB_DEPARTMENT.POWER_PLATFORM,
+  },
   avatar: String,
   avatarPublicId: String,
 });

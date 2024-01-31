@@ -4,12 +4,14 @@ import {
   getSingleUser,
   updateUser,
 } from "../controller/userController.js";
+import { validateIdParam } from "../middleware/validationMiddleware.js";
 const router = Router();
 
 router.route("/").get(getAllUsers);
 
-router.route("/:id").get(getSingleUser)
-
-router.route("/update-user/:id").patch(updateUser);
+router
+  .route("/:id")
+  .get(validateIdParam, getSingleUser)
+  .patch(validateIdParam, updateUser);
 
 export default router;
