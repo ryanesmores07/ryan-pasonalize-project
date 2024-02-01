@@ -12,9 +12,6 @@ const router = Router();
 router.route("/").get(getAllUsers);
 router.get("/current-user", getCurrentUser);
 
-router
-  .route("/:id")
-  .get(validateIdParam, getSingleUser)
-  .patch(validateIdParam, updateUser);
+router.route("/:id").get(getSingleUser).patch(validateIdParam, updateUser);
 
 export default router;
