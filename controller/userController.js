@@ -21,10 +21,6 @@ export const getSingleUser = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const updateUser = await User.findByIdAndUpdate(id, req.body, {
-    new: true,
-  });
-
-  res.status(StatusCodes.OK).json({ user: updateUser });
+  const updateUser = await User.findByIdAndUpdate(req.user.userId, req.body);
+  res.status(StatusCodes.OK).json({ msg: "user updated" });
 };
