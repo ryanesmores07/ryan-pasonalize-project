@@ -21,7 +21,6 @@ const UserSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
-  location: String,
   jobBranch: {
     type: String,
     enum: Object.values(JOB_BRANCH),
