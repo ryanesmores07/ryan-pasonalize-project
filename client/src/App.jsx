@@ -8,6 +8,8 @@ import {
   EditProfile,
 } from "./pages";
 
+import { action as registerAction } from "./pages/Register";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,7 +17,11 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { index: true, element: <Landing /> },
-      { path: "register", element: <Register /> },
+      {
+        path: "register",
+        element: <Register />,
+        action: registerAction,
+      },
       {
         path: "profile",
         element: <Profile />,
