@@ -16,6 +16,9 @@ router.route("/").get(getAllUsers);
 router.get("/current-user", getCurrentUser);
 router.patch("/update-user", validateUpdateUserInput, updateUser);
 
-router.route("/:id").get(getSingleUser);
+router
+  .route("/:id")
+  .get(validateIdParam, getSingleUser)
+  .patch(validateIdParam, updateUser);
 
 export default router;
