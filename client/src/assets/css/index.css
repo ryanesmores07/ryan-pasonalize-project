@@ -3,6 +3,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 /* Prevent font size inflation */
@@ -10,20 +12,30 @@ html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
+  font-size: 62.5%;
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 50%;
+    }
+  }
 }
 
 :root {
   /* colors */
-  --primary-50: #e0fcff;
-  --primary-100: #bef8fd;
-  --primary-200: #87eaf2;
-  --primary-300: #54d1db;
-  --primary-400: #38bec9;
-  --primary-500: #2cb1bc;
-  --primary-600: #14919b;
-  --primary-700: #0e7c86;
-  --primary-800: #0a6c74;
-  --primary-900: #044e54;
+  --off-white: #e6e6e6;
+  --off-black: #333333;
+  --light-blue: #cce0f3;
+  --blue: #36a9ec;
+  --dark-blue: #2b85ba;
+  --red: #d8000f;
+  --dark-red: #b60005;
+  --light-yellow: #fae296;
+  --yellow: #ffbf00;
+  --pink: #f1acea;
+  --light-green: #a1d6b9;
+  --green: #35d67e;
+  --light-purple: #c1abf0;
+  --purple: #b092f0;
 
   /* grey */
   --grey-50: #f8fafc;
@@ -36,13 +48,13 @@ html {
   --grey-700: #334155;
   --grey-800: #1e293b;
   --grey-900: #0f172a;
-  /* rest of the colors */
-  --black: #222;
-  --white: #fff;
-  --red-light: #f8d7da;
-  --red-dark: #842029;
-  --green-light: #d1e7dd;
-  --green-dark: #0f5132;
+
+  /* font weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -67,8 +79,14 @@ ol[role="list"] {
 
 /* Set core body defaults */
 body {
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   line-height: 1.5;
+  background-color: var(--off-white);
+}
+h1,
+h2 {
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Set shorter line heights on headings and interactive elements */
