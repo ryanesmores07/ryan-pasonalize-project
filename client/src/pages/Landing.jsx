@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import heroImage from "../assets/images/LandingPage/bg-hero.png";
+import smallImage from "../assets/images/LandingPage/three-small-images.png";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -37,6 +38,10 @@ const Landing = () => {
               LOGIN
             </button>
           </div>
+          <div className="small-image-and-text-container">
+            <img src={smallImage} alt="small-images" className="small-image" />
+            <p>Create an account and know about each other’s interest!</p>
+          </div>
         </div>
         <div className="right-section">
           <div className="image-container"></div>
@@ -48,7 +53,8 @@ const Landing = () => {
 
 const Wrapper = styled.section`
   .container {
-    height: 100vh;
+    min-height: 1024px;
+    min-width: 1440px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,6 +66,7 @@ const Wrapper = styled.section`
     .left-section {
       width: 50%;
       margin-left: 120px;
+      margin-top: 30rem;
       .text-container {
         h2 {
           max-width: 70%;
@@ -99,6 +106,7 @@ const Wrapper = styled.section`
           font-weight: 600;
           font-family: "Montserrat";
           cursor: pointer;
+          box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
         }
         .register-btn {
           color: #ffffff;
@@ -109,6 +117,18 @@ const Wrapper = styled.section`
           border: 1.5px solid var(--blue);
           color: var(--blue);
           background-color: rgba(54, 169, 236, 0.05);
+        }
+      }
+
+      .small-image-and-text-container {
+        gap: 1rem;
+        margin-top: 13rem;
+        display: flex;
+        align-items: center;
+        .small-image {
+        }
+        p {
+          font-size: 1.7rem;
         }
       }
     }

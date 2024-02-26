@@ -55,6 +55,9 @@ html {
   --font-weight-semi-bold: 600;
   --font-weight-bold: 700;
   --font-weight-black: 900;
+
+  --transition: 0.3s ease-in-out all;
+  --border-radius: 0.25rem;
 }
 
 /* Remove default margin in favour of better control in authored CSS */
@@ -127,6 +130,14 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  border-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* Make sure textareas without a rows attribute are not tiny */

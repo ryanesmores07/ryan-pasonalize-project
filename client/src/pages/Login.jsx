@@ -3,6 +3,8 @@ import { FormRow, SubmitBtn } from "../components";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 import styled from "styled-components";
+import bgImage from "../assets/images/RegisterAndLoginPage/blue-blob-bg.png";
+import logo from "../assets/images/RegisterAndLoginPage/pasonalize.png";
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
@@ -20,18 +22,59 @@ export const action = async ({ request }) => {
 const Login = () => {
   return (
     <Wrapper>
-      <Form method="post">
-        <h4>Login</h4>
-        <FormRow name="email" type="email" />
-        <FormRow name="password" type="password" />
-        <SubmitBtn />
-        <p>Not a member yet?</p>
-        <Link to="/register">Register</Link>
-      </Form>
+      <div className="container">
+        <Form method="post" className="form">
+          <img src={logo} alt="logo" />
+          <h4>Login</h4>
+          <FormRow name="email" type="email" />
+          <FormRow name="password" type="password" />
+          <SubmitBtn />
+          <p>
+            Not a member yet?
+            <Link to="/register">
+              <span style={{ color: "var(--blue)" }}> Register</span>
+            </Link>
+          </p>
+        </Form>
+      </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  .container {
+    min-height: 1024px;
+    max-width: 1440px;
+    background-image: url(${bgImage});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .form {
+      margin: 0 auto;
+      padding: 38px 30px;
+      max-height: 639px;
+      max-width: 440px;
+      display: flex;
+      position: relative;
+      top: 196px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      background-color: #ffffff;
+      box-shadow: inset 0 4px 0 0 #b60005;
+      border-radius: 5px;
+
+      h4 {
+        font-size: 3.5rem;
+        font-weight: 400;
+      }
+      p {
+        font-size: 1.5rem;
+      }
+    }
+  }
+`;
 
 export default Login;
