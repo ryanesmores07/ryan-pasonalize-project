@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import { SmallSidebar, BigSidebar, Navbar } from "../components/";
-
 import { createContext, useContext, useState } from "react";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";

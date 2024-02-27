@@ -8,13 +8,14 @@ import {
   Profile,
   Dashboard,
   EditProfile,
-  AllMembers,
+  AllUsers,
   Stats,
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
+import { loader as allUsersLoader } from "./pages/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,8 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <AllMembers />,
+            element: <AllUsers />,
+            loader: allUsersLoader,
           },
           {
             path: "stats",

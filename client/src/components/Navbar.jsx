@@ -27,7 +27,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
-  height: 6rem;
+  height: 14.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,19 +42,21 @@ const Wrapper = styled.nav`
   .toggle-btn {
     background: transparent;
     border-color: transparent;
-    font-size: 1.75rem;
-    color: var(--blue);
+    font-size: 3rem;
+    color: var(--off-black);
     cursor: pointer;
     display: flex;
     align-items: center;
   }
   .logo-text {
     display: none;
+    font-size: 3.5rem;
+    font-weight: 500;
   }
   .logo {
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 15rem;
   }
   .btn-container {
     display: flex;
@@ -71,6 +73,9 @@ const Wrapper = styled.nav`
     }
     .logo-text {
       display: block;
+    }
+    .toggle-btn {
+      font-size: 3rem;
     }
   }
 `;

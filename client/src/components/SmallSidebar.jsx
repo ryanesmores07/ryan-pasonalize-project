@@ -56,7 +56,7 @@ const Wrapper = styled.aside`
     width: 90vw;
     height: 95vh;
     border-radius: var(--border-radius);
-    padding: 4rem 2rem;
+    padding: 8rem 2rem;
     position: relative;
     display: flex;
     align-items: center;
@@ -68,7 +68,7 @@ const Wrapper = styled.aside`
     left: 10px;
     background: transparent;
     border-color: transparent;
-    font-size: 2rem;
+    font-size: 3rem;
     color: var(--dark-red);
     cursor: pointer;
   }
@@ -79,9 +79,10 @@ const Wrapper = styled.aside`
   }
   .nav-link {
     display: flex;
+    font-size: 1.6rem;
     align-items: center;
     color: var(--off-black);
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     text-transform: capitalize;
     transition: var(--transition);
   }
@@ -89,7 +90,7 @@ const Wrapper = styled.aside`
     color: var(--blue);
   }
   .icon {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     margin-right: 1rem;
     display: grid;
     place-items: center;
