@@ -17,7 +17,7 @@ const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
             {firstName} <br /> <span>{lastName}</span>
           </h3>
           {jobDepartment && <h4>{jobDepartment}</h4>}
-          <h4>Kintone</h4>
+          <h4 className={"kintone"}>Kintone</h4>
         </div>
       </div>
     </Wrapper>
@@ -38,7 +38,7 @@ const Wrapper = styled.article`
       font-size: 2rem;
       margin-bottom: 9px;
     }
-    h4 {
+    /* h4 {
       font-weight: 500;
       font-size: 1.5rem;
       margin-left: 14px;
@@ -54,7 +54,7 @@ const Wrapper = styled.article`
         border-radius: 50rem;
         display: block;
       }
-    }
+    } */
 
     .name-position-container {
       display: flex;
