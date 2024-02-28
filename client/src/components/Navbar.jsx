@@ -42,7 +42,7 @@ const Wrapper = styled.nav`
   .toggle-btn {
     background: transparent;
     border-color: transparent;
-    font-size: 3rem;
+    font-size: 2rem;
     color: var(--off-black);
     cursor: pointer;
     display: flex;
@@ -56,7 +56,7 @@ const Wrapper = styled.nav`
   .logo {
     display: flex;
     align-items: center;
-    width: 15rem;
+    width: 10rem;
   }
   .btn-container {
     display: flex;

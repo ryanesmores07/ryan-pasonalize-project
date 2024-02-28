@@ -36,9 +36,9 @@ export default LogoutContainer;
 const Wrapper = styled.div`
   position: relative;
   .logout-btn {
-    width: 175px;
-    height: 45px;
-    font-size: 1.6rem;
+    width: 120px;
+    height: 35px;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   }
   .icon-1,
   .icon-2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .dropdown {
     position: absolute;

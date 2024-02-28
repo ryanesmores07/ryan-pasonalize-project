@@ -18,7 +18,7 @@ const Landing = () => {
             <h1>PASONALIZE</h1>
             <div className="divider"></div>
             <p>
-              Meet other members from other departments in the company. Make new
+              Meet other members of other departments in the company. Make new
               friends and mingle!
             </p>
           </div>
@@ -54,7 +54,7 @@ const Landing = () => {
 const Wrapper = styled.section`
   .container {
     min-height: 1024px;
-    min-width: 1440px;
+    min-width: 1024px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +95,7 @@ const Wrapper = styled.section`
       .buttons {
         display: flex;
         gap: 3rem;
-        margin-top: 5.5rem;
+        margin-top: 5rem;
         .register-btn,
         .login-btn {
           font-size: 1.6rem;
@@ -107,6 +107,11 @@ const Wrapper = styled.section`
           font-family: "Montserrat";
           cursor: pointer;
           box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+          transition: background-color 0.3s ease, color 0.3s ease;
+          &:hover {
+            background-color: var(--dark-blue);
+            color: #ffffff;
+          }
         }
         .register-btn {
           color: #ffffff;

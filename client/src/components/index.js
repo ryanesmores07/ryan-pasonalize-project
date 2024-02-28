@@ -7,3 +7,4 @@ export { default as Logo } from "./Logo";
 export { default as LogoutContainer } from "./LogoutContainer";
 export { default as SearchContainer } from "./SearchContainer";
 export { default as UsersContainer } from "./UsersContainer";
+export { default as JobInfo } from "./JobInfo";

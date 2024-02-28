@@ -41,7 +41,8 @@ const Wrapper = styled.section`
   }
   @media (min-width: 1120px) {
     .users {
-      grid-template-columns: 1fr 1fr;
+      place-items: center;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 2rem;
     }
   }

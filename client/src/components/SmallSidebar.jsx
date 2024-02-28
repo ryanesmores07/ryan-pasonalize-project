@@ -54,7 +54,7 @@ const Wrapper = styled.aside`
   .content {
     background: var(--light-blue);
     width: 90vw;
-    height: 95vh;
+    /* height: 95vh; */
     border-radius: var(--border-radius);
     padding: 8rem 2rem;
     position: relative;
@@ -64,7 +64,7 @@ const Wrapper = styled.aside`
   }
   .close-btn {
     position: absolute;
-    top: 10px;
+    top: 50px;
     left: 10px;
     background: transparent;
     border-color: transparent;
