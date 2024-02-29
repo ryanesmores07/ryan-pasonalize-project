@@ -1,8 +1,8 @@
 export const JOB_DEPARTMENT = {
   DEFAULT: "",
   KINTONE: "kintone",
-  POWER_PLATFORM: "ms-power-platform",
-  WEB_AI: "web-ai",
+  POWER_PLATFORM: "power-platform",
+  WEB_AI: "web/ai",
   INFRASTRUCTURE: "infrastructure",
 };
 
@@ -11,6 +11,7 @@ export const JOB_POSITION = {
   LEADER: "leader",
   SUB_LEADER: "sub-leader",
   DEVELOPER: "developer",
+  TRAINEE: "trainee",
 };
 
 export const JOB_BRANCH = {

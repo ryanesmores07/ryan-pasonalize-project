@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "lastName",
     },
+    yearEmployed: {
+      type: Number,
+      default: "",
+    },
+    hobby: String,
     role: {
       type: String,
       enum: ["user", "admin"],

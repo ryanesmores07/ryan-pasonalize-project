@@ -16,6 +16,8 @@ import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
+import { loader as editProfileLoader } from "./pages/EditProfile";
+import { action as editProfileAction } from "./pages/EditProfile";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,8 @@ const router = createBrowserRouter([
           {
             path: "edit-profile",
             element: <EditProfile />,
+            loader: editProfileLoader,
+            action: editProfileAction,
           },
           {
             path: "profile",

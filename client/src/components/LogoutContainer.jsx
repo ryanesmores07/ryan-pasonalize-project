@@ -43,6 +43,10 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     gap: 2.4rem;
+    &:hover {
+      background-color: var(--dark-blue);
+      color: #ffffff;
+    }
   }
   .img {
     width: 25px;

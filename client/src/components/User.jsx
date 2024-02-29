@@ -10,14 +10,15 @@ const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
     <Wrapper>
       <div className="container">
         <div className="avatar-container">
+          {avatar && <img src={avatar} alt="avatar" />}
           <img src={avatarTemp} alt="avatar" />
         </div>
         <div className="name-position-container">
           <h3>
             {firstName} <br /> <span>{lastName}</span>
           </h3>
-          {jobDepartment && <h4>{jobDepartment}</h4>}
-          <h4 className={"kintone"}>Kintone</h4>
+          {jobDepartment && <h4 className={jobDepartment}>{jobDepartment}</h4>}
+          {!jobDepartment && <h4 className="default">not yet specified</h4>}
         </div>
       </div>
     </Wrapper>
@@ -38,10 +39,19 @@ const Wrapper = styled.article`
       font-size: 2rem;
       margin-bottom: 9px;
     }
-    /* h4 {
+
+    .name-position-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .default {
       font-weight: 500;
       font-size: 1.5rem;
       margin-left: 14px;
+      color: var(--off-white);
+
       &::after {
         content: "";
         position: relative;
@@ -50,16 +60,10 @@ const Wrapper = styled.article`
         left: -14px;
         height: 2.6rem;
         width: 145px;
-        background-color: var(--light-yellow);
-        border-radius: 50rem;
+        background-color: var(--red);
+        border-radius: var(--border-radius);
         display: block;
       }
-    } */
-
-    .name-position-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
   }
 `;

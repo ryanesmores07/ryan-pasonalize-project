@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FormRow = ({ type, name, labelText, defaultValue }) => {
+const FormRow = ({ type, name, labelText, defaultValue, isRequired }) => {
   return (
     <Wrapper>
       <div className="form-row">
@@ -13,7 +13,7 @@ const FormRow = ({ type, name, labelText, defaultValue }) => {
           id={name}
           name={name}
           defaultValue={defaultValue || ""}
-          required
+          required={isRequired}
         />
       </div>
     </Wrapper>
@@ -29,9 +29,11 @@ const Wrapper = styled.section`
       color: rgba(0, 0, 0, 0.7);
       display: block;
       margin-bottom: 7px;
-      font-size: 1.9rem;
+      font-size: 1.6rem;
     }
     .form-input {
+      font-size: 1.6rem;
+      padding-left: 1rem;
       width: 380px;
       height: 45px;
       background-color: var(--light-blue);

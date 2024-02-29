@@ -61,6 +61,7 @@ const Wrapper = styled.nav`
   .btn-container {
     display: flex;
     align-items: center;
+    
   }
   @media (min-width: 992px) {
     position: sticky;
@@ -76,6 +77,8 @@ const Wrapper = styled.nav`
     }
     .toggle-btn {
       font-size: 3rem;
+
+      
     }
   }
 `;
