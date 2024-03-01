@@ -60,6 +60,11 @@ const UserSchema = new mongoose.Schema(
       enum: Object.values(LOVE_LANGUAGE),
       default: LOVE_LANGUAGE.DEFAULT,
     },
+    aboutMe: {
+      type: String,
+      maxlength: 1000,
+      default: "Tell us about yourself...",
+    },
     avatar: String,
     avatarPublicId: String,
   },

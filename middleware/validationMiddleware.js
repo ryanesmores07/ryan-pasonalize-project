@@ -75,4 +75,19 @@ export const validateUpdateUserInput = withValidationErrors([
       }
     }),
   body("lastName").notEmpty().withMessage("last name is required"),
+  body("yearEmployed").custom(async (value, { req }) => {
+    if (value === undefined || value === null || value === "") {
+      // If the value is undefined, null, or an empty string, it's considered valid
+      return true;
+    }
+    if (!/^\d+$/.test(value)) {
+      // If the value is not a valid number, return false with an error message
+      throw new BadRequestError("Year must be a number");
+    }
+    if (!/^\d{4}$/.test(value)) {
+      throw new Error("Input a valid year");
+    }
+
+    return true; // Return true to indicate the validation passed
+  }),
 ]);

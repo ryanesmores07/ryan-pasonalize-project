@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import day from "dayjs";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
+import { useState } from "react";
 
 export const loader = async () => {
   try {
@@ -39,6 +40,7 @@ export const action = async ({ request }) => {
 const EditProfile = () => {
   const isRequired = false;
   const { user } = useLoaderData();
+  const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const date = day(user.createdAt).format("YYYY");
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
@@ -48,16 +50,18 @@ const EditProfile = () => {
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
           <div className="form-row">
-            <label htmlFor="image" className="form-label">
-              Select an image file (max 0.5 MB):
-            </label>
-            <input
-              type="file"
-              id="avatar"
-              name="avatar"
-              className="form-input"
-              accept="image/*"
-            />
+            <div className="image-upload-container">
+              <label htmlFor="image" className="form-label">
+                Select an image file (max 0.5 MB):
+              </label>
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                className="form-input"
+                accept="image/*"
+              />
+            </div>
           </div>
           <FormRow
             type="text"
@@ -126,6 +130,18 @@ const EditProfile = () => {
             name="yearEmployed"
             defaultValue={user.yearEmployed}
           />
+          <div className="text-area">
+            <label htmlFor="aboutMe" className="text-label">
+              Tell us about yourself
+            </label>
+            <textarea
+              className="text-input"
+              id="aboutMe"
+              name="aboutMe"
+              defaultValue={aboutMe}
+            />
+          </div>
+
           <button
             type="submit"
             className="btn btn-block form-btn "
@@ -157,14 +173,16 @@ const Wrapper = styled.section`
     max-width: 100%;
     width: 100%;
   }
+
   .form-row {
     margin-bottom: 3rem;
     color: rgba(0, 0, 0, 0.7);
     .form-label {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+      min-width: 35ch;
     }
     .form-input {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       width: 100%;
       height: 45px;
       background-color: var(--off-white);
@@ -174,12 +192,35 @@ const Wrapper = styled.section`
       padding-bottom: 10px;
     }
   }
+  .text-area {
+    grid-column: 1/3;
+
+    .text-label {
+      text-transform: capitalize;
+      color: rgba(0, 0, 0, 0.7);
+      display: block;
+      margin-bottom: 7px;
+      font-size: 1.3rem;
+    }
+
+    .text-input {
+      font-size: 1.3rem;
+      padding-left: 1rem;
+      width: 100%;
+      height: 45px;
+      background-color: var(--off-white);
+      border-radius: 5px;
+      border-style: none;
+    }
+  }
+
   .form-center {
     display: grid;
     row-gap: 1rem;
   }
   .form-btn {
-    grid-column: 3/4;
+    /* grid-column: 3/4; */
+    margin-top: 1.5rem;
     align-self: center;
     display: grid;
     place-items: center;
