@@ -54,14 +54,20 @@ export default Profile;
 
 const Wrapper = styled.section`
   .nav-container {
+    padding: 0 12rem;
     display: flex;
+    justify-content: space-between;
     height: 145px;
     background-color: var(--light-purple);
 
     .name-team {
       display: flex;
       align-items: center;
+      align-self: flex-end;
       gap: 0.5rem;
+    }
+    .btn-container {
+      align-self: center;
     }
   }
 `;
