@@ -53,8 +53,8 @@ const Wrapper = styled.aside`
       padding-left: 2.5rem;
     }
     .nav-links {
-      margin-left: 2rem;
       padding-top: 2rem;
+      margin-left: 2rem;
       display: flex;
       flex-direction: column;
     }

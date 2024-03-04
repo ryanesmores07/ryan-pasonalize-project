@@ -7,7 +7,7 @@ const links = [
   { text: "all members", path: ".", icon: <FaPeopleGroup /> },
   { text: "stats", path: "stats", icon: <IoBarChartSharp /> },
   { text: "edit profile", path: "edit-profile", icon: <TbUserEdit /> },
-  { text: "profile", path: "profile", icon: <ImProfile /> },
+  // { text: "profile", path: "profile", icon: <ImProfile /> },
 ];
 
 export default links;

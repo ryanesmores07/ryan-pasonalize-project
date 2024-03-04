@@ -62,8 +62,13 @@ const UserSchema = new mongoose.Schema(
     },
     aboutMe: {
       type: String,
-      maxlength: 1000,
+      maxlength: 500,
       default: "Tell us about yourself...",
+    },
+    active: {
+      type: Boolean,
+      default: true,
+      select: false,
     },
     avatar: String,
     avatarPublicId: String,
@@ -76,5 +81,10 @@ UserSchema.methods.toJSON = function () {
   delete obj.password;
   return obj;
 };
+
+UserSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
 
 export default mongoose.model("User", UserSchema);

@@ -17,6 +17,7 @@ import { action as loginAction } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
 import { loader as editProfileLoader } from "./pages/EditProfile";
+import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
 
 const router = createBrowserRouter([
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
         action: loginAction,
       },
       {
+        path: "profile",
+        element: <Profile />,
+        loader: profileLoader,
+      },
+      {
         path: "dashboard",
         element: <Dashboard />,
         loader: dashboardLoader,
@@ -55,20 +61,6 @@ const router = createBrowserRouter([
             element: <EditProfile />,
             loader: editProfileLoader,
             action: editProfileAction,
-          },
-          {
-            path: "profile",
-            element: <Profile />,
-          },
-        ],
-      },
-      {
-        path: "profile",
-        element: <Profile />,
-        children: [
-          {
-            index: true,
-            element: <EditProfile />,
           },
         ],
       },

@@ -8,6 +8,15 @@ export const getCurrentUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ user: userWithoutPassword });
 };
 
+export const deleteMe = async (req, res) => {
+  await User.findByIdAndUpdate(req.user.userId, { active: false });
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+};
+
 export const getAllUsers = async (req, res) => {
   const users = await User.find();
   res.status(StatusCodes.OK).json({ users });

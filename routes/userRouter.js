@@ -4,6 +4,7 @@ import {
   getCurrentUser,
   getSingleUser,
   updateUser,
+  deleteMe,
 } from "../controller/userController.js";
 import {
   validateIdParam,
@@ -15,6 +16,7 @@ const router = Router();
 router.route("/").get(getAllUsers);
 router.get("/current-user", getCurrentUser);
 router.patch("/update-user", validateUpdateUserInput, updateUser);
+router.delete("/delete-user", deleteMe);
 
 router.route("/:id").get(validateIdParam, getSingleUser);
 
