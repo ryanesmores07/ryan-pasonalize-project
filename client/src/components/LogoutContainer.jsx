@@ -36,6 +36,7 @@ export default LogoutContainer;
 const Wrapper = styled.div`
   position: relative;
   .logout-btn {
+    color: #ffffff;
     width: 120px;
     height: 35px;
     font-size: 1.2rem;
@@ -45,7 +46,6 @@ const Wrapper = styled.div`
     gap: 2.4rem;
     &:hover {
       background-color: var(--dark-blue);
-      color: #ffffff;
     }
   }
   .img {
@@ -77,12 +77,16 @@ const Wrapper = styled.div`
     font-size: 1.6rem;
     background: transparent;
     border-color: transparent;
-    color: var(--off-white);
+    color: #ffffff;
     letter-spacing: var(--letter-spacing);
     text-transform: capitalize;
     cursor: pointer;
     width: 100%;
     height: 100%;
+    &:hover {
+      background-color: var(--dark-blue);
+      color: #ffffff;
+    }
   }
   @media (min-width: 992px) {
     .logout-btn {

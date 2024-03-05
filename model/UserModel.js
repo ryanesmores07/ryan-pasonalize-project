@@ -20,10 +20,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: "lastName",
     },
+    nickname: String,
     yearEmployed: {
       type: Number,
       default: "",
     },
+    celebrityCrush: String,
     hobby: String,
     role: {
       type: String,

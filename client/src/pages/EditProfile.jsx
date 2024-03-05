@@ -15,8 +15,6 @@ import customFetch from "../utils/customFetch";
 import styled from "styled-components";
 import { useState } from "react";
 
-
-
 export const loader = async () => {
   try {
     const { data } = await customFetch.get("/users/current-user");
@@ -60,20 +58,6 @@ const EditProfile = () => {
       <Form method="post" className="form" encType="multipart/form-data">
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
-          <div className="form-row">
-            <div className="image-upload-container">
-              <label htmlFor="avatar" className="form-label">
-                Select an image file (max 2MB):
-              </label>
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                className="form-input"
-                accept="image/*"
-              />
-            </div>
-          </div>
           <FormRow
             type="text"
             name="firstName"
@@ -85,6 +69,12 @@ const EditProfile = () => {
             name="lastName"
             labelText="last name"
             defaultValue={user.lastName}
+          />
+          <FormRow
+            type="text"
+            name="nickname"
+            labelText="nickname"
+            defaultValue={user.nickname}
           />
           <FormRow
             labelText="email"
@@ -143,6 +133,34 @@ const EditProfile = () => {
             placeholder="2020"
             defaultValue={user.yearEmployed}
           />
+          <FormRow
+            labelText="Hometown"
+            type="text"
+            name="birthPlace"
+            defaultValue={user.birthPlace}
+            placeholder="Tokyo, Japan"
+          />
+          <FormRow
+            labelText="Celebrity Crush"
+            type="text"
+            name="celebrityCrush"
+            defaultValue={user.celebrityCrush}
+            placeholder="Ryan Gosling"
+          />
+          <div className="form-row">
+            <div className="image-upload-container">
+              <label htmlFor="avatar" className="form-label">
+                Select a profile photo (max 2MB):
+              </label>
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                className="form-input"
+                accept="image/*"
+              />
+            </div>
+          </div>
           <div className="text-area">
             <label htmlFor="aboutMe" className="text-label">
               Tell us about yourself
@@ -155,13 +173,6 @@ const EditProfile = () => {
               defaultValue={aboutMe}
             />
           </div>
-          <FormRow
-            labelText="Birth Place"
-            type="text"
-            name="birthPlace"
-            defaultValue={user.birthPlace}
-            placeholder="Tokyo, Japan"
-          />
           <button
             type="submit"
             className="btn btn-block form-btn "
@@ -213,8 +224,6 @@ const Wrapper = styled.section`
     }
   }
   .text-area {
-    grid-column: 1/2;
-
     .text-label {
       text-transform: capitalize;
       color: rgba(0, 0, 0, 0.7);
@@ -236,10 +245,10 @@ const Wrapper = styled.section`
 
   .form-center {
     display: grid;
-    row-gap: 1rem;
+    row-gap: 2rem;
   }
   .form-btn {
-    /* grid-column: 3/4; */
+    grid-column: 3/4;
     margin-top: -0.6rem;
     align-self: center;
     display: grid;
@@ -253,7 +262,7 @@ const Wrapper = styled.section`
     .form-center {
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      column-gap: 1rem;
+      column-gap: 2rem;
     }
   }
   @media (min-width: 1120px) {
