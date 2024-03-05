@@ -2,7 +2,7 @@ export const JOB_DEPARTMENT = {
   DEFAULT: "",
   KINTONE: "kintone",
   POWER_PLATFORM: "power-platform",
-  WEB_AI: "web/ai",
+  WEB_AI: "web-ai",
   INFRASTRUCTURE: "infrastructure",
 };
 

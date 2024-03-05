@@ -3,15 +3,18 @@ import { Link } from "react-router-dom";
 import JobInfo from "./JobInfo";
 import { Form } from "react-router-dom";
 import styled from "styled-components";
-import avatarTemp from "../assets/images/UserPage/Ellipse1.png";
+import avatarTemp from "../assets/images/UserPage/default.jpg";
 
 const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
   return (
     <Wrapper>
       <div className="container">
         <div className="avatar-container">
-          {avatar && <img src={avatar} alt="avatar" />}
-          <img src={avatarTemp} alt="avatar" />
+          {avatar ? (
+            <img src={avatar} alt="avatar" className="avatar" />
+          ) : (
+            <img src={avatarTemp} alt="avatar" className="avatar" />
+          )}
         </div>
         <div className="name-position-container">
           <h3>
@@ -32,6 +35,19 @@ const Wrapper = styled.article`
     align-items: flex-end;
     gap: 1rem;
     width: 281px;
+
+    .avatar-container {
+      box-shadow: var(--shadow-1);
+
+      width: 80px;
+      height: 100px;
+      .avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
 
     h3 {
       font-weight: 500;

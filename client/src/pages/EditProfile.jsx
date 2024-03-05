@@ -15,6 +15,8 @@ import customFetch from "../utils/customFetch";
 import styled from "styled-components";
 import { useState } from "react";
 
+
+
 export const loader = async () => {
   try {
     const { data } = await customFetch.get("/users/current-user");
@@ -26,15 +28,24 @@ export const loader = async () => {
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  try {
-    await customFetch.patch("/users/update-user", data);
-    toast.success("User edited successfully");
-    return redirect("/dashboard/profile");
-  } catch (error) {
-    toast.error(error.response.data.msg);
-    return error;
+
+  const file = formData.get("avatar");
+  if (file && file.size > 2 * 1024 * 1024) {
+    // 5MB limit
+    toast.error(
+      "Image size too large. Please select an image smaller than 5MB."
+    );
+    return null;
   }
+
+  try {
+    await customFetch.patch("/users/update-user", formData);
+    toast.success("Profile updated successfully");
+    return redirect("/profile");
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+  }
+  return null;
 };
 
 const EditProfile = () => {
@@ -46,13 +57,13 @@ const EditProfile = () => {
   const isSubmitting = navigation.state === "submitting";
   return (
     <Wrapper>
-      <Form method="post" className="form">
+      <Form method="post" className="form" encType="multipart/form-data">
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
           <div className="form-row">
             <div className="image-upload-container">
-              <label htmlFor="image" className="form-label">
-                Select an image file (max 0.5 MB):
+              <label htmlFor="avatar" className="form-label">
+                Select an image file (max 2MB):
               </label>
               <input
                 type="file"
@@ -103,6 +114,7 @@ const EditProfile = () => {
             labelText="favorite hobby"
             type="text"
             name="hobby"
+            placeholder="karaoke"
             defaultValue={user.hobby}
             isRequired={isRequired}
           />
@@ -128,6 +140,7 @@ const EditProfile = () => {
             labelText="year joined"
             type="text"
             name="yearEmployed"
+            placeholder="2020"
             defaultValue={user.yearEmployed}
           />
           <div className="text-area">
@@ -138,10 +151,17 @@ const EditProfile = () => {
               className="text-input"
               id="aboutMe"
               name="aboutMe"
+              placeholder="Tell us about yourself"
               defaultValue={aboutMe}
             />
           </div>
-
+          <FormRow
+            labelText="Birth Place"
+            type="text"
+            name="birthPlace"
+            defaultValue={user.birthPlace}
+            placeholder="Tokyo, Japan"
+          />
           <button
             type="submit"
             className="btn btn-block form-btn "
@@ -193,7 +213,7 @@ const Wrapper = styled.section`
     }
   }
   .text-area {
-    grid-column: 1/3;
+    grid-column: 1/2;
 
     .text-label {
       text-transform: capitalize;
@@ -220,7 +240,7 @@ const Wrapper = styled.section`
   }
   .form-btn {
     /* grid-column: 3/4; */
-    margin-top: 1.5rem;
+    margin-top: -0.6rem;
     align-self: center;
     display: grid;
     place-items: center;

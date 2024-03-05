@@ -1,4 +1,5 @@
 import { Router } from "express";
+import upload from "../middleware/multerMiddleware.js";
 import {
   getAllUsers,
   getCurrentUser,
@@ -15,7 +16,12 @@ const router = Router();
 
 router.route("/").get(getAllUsers);
 router.get("/current-user", getCurrentUser);
-router.patch("/update-user", validateUpdateUserInput, updateUser);
+router.patch(
+  "/update-user",
+  upload.single("avatar"),
+  validateUpdateUserInput,
+  updateUser
+);
 router.delete("/delete-user", deleteMe);
 
 router.route("/:id").get(validateIdParam, getSingleUser);

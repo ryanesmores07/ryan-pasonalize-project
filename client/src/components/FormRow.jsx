@@ -1,6 +1,13 @@
 import styled from "styled-components";
 
-const FormRow = ({ type, name, labelText, defaultValue, isRequired }) => {
+const FormRow = ({
+  type,
+  name,
+  labelText,
+  defaultValue,
+  isRequired,
+  placeholder,
+}) => {
   return (
     <Wrapper>
       <div className="form-row">
@@ -13,6 +20,7 @@ const FormRow = ({ type, name, labelText, defaultValue, isRequired }) => {
           id={name}
           name={name}
           defaultValue={defaultValue || ""}
+          placeholder={placeholder}
           required={isRequired}
         />
       </div>

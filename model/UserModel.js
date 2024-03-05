@@ -63,12 +63,16 @@ const UserSchema = new mongoose.Schema(
     aboutMe: {
       type: String,
       maxlength: 500,
-      default: "Tell us about yourself...",
+      default: "",
     },
     active: {
       type: Boolean,
       default: true,
       select: false,
+    },
+    birthPlace: {
+      type: String,
+      default: "",
     },
     avatar: String,
     avatarPublicId: String,

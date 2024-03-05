@@ -109,6 +109,7 @@ h4,
 button,
 input,
 label {
+  color: var(--off-black);
   line-height: 1.1;
 }
 
@@ -171,78 +172,6 @@ textarea:not([rows]) {
   transition: var(--transition);
   text-transform: capitalize;
   display: inline-block;
-}
-
-/* Job Department */
-.kintone {
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin-left: 14px;
-  &::after {
-    content: "";
-    position: relative;
-    top: -21px;
-    z-index: -1;
-    left: -14px;
-    height: 2.6rem;
-    width: 145px;
-    background-color: var(--light-yellow);
-    border-radius: var(--border-radius);
-    display: block;
-  }
-}
-
-.web\/ai {
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin-left: 14px;
-  &::after {
-    content: "";
-    position: relative;
-    top: -21px;
-    z-index: -1;
-    left: -14px;
-    height: 2.6rem;
-    width: 145px;
-    background-color: var(--pink);
-    border-radius: var(--border-radius);
-
-    display: block;
-  }
-}
-.infrastructure {
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin-left: 14px;
-  &::after {
-    content: "";
-    position: relative;
-    top: -21px;
-    z-index: -1;
-    left: -14px;
-    height: 2.6rem;
-    width: 145px;
-    background-color: var(--purple);
-    border-radius: var(--border-radius);
-    display: block;
-  }
-}
-.power-platform {
-  font-weight: 500;
-  font-size: 1.5rem;
-  margin-left: 14px;
-  &::after {
-    content: "";
-    position: relative;
-    top: -21px;
-    z-index: -1;
-    left: -14px;
-    height: 2.6rem;
-    width: 145px;
-    background-color: var(--light-green);
-    border-radius: var(--border-radius);
-    display: block;
-  }
 }
 
 /* form */
@@ -312,4 +241,75 @@ textarea:not([rows]) {
   border-radius: 50%;
   border-top-color: var(--primary-500);
   animation: spinner 0.6s linear infinite;
+}
+
+/* Job Department */
+.kintone {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-left: 14px;
+  &::after {
+    content: "";
+    position: relative;
+    top: -21px;
+    z-index: -1;
+    left: -14px;
+    height: 2.6rem;
+    width: 145px;
+    background-color: var(--light-yellow);
+    border-radius: var(--border-radius);
+    display: block;
+  }
+}
+
+.web-ai {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-left: 14px;
+  &::after {
+    content: "";
+    position: relative;
+    top: -21px;
+    z-index: -1;
+    left: -14px;
+    height: 2.6rem;
+    width: 145px;
+    background-color: var(--pink);
+    border-radius: var(--border-radius);
+    display: block;
+  }
+}
+.infrastructure {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-left: 14px;
+  &::after {
+    content: "";
+    position: relative;
+    top: -21px;
+    z-index: -1;
+    left: -14px;
+    height: 2.6rem;
+    width: 145px;
+    background-color: var(--purple);
+    border-radius: var(--border-radius);
+    display: block;
+  }
+}
+.power-platform {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-left: 14px;
+  &::after {
+    content: "";
+    position: relative;
+    top: -21px;
+    z-index: -1;
+    left: -14px;
+    height: 2.6rem;
+    width: 145px;
+    background-color: var(--light-green);
+    border-radius: var(--border-radius);
+    display: block;
+  }
 }
