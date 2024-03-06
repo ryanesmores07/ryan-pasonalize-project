@@ -72,7 +72,7 @@ const UserSchema = new mongoose.Schema(
       default: true,
       select: false,
     },
-    birthPlace: {
+    hometown: {
       type: String,
       default: "",
     },

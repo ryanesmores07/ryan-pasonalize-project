@@ -4,6 +4,8 @@ import App from "./App.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/css/index.css";
 import { ToastContainer } from "react-toastify";
+import "react-image-crop/dist/ReactCrop.css";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

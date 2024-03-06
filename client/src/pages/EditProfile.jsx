@@ -1,4 +1,4 @@
-import { FormRow, FormRowSelect } from "../components";
+import { FormRow, FormRowSelect, ImageCropper } from "../components";
 import { useLoaderData } from "react-router-dom";
 import {
   JOB_DEPARTMENT,
@@ -26,12 +26,11 @@ export const loader = async () => {
 
 export const action = async ({ request }) => {
   const formData = await request.formData();
-
   const file = formData.get("avatar");
+
   if (file && file.size > 2 * 1024 * 1024) {
-    // 5MB limit
     toast.error(
-      "Image size too large. Please select an image smaller than 5MB."
+      "Image size too large. Please select an image smaller than 2MB."
     );
     return null;
   }
@@ -136,8 +135,8 @@ const EditProfile = () => {
           <FormRow
             labelText="Hometown"
             type="text"
-            name="birthPlace"
-            defaultValue={user.birthPlace}
+            name="hometown"
+            defaultValue={user.hometown}
             placeholder="Tokyo, Japan"
           />
           <FormRow
@@ -148,7 +147,7 @@ const EditProfile = () => {
             placeholder="Ryan Gosling"
           />
           <div className="form-row">
-            <div className="image-upload-container">
+            {/* <div className="image-upload-container">
               <label htmlFor="avatar" className="form-label">
                 Select a profile photo (max 2MB):
               </label>
@@ -159,7 +158,15 @@ const EditProfile = () => {
                 className="form-input"
                 accept="image/*"
               />
-            </div>
+            </div> */}
+            <ImageCropper
+              onClick={handleOnClick}
+              type="file"
+              id="avatar"
+              name="avatar"
+              className="form-input"
+              accept="image/*"
+            />
           </div>
           <div className="text-area">
             <label htmlFor="aboutMe" className="text-label">
@@ -262,7 +269,7 @@ const Wrapper = styled.section`
     .form-center {
       grid-template-columns: 1fr 1fr;
       align-items: center;
-      column-gap: 2rem;
+      column-gap: 1rem;
     }
   }
   @media (min-width: 1120px) {

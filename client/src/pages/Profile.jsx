@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import customFetch from "../utils/customFetch";
 import { useLoaderData, useNavigate } from "react-router-dom";
-import ProfileLogoutContainer from "../components/ProfileLogoutContainer";
+
+import ProfileNav from "../components/ProfileNav";
 
 export const loader = async () => {
   try {
@@ -14,37 +15,11 @@ export const loader = async () => {
 
 const Profile = () => {
   const { user } = useLoaderData();
-  const navigate = useNavigate();
 
-  const logoutUser = async () => {
-    navigate("/");
-    await customFetch.get("/auth/logout");
-    toast.success("Logging out...");
-  };
   return (
     <Wrapper>
+      <ProfileNav user={user} />
       <div className="container">
-        <nav className={`${user.jobDepartment} nav-container`}>
-          <div className="name-team">
-            <h4>
-              {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}{" "}
-              {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
-            </h4>
-            <span style={{ color: "var(--dark-red)" }}> | </span>
-            <span
-              style={{
-                color: "var(--dark-red)",
-                fontSize: "1.3rem",
-                marginTop: ".3rem",
-              }}
-            >
-              {user.jobDepartment + " " + "team"}
-            </span>
-          </div>
-          <div className="btn-container">
-            <ProfileLogoutContainer user={user} logoutUser={logoutUser} />
-          </div>
-        </nav>
         <div className="photo-about-container">
           <div className="photo">
             <img src={user.avatar} alt="avatar" className="avatar" />
@@ -57,7 +32,48 @@ const Profile = () => {
                   user.firstName.slice(1)}{" "}
                 {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
               </h1>
-              <h3>piste</h3>
+              <h3>
+                Nickname:{" "}
+                <span style={{ color: "var(--off-black)" }}>
+                  {'"' + user.nickname + '"'}
+                </span>
+              </h3>
+            </div>
+            <div className="about-me-container">
+              <h4>About me:</h4>
+              <p>{user.aboutMe}</p>
+            </div>
+          </div>
+        </div>
+        <div className="prompt-container">
+          <div className="left-prompt">
+            <div className="key">
+              <h4>Team:</h4>
+              <h4>Position:</h4>
+              <h4>Branch:</h4>
+              <h4>Year Employed:</h4>
+              <h4>Zodiac Sign:</h4>
+            </div>
+            <div className="value">
+              <p>{user.jobDepartment}</p>
+              <p>{user.jobPosition}</p>
+              <p>{user.jobBranch}</p>
+              <p>{user.yearEmployed}</p>
+              <p>{user.zodiacSign}</p>
+            </div>
+          </div>
+          <div className="right-prompt">
+            <div className="key">
+              <h4>Love Language:</h4>
+              <h4>Favorite Hobby:</h4>
+              <h4>Celebrity Crush:</h4>
+              <h4>Hometown:</h4>
+            </div>
+            <div className="value">
+              <p>{user.loveLanguage}</p>
+              <p>{user.hobby}</p>
+              <p>{user.celebrityCrush}</p>
+              <p>{user.hometown}</p>
             </div>
           </div>
         </div>
@@ -69,25 +85,18 @@ const Profile = () => {
 export default Profile;
 
 const Wrapper = styled.section`
-  .nav-container {
-    padding: 0 12rem;
-    display: flex;
-    justify-content: space-between;
-    height: 145px;
-    box-shadow: var(--shadow-1);
-
-    .name-team {
-      display: flex;
-      align-items: center;
-      align-self: flex-end;
-      font-size: 2rem;
-      gap: 0.5rem;
-    }
-    .btn-container {
-      align-self: center;
-    }
+  span {
+    color: var(--off-black);
   }
-
+  h4 {
+    font-size: 2rem;
+    color: var(--dark-blue);
+  }
+  p {
+    margin-top: 0rem;
+    max-width: 585px;
+    font-size: 1.7rem;
+  }
   .photo-about-container {
     padding: 65px 121px;
     display: flex;
@@ -95,8 +104,8 @@ const Wrapper = styled.section`
 
     .photo {
       box-shadow: var(--shadow-3);
-      width: 500px;
-      height: 500px;
+      width: 400px;
+      height: 400px;
       .avatar {
         width: 100%;
         height: 100%;
@@ -107,9 +116,75 @@ const Wrapper = styled.section`
     .about {
       .name-container {
         h1 {
+          margin-left: -0.5rem;
+          margin-bottom: 0.5rem;
           letter-spacing: -3px;
           font-size: 6rem;
           font-weight: 500;
+        }
+        h3 {
+          font-size: 3rem;
+          color: var(--dark-blue);
+          &::after {
+            content: "";
+            position: relative;
+            background-color: var(--dark-blue);
+            top: 1.5rem;
+            height: 3px;
+            width: 55%;
+            display: block;
+          }
+        }
+      }
+      .about-me-container {
+        p {
+          margin-top: 1rem;
+        }
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  .prompt-container {
+    padding-inline: 121px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10rem;
+    .left-prompt {
+      width: 50%;
+      display: flex;
+      gap: 5rem;
+      .key {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .value {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        p {
+          font-size: 2rem;
+          line-height: 1.1;
+        }
+      }
+    }
+    .right-prompt {
+      width: 50%;
+      display: flex;
+      gap: 5rem;
+      .key {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .value {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        p {
+          font-size: 2rem;
+          line-height: 1.1;
         }
       }
     }

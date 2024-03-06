@@ -81,6 +81,10 @@ const Wrapper = styled.div`
     cursor: pointer;
     width: 100%;
     height: 100%;
+    &:hover {
+      background-color: var(--dark-blue);
+      color: #ffffff;
+    }
   }
   @media (min-width: 992px) {
     .logout-btn {
