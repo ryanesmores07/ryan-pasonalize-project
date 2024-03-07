@@ -10,10 +10,9 @@ import {
 } from "../../../utils/constants";
 import { Form, useNavigation, redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-import day from "dayjs";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const loader = async () => {
   try {
@@ -27,6 +26,7 @@ export const loader = async () => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const file = formData.get("avatar");
+  console.log(file);
 
   if (file && file.size > 2 * 1024 * 1024) {
     toast.error(
@@ -46,10 +46,15 @@ export const action = async ({ request }) => {
 };
 
 const EditProfile = () => {
+  const [imgFilename, setImgFilename] = useState();
+
+  const handleOnClick = (imgSrc) => {
+    setImgFilename(imgSrc);
+  };
+
   const isRequired = false;
   const { user } = useLoaderData();
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
-  const date = day(user.createdAt).format("YYYY");
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
@@ -58,6 +63,7 @@ const EditProfile = () => {
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
           <FormRow
+            state="yawa"
             type="text"
             name="firstName"
             labelText="first name"

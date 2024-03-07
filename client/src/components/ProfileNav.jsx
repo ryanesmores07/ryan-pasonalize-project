@@ -17,12 +17,14 @@ const ProfileNav = ({ user }) => {
             {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}{" "}
             {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
           </h4>
-          <span style={{ color: "var(--dark-red)" }}> | </span>
+          <span style={{ color: "var(--dark-red)", marginTop: "-.3rem" }}>
+            {" "}
+            |{" "}
+          </span>
           <span
             style={{
               color: "var(--dark-red)",
               fontSize: "1.3rem",
-              marginTop: ".3rem",
             }}
           >
             {user.jobDepartment + " " + "team"}

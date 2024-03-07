@@ -5,6 +5,7 @@ import ReactCrop, {
 } from "react-image-crop";
 import { useRef, useState } from "react";
 import setCanvasPreview from "./setCanvasPreview";
+import { image64toCanvasRef, base64StringtoFile } from "./ResuableUtils";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -15,10 +16,12 @@ const ImageCropper = ({ type, name, onClick }) => {
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState();
   const [error, setError] = useState("");
+  const [fileName, setFileName] = useState("");
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    setFileName(file.name);
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -56,6 +59,11 @@ const ImageCropper = ({ type, name, onClick }) => {
     setCrop(centeredCrop);
   };
 
+  const handleOnCropComplete = (crop, pixelCrop) => {
+    const canvasRef = previewCanvasRef.current;
+    const imgSrc = imgSrc;
+  };
+
   return (
     <div className="image-upload-container">
       <label htmlFor={name} className="form-label">
@@ -73,6 +81,7 @@ const ImageCropper = ({ type, name, onClick }) => {
       {imgSrc && (
         <div>
           <ReactCrop
+            onComplete={handleOnCropComplete}
             crop={crop}
             onChange={(percentCrop) => setCrop(percentCrop)}
             keepSelection
@@ -100,7 +109,8 @@ const ImageCropper = ({ type, name, onClick }) => {
                 )
               );
               const dataUrl = previewCanvasRef.current.toDataURL();
-              console.log(dataUrl);
+              const convertedDataUrl = base64StringtoFile(dataUrl, fileName);
+              onClick(convertedDataUrl);
             }}
           >
             Crop Image
