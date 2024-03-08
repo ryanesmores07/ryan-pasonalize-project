@@ -46,24 +46,24 @@ export const action = async ({ request }) => {
 };
 
 const EditProfile = () => {
-  const [imgFilename, setImgFilename] = useState();
-
-  const handleOnClick = (imgSrc) => {
-    setImgFilename(imgSrc);
-  };
-
   const isRequired = false;
   const { user } = useLoaderData();
+
+  
+
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
     <Wrapper>
-      <Form method="post" className="form" encType="multipart/form-data">
+      <Form
+        method="post"
+        className="form"
+        encType="multipart/form-data"
+      >
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
           <FormRow
-            state="yawa"
             type="text"
             name="firstName"
             labelText="first name"
@@ -153,20 +153,7 @@ const EditProfile = () => {
             placeholder="Ryan Gosling"
           />
           <div className="form-row">
-            {/* <div className="image-upload-container">
-              <label htmlFor="avatar" className="form-label">
-                Select a profile photo (max 2MB):
-              </label>
-              <input
-                type="file"
-                id="avatar"
-                name="avatar"
-                className="form-input"
-                accept="image/*"
-              />
-            </div> */}
             <ImageCropper
-              onClick={handleOnClick}
               type="file"
               id="avatar"
               name="avatar"

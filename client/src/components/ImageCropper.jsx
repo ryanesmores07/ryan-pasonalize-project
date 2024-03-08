@@ -5,12 +5,16 @@ import ReactCrop, {
 } from "react-image-crop";
 import { useRef, useState } from "react";
 import setCanvasPreview from "./setCanvasPreview";
-import { image64toCanvasRef, base64StringtoFile } from "./ResuableUtils";
+import {
+  base64StringtoFile,
+  extractImageFileExtensionFromBase64,
+  downloadBase64File,
+} from "./ResuableUtils";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCropper = ({ type, name, onClick }) => {
+const ImageCropper = ({ type, name }) => {
   const imgRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
@@ -21,7 +25,6 @@ const ImageCropper = ({ type, name, onClick }) => {
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setFileName(file.name);
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -60,8 +63,26 @@ const ImageCropper = ({ type, name, onClick }) => {
   };
 
   const handleOnCropComplete = (crop, pixelCrop) => {
-    const canvasRef = previewCanvasRef.current;
-    const imgSrc = imgSrc;
+    setCanvasPreview(
+      imgRef.current,
+      previewCanvasRef.current,
+      convertToPixelCrop(crop, imgRef.current.width, imgRef.current.height)
+    );
+  };
+
+  const handleDownloadClick = (e) => {
+    e.preventDefault();
+    const fileExtension = extractImageFileExtensionFromBase64(imgSrc);
+    const imageData64 = previewCanvasRef.current.toDataURL(
+      "image/" + fileExtension
+    );
+    const myFileName = "croppedPhoto" + fileExtension;
+    // File to be uploaded
+    const myNewCroppedFile = base64StringtoFile(imageData64, myFileName);
+    console.log(myNewCroppedFile);
+    // download file
+    downloadBase64File(imageData64, myFileName);
+    setImgSrc("");
   };
 
   return (
@@ -96,37 +117,28 @@ const ImageCropper = ({ type, name, onClick }) => {
               onLoad={onImageLoad}
             />
           </ReactCrop>
-          <button
-            type="button"
-            onClick={() => {
-              setCanvasPreview(
-                imgRef.current,
-                previewCanvasRef.current,
-                convertToPixelCrop(
-                  crop,
-                  imgRef.current.width,
-                  imgRef.current.height
-                )
-              );
-              const dataUrl = previewCanvasRef.current.toDataURL();
-              const convertedDataUrl = base64StringtoFile(dataUrl, fileName);
-              onClick(convertedDataUrl);
-            }}
-          >
-            Crop Image
-          </button>
+          <br />
         </div>
       )}
-      {crop && (
-        <canvas
-          ref={previewCanvasRef}
-          style={{
-            border: "1px solid black",
-            objectFit: "contain",
-            width: 150,
-            height: 150,
-          }}
-        />
+      {imgSrc && (
+        <>
+          <canvas
+            ref={previewCanvasRef}
+            style={{
+              border: "1px solid black",
+              objectFit: "contain",
+              width: 150,
+              height: 150,
+            }}
+          />
+          <br />
+          <button
+            style={{ padding: "1rem", fontSize: "2rem" }}
+            onClick={handleDownloadClick}
+          >
+            Download
+          </button>
+        </>
       )}
     </div>
   );
