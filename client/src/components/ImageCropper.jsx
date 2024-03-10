@@ -19,6 +19,7 @@ const ImageCropper = ({ type, name }) => {
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState();
+  const [cropEnabled, setCropEnabled] = useState(false);
   const [error, setError] = useState("");
   const [fileName, setFileName] = useState("");
 
@@ -42,6 +43,7 @@ const ImageCropper = ({ type, name }) => {
       });
       setImgSrc(imageUrl);
     });
+    setCropEnabled(false);
     reader.readAsDataURL(file);
   };
 
@@ -85,6 +87,12 @@ const ImageCropper = ({ type, name }) => {
     setImgSrc("");
   };
 
+  const handleCrop = (e) => {
+    e.preventDefault();
+    console.log(cropEnabled);
+    setCropEnabled(!cropEnabled);
+  };
+
   return (
     <div className="image-upload-container">
       <label htmlFor={name} className="form-label">
@@ -103,7 +111,7 @@ const ImageCropper = ({ type, name }) => {
         <div>
           <ReactCrop
             onComplete={handleOnCropComplete}
-            crop={crop}
+            crop={cropEnabled ? crop : ""}
             onChange={(percentCrop) => setCrop(percentCrop)}
             keepSelection
             aspect={ASPECT_RATIO}
@@ -133,10 +141,16 @@ const ImageCropper = ({ type, name }) => {
           />
           <br />
           <button
-            style={{ padding: "1rem", fontSize: "2rem" }}
+            style={{ padding: "1rem", fontSize: "2rem", marginRight: "1rem" }}
             onClick={handleDownloadClick}
           >
             Download
+          </button>
+          <button
+            style={{ padding: "1rem", fontSize: "2rem" }}
+            onClick={handleCrop}
+          >
+            Crop Photo?
           </button>
         </>
       )}

@@ -27,6 +27,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
+  z-index: 99;
   height: 14.5rem;
   display: flex;
   align-items: center;
@@ -61,7 +62,6 @@ const Wrapper = styled.nav`
   .btn-container {
     display: flex;
     align-items: center;
-    
   }
   @media (min-width: 992px) {
     position: sticky;
@@ -77,8 +77,6 @@ const Wrapper = styled.nav`
     }
     .toggle-btn {
       font-size: 3rem;
-
-      
     }
   }
 `;
