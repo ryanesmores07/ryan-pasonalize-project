@@ -150,44 +150,26 @@ const Wrapper = styled.section`
     display: flex;
     justify-content: space-between;
     margin-bottom: 10rem;
-    .left-prompt {
-      width: 50%;
-      display: flex;
-      gap: 5rem;
-      .key {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-      .value {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        p {
-          font-size: 2rem;
-          line-height: 1.1;
-        }
-      }
-    }
-    .right-prompt {
-      width: 50%;
-      display: flex;
-      gap: 5rem;
-      .key {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
-      .value {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        p {
-          font-size: 2rem;
-          line-height: 1.1;
-        }
-      }
-    }
+  }
+
+  .left-prompt,
+  .right-prompt {
+    width: 50%;
+    display: flex;
+    gap: 5rem;
+  }
+
+  .key,
+  .value {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .value p {
+    font-size: 2rem;
+    line-height: 1.1;
+    text-transform: capitalize;
   }
 
   .kintone {

@@ -16,6 +16,7 @@ const MIN_DIMENSION = 150;
 
 const ImageCropper = ({ type, name }) => {
   const imgRef = useRef(null);
+  const inputRef = useRef(null);
   const previewCanvasRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState();
@@ -84,6 +85,7 @@ const ImageCropper = ({ type, name }) => {
     console.log(myNewCroppedFile);
     // download file
     downloadBase64File(imageData64, myFileName);
+    setCropEnabled(false);
     setImgSrc("");
   };
 
@@ -99,6 +101,7 @@ const ImageCropper = ({ type, name }) => {
         Select a profile photo (max 2MB):
       </label>
       <input
+        ref={inputRef}
         type={type}
         id={name}
         name={name}

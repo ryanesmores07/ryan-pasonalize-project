@@ -6,6 +6,7 @@ import {
   getSingleUser,
   updateUser,
   deleteMe,
+  showStats,
 } from "../controller/userController.js";
 import {
   validateIdParam,
@@ -22,6 +23,8 @@ router.patch(
   validateUpdateUserInput,
   updateUser
 );
+
+router.route("/stats").get(showStats);
 router.delete("/delete-user", deleteMe);
 
 router.route("/:id").get(validateIdParam, getSingleUser);

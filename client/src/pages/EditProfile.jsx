@@ -26,14 +26,13 @@ export const loader = async () => {
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const file = formData.get("avatar");
-  console.log(file);
 
-  if (file && file.size > 2 * 1024 * 1024) {
-    toast.error(
-      "Image size too large. Please select an image smaller than 2MB."
-    );
-    return null;
-  }
+  // if (file && file.size > 2 * 1024 * 1024) {
+  //   toast.error(
+  //     "Image size too large. Please select an image smaller than 2MB."
+  //   );
+  //   return null;
+  // }
 
   try {
     await customFetch.patch("/users/update-user", formData);
@@ -49,18 +48,12 @@ const EditProfile = () => {
   const isRequired = false;
   const { user } = useLoaderData();
 
-  
-
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
   return (
     <Wrapper>
-      <Form
-        method="post"
-        className="form"
-        encType="multipart/form-data"
-      >
+      <Form method="post" className="form" encType="multipart/form-data">
         <h4 className="form-title">Edit Profile</h4>
         <div className="form-center">
           <FormRow

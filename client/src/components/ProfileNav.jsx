@@ -1,6 +1,7 @@
 import ProfileLogoutContainer from "./ProfileLogoutContainer";
 import styled from "styled-components";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, Link } from "react-router-dom";
+import { IoMdReturnLeft } from "react-icons/io";
 
 const ProfileNav = ({ user }) => {
   const navigate = useNavigate();
@@ -12,6 +13,9 @@ const ProfileNav = ({ user }) => {
   return (
     <Wrapper>
       <nav className={`${user.jobDepartment} nav-container`}>
+        <Link to="/dashboard" className={`${user.jobDepartment} return-btn`}>
+          <IoMdReturnLeft /> to Dashboard
+        </Link>
         <div className="name-team">
           <h4>
             {user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)}{" "}
@@ -41,6 +45,18 @@ const ProfileNav = ({ user }) => {
 export default ProfileNav;
 
 const Wrapper = styled.nav`
+  .return-btn {
+    font-size: 1rem;
+    position: absolute;
+    left: 0;
+    background-color: var(--blue);
+    color: #ffffff;
+    padding: 1rem 1rem;
+    &:hover {
+      background-color: var(--dark-blue);
+      color: #ffffff;
+    }
+  }
   .nav-container {
     padding: 0 12rem;
     display: flex;
