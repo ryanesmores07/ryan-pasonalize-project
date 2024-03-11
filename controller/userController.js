@@ -22,7 +22,14 @@ export const deleteMe = async (req, res) => {
 };
 
 export const getAllUsers = async (req, res) => {
-  const users = await User.find();
+  const { search, jobBrand, jobPosition, sort } = req.query;
+
+  if (search) {
+  }
+
+  const users = await User.find({
+    jobDepartment: req.query.search,
+  });
   res.status(StatusCodes.OK).json({ users });
 };
 

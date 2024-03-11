@@ -10,6 +10,7 @@ import {
   extractImageFileExtensionFromBase64,
   downloadBase64File,
 } from "./ResuableUtils";
+import styled from "styled-components";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -96,7 +97,7 @@ const ImageCropper = ({ type, name }) => {
   };
 
   return (
-    <div className="image-upload-container">
+    <Wrapper className="image-upload-container">
       <label htmlFor={name} className="form-label">
         Select a profile photo (max 2MB):
       </label>
@@ -143,22 +144,27 @@ const ImageCropper = ({ type, name }) => {
             }}
           />
           <br />
-          <button
-            style={{ padding: "1rem", fontSize: "2rem", marginRight: "1rem" }}
-            onClick={handleDownloadClick}
-          >
+          <button className="btn" onClick={handleDownloadClick}>
             Download
           </button>
-          <button
-            style={{ padding: "1rem", fontSize: "2rem" }}
-            onClick={handleCrop}
-          >
+          <button className="btn" onClick={handleCrop}>
             Crop Photo?
           </button>
         </>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
 export default ImageCropper;
+
+const Wrapper = styled.section`
+  button {
+    margin-right: 1rem;
+
+    &:hover {
+      background-color: var(--dark-blue);
+      color: #ffffff;
+    }
+  }
+`;
