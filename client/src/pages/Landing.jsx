@@ -5,6 +5,7 @@ import smallImage from "../assets/images/LandingPage/three-small-images.png";
 
 const Landing = () => {
   const navigate = useNavigate();
+
   return (
     <Wrapper>
       <div className="container">

@@ -1,5 +1,5 @@
 export const JOB_DEPARTMENT = {
-  DEFAULT: "",
+  // DEFAULT: "",
   KINTONE: "kintone",
   POWER_PLATFORM: "power-platform",
   WEB_AI: "web-ai",
@@ -7,7 +7,7 @@ export const JOB_DEPARTMENT = {
 };
 
 export const JOB_POSITION = {
-  DEFAULT: "",
+  // DEFAULT: "",
   LEADER: "leader",
   SUB_LEADER: "sub-leader",
   DEVELOPER: "developer",
@@ -15,7 +15,7 @@ export const JOB_POSITION = {
 };
 
 export const JOB_BRANCH = {
-  DEFAULT: "",
+  // DEFAULT: "",
   AWAJI: "awaji",
   FUKUOKA: "fukuoka",
   TOKYO: "tokyo",
@@ -30,7 +30,7 @@ export const USER_SORT_BY = {
 };
 
 export const ZODIAC_SIGN = {
-  DEFAULT: "",
+  // DEFAULT: "",
   ARIES: "おひつじ座",
   TAURUS: "おうし座",
   GEMINI: "ふたご座",
@@ -46,7 +46,7 @@ export const ZODIAC_SIGN = {
 };
 
 export const BLOOD_TYPE = {
-  DEFAULT: "",
+  // DEFAULT: "",
   A: "A Type",
   B: "B Type",
   AB: "AB Type",
@@ -54,7 +54,7 @@ export const BLOOD_TYPE = {
 };
 
 export const LOVE_LANGUAGE = {
-  DEFAULT: "",
+  // DEFAULT: "",
   WORDS_OF_AFFIRMATION: "肯定的な言葉",
   QUALITY_TIME: "充実した時間",
   RECEIVING_GIFTS: "贈り物",

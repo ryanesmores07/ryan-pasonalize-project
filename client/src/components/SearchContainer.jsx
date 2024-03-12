@@ -41,21 +41,21 @@ const SearchContainer = () => {
             labelText="branch"
             name="jobBranch"
             list={["all", ...Object.values(JOB_BRANCH)]}
-            defaultValue={jobBranch}
+            defaultValue="all"
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
             labelText="blood type"
             name="bloodType"
             list={["all", ...Object.values(BLOOD_TYPE)]}
-            defaultValue={bloodType}
+            defaultValue="all"
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
             labelText="job department"
             name="jobDepartment"
             list={["all", ...Object.values(JOB_DEPARTMENT)]}
-            defaultValue={jobDepartment}
+            defaultValue="all"
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect

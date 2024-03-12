@@ -35,32 +35,32 @@ const UserSchema = new mongoose.Schema(
     jobBranch: {
       type: String,
       enum: Object.values(JOB_BRANCH),
-      default: JOB_BRANCH.DEFAULT,
+      // default: JOB_BRANCH.DEFAULT,
     },
     jobPosition: {
       type: String,
       enum: Object.values(JOB_POSITION),
-      default: JOB_POSITION.DEFAULT,
+      // default: JOB_POSITION.DEFAULT,
     },
     jobDepartment: {
       type: String,
       enum: Object.values(JOB_DEPARTMENT),
-      default: JOB_DEPARTMENT.DEFAULT,
+      // default: JOB_DEPARTMENT.DEFAULT,
     },
     zodiacSign: {
       type: String,
       enum: Object.values(ZODIAC_SIGN),
-      default: ZODIAC_SIGN.DEFAULT,
+      // default: ZODIAC_SIGN.DEFAULT,
     },
     bloodType: {
       type: String,
       enum: Object.values(BLOOD_TYPE),
-      default: BLOOD_TYPE.DEFAULT,
+      // default: BLOOD_TYPE.DEFAULT,
     },
     loveLanguage: {
       type: String,
       enum: Object.values(LOVE_LANGUAGE),
-      default: LOVE_LANGUAGE.DEFAULT,
+      // default: LOVE_LANGUAGE.DEFAULT,
     },
     aboutMe: {
       type: String,
