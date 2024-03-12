@@ -47,33 +47,87 @@ const Profile = () => {
         </div>
         <div className="prompt-container">
           <div className="left-prompt">
-            <div className="key">
-              <h4>Team:</h4>
-              <h4>Position:</h4>
-              <h4>Branch:</h4>
-              <h4>Year Employed:</h4>
-              <h4>Zodiac Sign:</h4>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Team:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.jobDepartment}</p>
+              </div>
             </div>
-            <div className="value">
-              <p>{user.jobDepartment}</p>
-              <p>{user.jobPosition}</p>
-              <p>{user.jobBranch}</p>
-              <p>{user.yearEmployed}</p>
-              <p>{user.zodiacSign}</p>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Position:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.jobPosition}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Branch:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.jobBranch}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Year Employed:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.yearEmployed}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Zodiac Sign:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.zodiacSign}</p>
+              </div>
             </div>
           </div>
           <div className="right-prompt">
-            <div className="key">
-              <h4>Love Language:</h4>
-              <h4>Favorite Hobby:</h4>
-              <h4>Celebrity Crush:</h4>
-              <h4>Hometown:</h4>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Love Language:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.loveLanguage}</p>
+              </div>
             </div>
-            <div className="value">
-              <p>{user.loveLanguage}</p>
-              <p>{user.hobby}</p>
-              <p>{user.celebrityCrush}</p>
-              <p>{user.hometown}</p>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Blood Type:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.bloodType}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Favorite Hobby:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.hobby}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Celebrity Crush:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.celebrityCrush}</p>
+              </div>
+            </div>
+            <div className="key-value-pair">
+              <div className="h4-key">
+                <h4>Hometown:</h4>
+              </div>
+              <div className="p-value">
+                <p>{user.hometown}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -154,22 +208,21 @@ const Wrapper = styled.section`
 
   .left-prompt,
   .right-prompt {
-    width: 50%;
-    display: flex;
-    gap: 5rem;
-  }
-
-  .key,
-  .value {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    width: 50%;
   }
 
-  .value p {
-    font-size: 2rem;
-    line-height: 1.1;
+  .key-value-pair {
+    display: flex;
+    margin-bottom: 2rem;
     text-transform: capitalize;
+    .h4-key {
+      width: 50%;
+    }
+    .p-value {
+      display: flex;
+    }
   }
 
   .kintone {

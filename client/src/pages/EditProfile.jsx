@@ -102,7 +102,7 @@ const EditProfile = () => {
             labelText="favorite hobby"
             type="text"
             name="hobby"
-            placeholder="karaoke"
+            placeholder="e.g. karaoke"
             defaultValue={user.hobby}
             isRequired={isRequired}
           />
@@ -125,10 +125,10 @@ const EditProfile = () => {
             list={Object.values(LOVE_LANGUAGE)}
           />
           <FormRow
-            labelText="year joined"
+            labelText="year and month joined"
             type="text"
             name="yearEmployed"
-            placeholder="2020"
+            placeholder="e.g. 2020-01"
             defaultValue={user.yearEmployed}
           />
           <FormRow
@@ -136,14 +136,14 @@ const EditProfile = () => {
             type="text"
             name="hometown"
             defaultValue={user.hometown}
-            placeholder="Tokyo, Japan"
+            placeholder="e.g. Tokyo, Japan"
           />
           <FormRow
             labelText="Celebrity Crush"
             type="text"
             name="celebrityCrush"
             defaultValue={user.celebrityCrush}
-            placeholder="Ryan Gosling"
+            placeholder="e.g. Ryan Gosling"
           />
           <div className="form-row">
             <ImageCropper

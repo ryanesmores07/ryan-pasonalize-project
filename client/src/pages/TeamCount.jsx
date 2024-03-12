@@ -11,7 +11,7 @@ export const loader = async () => {
   }
 };
 
-const Stats = () => {
+const TeamCount = () => {
   const { stats } = useLoaderData();
   console.log(stats);
   return (
@@ -21,4 +21,4 @@ const Stats = () => {
   );
 };
 
-export default Stats;
+export default TeamCount;

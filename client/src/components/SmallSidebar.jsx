@@ -89,6 +89,9 @@ const Wrapper = styled.aside`
   .nav-link:hover {
     color: var(--blue);
   }
+  .nav-link:focus {
+    color: var(--dark-blue);
+  }
   .icon {
     font-size: 2.5rem;
     margin-right: 1rem;

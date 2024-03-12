@@ -26,7 +26,7 @@ const UsersContainer = () => {
 export default UsersContainer;
 
 const Wrapper = styled.section`
-  margin-top: 4rem;
+  margin-bottom: 4rem;
   h2 {
     text-transform: none;
   }
@@ -44,6 +44,7 @@ const Wrapper = styled.section`
       place-items: center;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 2rem;
+      row-gap: 7rem;
     }
   }
 `;

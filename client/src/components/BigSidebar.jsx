@@ -68,13 +68,18 @@ const Wrapper = styled.aside`
       padding-left: 2.5rem;
       margin-bottom: 4rem;
       text-transform: capitalize;
-      transition: padding-left 0.3s ease-in-out;
+      transition: var(--transition);
     }
     .nav-link:hover {
       padding-left: 3rem;
       color: var(--blue);
-      transition: var(--transition);
     }
+
+    .nav-link:focus {
+      padding-left: 3rem;
+      color: var(--dark-blue);
+    }
+
     .icon {
       font-size: 3.5rem;
       margin-right: 1.5rem;

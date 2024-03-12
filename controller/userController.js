@@ -22,15 +22,52 @@ export const deleteMe = async (req, res) => {
 };
 
 export const getAllUsers = async (req, res) => {
-  const { search, jobBrand, jobPosition, sort } = req.query;
+  const { search, jobBranch, bloodType, jobDepartment, sort } = req.query;
+  const queryObject = {};
 
   if (search) {
+    queryObject.$or = [
+      { firstName: { $regex: search, $options: "i" } },
+      { lastName: { $regex: search, $options: "i" } },
+      { nickname: { $regex: search, $options: "i" } },
+    ];
   }
 
-  const users = await User.find({
-    jobDepartment: req.query.search,
-  });
-  res.status(StatusCodes.OK).json({ users });
+  if (jobBranch && jobBranch !== "all") {
+    queryObject.jobBranch = jobBranch;
+  }
+  if (jobDepartment && jobDepartment !== "all") {
+    queryObject.jobDepartment = jobDepartment;
+  }
+  if (bloodType && bloodType !== "all") {
+    queryObject.bloodType = bloodType;
+  }
+
+  const sortOptions = {
+    newest: "-yearEmployed",
+    oldest: "yearEmployed",
+    "a-z": "firstName",
+    "z-a": "-firstName",
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  // setup pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 9;
+  const skip = (page - 1) * limit;
+
+  const users = await User.find(queryObject)
+    .sort(sortKey)
+    .skip(skip)
+    .limit(limit);
+
+  const totalUsers = await User.countDocuments(queryObject);
+  const numOfPages = Math.ceil(totalUsers / limit);
+
+  res
+    .status(StatusCodes.OK)
+    .json({ totalUsers, numOfPages, currentPage: page, users });
 };
 
 export const getSingleUser = async (req, res) => {

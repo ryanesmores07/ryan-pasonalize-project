@@ -7,4 +7,4 @@ export { default as Profile } from "./Profile";
 export { default as EditProfile } from "./EditProfile";
 export { default as Dashboard } from "./Dashboard";
 export { default as AllUsers } from "./AllUsers";
-export { default as Stats } from "./Stats";
+export { default as TeamCount } from "./TeamCount";

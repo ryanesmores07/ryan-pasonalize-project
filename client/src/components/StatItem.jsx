@@ -15,7 +15,8 @@ export default StatItem;
 
 const Wrapper = styled.article`
   padding: 2rem;
-  background: var(--background-secondary-color);
+
+  background: var(--light-blue);
   border-bottom: 5px solid ${(props) => props.color};
   border-radius: var(--border-radius);
 
@@ -37,7 +38,8 @@ const Wrapper = styled.article`
     letter-spacing: var(--letter-spacing);
     text-align: left;
     margin-top: 0.5rem;
-    font-size: 1.25rem;
+    font-weight: 400;
+    font-size: 2rem;
   }
   .icon {
     width: 75px;

@@ -9,7 +9,7 @@ import {
   Dashboard,
   EditProfile,
   AllUsers,
-  Stats,
+  TeamCount,
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
@@ -19,7 +19,7 @@ import { loader as allUsersLoader } from "./pages/AllUsers";
 import { loader as editProfileLoader } from "./pages/EditProfile";
 import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
-import { loader as statsLoader } from "./pages/Stats";
+import { loader as teamCountLoader } from "./pages/TeamCount";
 
 const router = createBrowserRouter([
   {
@@ -54,9 +54,9 @@ const router = createBrowserRouter([
             loader: allUsersLoader,
           },
           {
-            path: "stats",
-            element: <Stats />,
-            loader: statsLoader,
+            path: "team-count",
+            element: <TeamCount />,
+            loader: teamCountLoader,
           },
           {
             path: "edit-profile",

@@ -5,7 +5,7 @@ import { TbUserEdit } from "react-icons/tb";
 
 const links = [
   { text: "all members", path: ".", icon: <FaPeopleGroup /> },
-  { text: "stats", path: "stats", icon: <IoBarChartSharp /> },
+  { text: "Team count", path: "team-count", icon: <IoBarChartSharp /> },
   { text: "edit profile", path: "edit-profile", icon: <TbUserEdit /> },
   // { text: "profile", path: "profile", icon: <ImProfile /> },
 ];
