@@ -1,10 +1,11 @@
 import User from "./User";
 import styled from "styled-components";
 import { useAllUsersContext } from "../pages/AllUsers";
+import PageBtnContainer from "./PageBtnContainer";
 
 const UsersContainer = () => {
   const {
-    data: { users },
+    data: { users, totalUsers, numOfPages },
   } = useAllUsersContext();
   if (users.length === 0) {
     return (
@@ -15,11 +16,15 @@ const UsersContainer = () => {
   }
   return (
     <Wrapper>
+      <h5>
+        {totalUsers} user{users.length > 1 && "s"} found
+      </h5>
       <div className="users">
         {users.map((user) => {
           return <User key={user._id} {...user} />;
         })}
       </div>
+      {numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   );
 };
@@ -32,7 +37,8 @@ const Wrapper = styled.section`
   }
   & > h5 {
     font-weight: 700;
-    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 5rem;
   }
   .users {
     display: grid;

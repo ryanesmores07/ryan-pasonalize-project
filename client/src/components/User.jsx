@@ -1,15 +1,20 @@
 import { FaBriefcase } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import JobInfo from "./JobInfo";
 import { Form } from "react-router-dom";
 import styled from "styled-components";
 import avatarTemp from "../assets/images/UserPage/default.jpg";
 
 const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
+  const navigate = useNavigate();
+
+  const handleOnClick = () => {
+    navigate(`../${_id}`);
+  };
   return (
     <Wrapper>
       <div className="container">
-        <div className="avatar-container">
+        <div className="avatar-container" onClick={handleOnClick}>
           {avatar ? (
             <img src={avatar} alt="avatar" className="avatar" />
           ) : (
@@ -38,15 +43,27 @@ const Wrapper = styled.article`
 
     .avatar-container {
       box-shadow: var(--shadow-1);
-
+      cursor: pointer;
       width: 80px;
       height: 100px;
-      .avatar {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center center;
+      overflow: hidden;
+      transition: all 0.2s ease;
+      &:hover {
+        transform: translateY(-3%);
+        box-shadow: var(--shadow-3);
       }
+    }
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform 0.5s ease;
+    }
+
+    .avatar-container:hover .avatar {
+      transform: scale(1.1);
     }
 
     h3 {

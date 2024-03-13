@@ -4,11 +4,22 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 
 import ProfileNav from "../components/ProfileNav";
 
-export const loader = async () => {
+export const loader = async ({ params }) => {
+  if (params && params.id) {
+    try {
+      const { data } = await customFetch.get(`/users/${params.id}`);
+      return data;
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      return redirect("/");
+    }
+  }
+
   try {
     const { data } = await customFetch.get("/users/current-user");
     return data;
   } catch (error) {
+    console.error("Error fetching current user data:", error);
     return redirect("/");
   }
 };
@@ -214,14 +225,26 @@ const Wrapper = styled.section`
   }
 
   .key-value-pair {
+    height: 3.5rem;
     display: flex;
-    margin-bottom: 2rem;
+    position: relative;
+    margin-bottom: 3rem;
     text-transform: capitalize;
     .h4-key {
       width: 50%;
     }
     .p-value {
       display: flex;
+      font-weight: 500;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      width: 80%;
+      height: 1px;
+      opacity: 0.2;
+      background-color: var(--blue);
+      bottom: 0;
     }
   }
 
@@ -234,7 +257,7 @@ const Wrapper = styled.section`
   }
   .infrastructure {
     margin-left: 0;
-    background-color: var(--purple);
+    background-color: var(--light-purple);
     &::after {
       display: none;
     }
@@ -248,7 +271,7 @@ const Wrapper = styled.section`
   }
   .web-ai {
     margin-left: 0px;
-    background-color: var(--pink);
+    background-color: var(--light-pink);
     &::after {
       display: none;
     }

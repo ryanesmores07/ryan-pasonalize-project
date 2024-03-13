@@ -21,7 +21,6 @@ const AllUsersContext = createContext();
 
 const AllUsers = () => {
   const { data, searchValues } = useLoaderData();
-  console.log(data);
   return (
     <AllUsersContext.Provider value={{ data, searchValues }}>
       <SearchContainer />

@@ -15,7 +15,7 @@ import styled from "styled-components";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCropper = ({ type, name }) => {
+const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
   const imgRef = useRef(null);
   const inputRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -27,6 +27,7 @@ const ImageCropper = ({ type, name }) => {
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
+    console.log(file);
     if (!file) return;
 
     const reader = new FileReader();
@@ -83,16 +84,15 @@ const ImageCropper = ({ type, name }) => {
     const myFileName = "croppedPhoto" + fileExtension;
     // File to be uploaded
     const myNewCroppedFile = base64StringtoFile(imageData64, myFileName);
-    console.log(myNewCroppedFile);
     // download file
-    downloadBase64File(imageData64, myFileName);
+    // downloadBase64File(imageData64, myFileName);
+    setCroppedImg(myNewCroppedFile);
     setCropEnabled(false);
     setImgSrc("");
   };
 
   const handleCrop = (e) => {
     e.preventDefault();
-    console.log(cropEnabled);
     setCropEnabled(!cropEnabled);
   };
 

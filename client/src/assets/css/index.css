@@ -30,11 +30,11 @@ html {
   --red: #d8000f;
   --dark-red: #b60005;
   --light-yellow: #fae296;
-  --yellow: #ffbf00;
+  --yellow: #e5af0d;
   --light-pink: #ffb6f8;
-  --pink: #f1acea;
+  --pink: #c75dbd;
   --light-green: #a1d6b9;
-  --green: #35d67e;
+  --green: #0f8946;
   --dark-green: #046d7c;
   --light-purple: #c1abf0;
   --purple: #b092f0;
@@ -250,6 +250,8 @@ textarea:not([rows]) {
   font-weight: 500;
   font-size: 1.5rem;
   margin-left: 14px;
+  color: var(--yellow);
+
   &::after {
     content: "";
     position: relative;
@@ -258,6 +260,7 @@ textarea:not([rows]) {
     left: -14px;
     height: 2.6rem;
     width: 145px;
+    opacity: 0.4;
     background-color: var(--light-yellow);
     border-radius: var(--border-radius);
     display: block;
@@ -268,6 +271,7 @@ textarea:not([rows]) {
   font-weight: 500;
   font-size: 1.5rem;
   margin-left: 14px;
+  color: var(--pink);
   &::after {
     content: "";
     position: relative;
@@ -276,7 +280,8 @@ textarea:not([rows]) {
     left: -14px;
     height: 2.6rem;
     width: 145px;
-    background-color: var(--pink);
+    opacity: 0.2;
+    background-color: var(--light-pink);
     border-radius: var(--border-radius);
     display: block;
   }
@@ -285,6 +290,7 @@ textarea:not([rows]) {
   font-weight: 500;
   font-size: 1.5rem;
   margin-left: 14px;
+  color: var(--purple);
   &::after {
     content: "";
     position: relative;
@@ -293,7 +299,8 @@ textarea:not([rows]) {
     left: -14px;
     height: 2.6rem;
     width: 145px;
-    background-color: var(--purple);
+    background-color: var(--light-purple);
+    opacity: 0.2;
     border-radius: var(--border-radius);
     display: block;
   }
@@ -302,6 +309,7 @@ textarea:not([rows]) {
   font-weight: 500;
   font-size: 1.5rem;
   margin-left: 14px;
+  color: var(--green);
   &::after {
     content: "";
     position: relative;
@@ -310,6 +318,7 @@ textarea:not([rows]) {
     left: -14px;
     height: 2.6rem;
     width: 145px;
+    opacity: 0.3;
     background-color: var(--light-green);
     border-radius: var(--border-radius);
     display: block;

@@ -32,5 +32,9 @@ const Wrapper = styled.button`
     border-radius: 5px;
     text-transform: capitalize;
     font-size: 1.5rem;
+    transition: var(--transition);
+    &:hover {
+      background-color: var(--dark-blue);
+    }
   }
 `;

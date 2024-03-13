@@ -20,6 +20,11 @@ export const authenticateUser = (req, res, next) => {
 export function isLoggedIn(req, res, next) {
   const { token } = req.cookies;
   if (token) {
-    console.log("there is a token already");
+    // Redirect client-side to "/dashboard"
+    console.log("there is a token");
+
+    return res.redirect("/dashboard");
+  } else {
+    next(); // Continue to the next middleware if there is no token
   }
 }

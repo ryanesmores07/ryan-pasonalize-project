@@ -91,3 +91,12 @@ export const validateUpdateUserInput = withValidationErrors([
     return true; // Return true to indicate the validation passed
   }),
 ]);
+
+export const validateLoginInput = withValidationErrors([
+  body("email")
+    .notEmpty()
+    .withMessage("email is required")
+    .isEmail()
+    .withMessage("invalid email format"),
+  body("password").notEmpty().withMessage("password is required"),
+]);

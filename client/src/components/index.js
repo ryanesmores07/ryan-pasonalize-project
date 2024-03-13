@@ -12,3 +12,4 @@ export { default as FormRowSelect } from "./FormRowSelect";
 export { default as ImageCropper } from "./ImageCropper";
 export { default as ProfileNav } from "./ProfileNav";
 export { default as ProfileLogoutContainer } from "./ProfileLogoutContainer";
+export { default as PageBtnContainer } from "./PageBtnContainer";

@@ -1,4 +1,4 @@
-import { FormRow, FormRowSelect, SubmitBtn } from ".";
+import { FormRow, FormRowSelect } from ".";
 import { Form, useSubmit, Link } from "react-router-dom";
 import {
   JOB_BRANCH,
@@ -41,21 +41,21 @@ const SearchContainer = () => {
             labelText="branch"
             name="jobBranch"
             list={["all", ...Object.values(JOB_BRANCH)]}
-            defaultValue="all"
+            defaultValue={jobBranch}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
             labelText="blood type"
             name="bloodType"
             list={["all", ...Object.values(BLOOD_TYPE)]}
-            defaultValue="all"
+            defaultValue={bloodType}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
             labelText="job department"
             name="jobDepartment"
             list={["all", ...Object.values(JOB_DEPARTMENT)]}
-            defaultValue="all"
+            defaultValue={jobDepartment}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
@@ -64,7 +64,7 @@ const SearchContainer = () => {
             list={[...Object.values(USER_SORT_BY)]}
             onChange={(e) => submit(e.currentTarget.form)}
           />
-          <Link to="/dashboard/all-jobs" className="btn form-btn delete-btn">
+          <Link to="/dashboard" className="btn form-btn delete-btn">
             Reset Search Values
           </Link>
         </div>

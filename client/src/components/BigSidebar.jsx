@@ -60,7 +60,7 @@ const Wrapper = styled.aside`
     }
     .nav-link {
       position: relative;
-      top: 118px;
+      top: 7rem;
       display: flex;
       font-size: 2rem;
       align-items: center;

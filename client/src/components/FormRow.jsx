@@ -7,6 +7,7 @@ const FormRow = ({
   defaultValue,
   isRequired,
   placeholder,
+  onChange,
 }) => {
   return (
     <Wrapper>
@@ -22,6 +23,7 @@ const FormRow = ({
           defaultValue={defaultValue || ""}
           placeholder={placeholder}
           required={isRequired}
+          onChange={onChange}
         />
       </div>
     </Wrapper>

@@ -44,6 +44,11 @@ const router = createBrowserRouter([
         loader: profileLoader,
       },
       {
+        path: ":id",
+        element: <Profile />,
+        loader: profileLoader,
+      },
+      {
         path: "dashboard",
         element: <Dashboard />,
         loader: dashboardLoader,
