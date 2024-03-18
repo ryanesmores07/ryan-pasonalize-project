@@ -86,11 +86,11 @@ const Wrapper = styled.div`
       color: #ffffff;
     }
   }
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .logout-btn {
-      width: 175px;
-      height: 45px;
-      font-size: 1.6rem;
+      width: 150px;
+      height: 40px;
+      font-size: 1.3rem;
       display: flex;
       align-items: center;
       justify-content: center;

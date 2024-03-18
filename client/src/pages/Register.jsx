@@ -56,20 +56,25 @@ const Wrapper = styled.section`
     .form {
       margin: 0 auto;
       padding: 38px 30px;
-      max-height: 639px;
       max-width: 440px;
       display: flex;
       position: relative;
       top: 196px;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       gap: 18px;
       background-color: #ffffff;
       box-shadow: inset 0 4px 0 0 #b60005;
       border-radius: 5px;
 
+      img {
+        width: 16rem;
+        margin: 0 auto;
+      }
+
       h4 {
+        margin: 0 auto;
         font-size: 3.5rem;
         font-weight: 400;
       }

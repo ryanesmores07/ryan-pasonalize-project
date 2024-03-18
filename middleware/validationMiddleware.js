@@ -75,6 +75,9 @@ export const validateUpdateUserInput = withValidationErrors([
       }
     }),
   body("lastName").notEmpty().withMessage("last name is required"),
+  body("hobby")
+    .isLength({ max: 20 })
+    .withMessage("Hobby must be at most 20 characters long"),
   body("yearEmployed").custom(async (value, { req }) => {
     if (value === undefined || value === null || value === "") {
       // If the value is undefined, null, or an empty string, it's considered valid

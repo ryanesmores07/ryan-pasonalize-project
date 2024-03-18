@@ -54,7 +54,7 @@ const EditProfile = () => {
   return (
     <Wrapper>
       <Form method="post" className="form" encType="multipart/form-data">
-        <h4 className="form-title">Edit Profile</h4>
+        {/* <h4 className="form-title">Edit Profile</h4> */}
         <div className="form-center">
           <FormRow
             type="text"
@@ -238,7 +238,9 @@ const Wrapper = styled.section`
 
   .form-center {
     display: grid;
-    row-gap: 2rem;
+    place-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
   .form-btn {
     grid-column: 3/4;
@@ -251,16 +253,18 @@ const Wrapper = styled.section`
       color: #ffffff;
     }
   }
-  @media (min-width: 992px) {
-    .form-center {
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      column-gap: 1rem;
+
+  @media (max-width: 1024px) {
+    padding: 3rem 1rem 4rem; /* Adjust padding for 1024px and below */
+    .form-row .form-label {
+      min-width: 20ch; /* Adjust min-width for 1024px and below */
     }
   }
-  @media (min-width: 1120px) {
-    .form-center {
-      grid-template-columns: 1fr 1fr 1fr;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0.5rem 4rem; /* Adjust padding for 768px and below */
+    .form-row .form-label {
+      min-width: 15ch; /* Adjust min-width for 768px and below */
     }
   }
 `;

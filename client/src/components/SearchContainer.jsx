@@ -27,7 +27,7 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <Form className="form">
-        <h5 className="form-title">search form</h5>
+        {/* <h5 className="form-title">search form</h5> */}
         <div className="form-center">
           <FormRow
             type="search"
@@ -78,12 +78,13 @@ const Wrapper = styled.section`
   border-radius: var(--border-radius);
   width: 100%;
   background: var(--background-secondary-color);
-  padding: 3rem 2rem 4rem;
-  .form-title {
-    margin-bottom: 2rem;
+  padding: 3rem 0;
+  h5 {
+    font-size: 3rem;
   }
+
   .form {
-    margin: 0;
+    margin: 0 auto;
     border-radius: 0;
     box-shadow: none;
     padding: 2rem;
@@ -109,30 +110,14 @@ const Wrapper = styled.section`
       padding-bottom: 10px;
     }
   }
-  .text-area {
-    .text-label {
-      text-transform: capitalize;
-      color: rgba(0, 0, 0, 0.7);
-      display: block;
-      margin-bottom: 7px;
-      font-size: 1.3rem;
-    }
-
-    .text-input {
-      font-size: 1.3rem;
-      padding-left: 1rem;
-      width: 100%;
-      height: 45px;
-      background-color: var(--off-white);
-      border-radius: 5px;
-      border-style: none;
-    }
-  }
 
   .form-center {
     display: grid;
-    row-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+    gap: 2rem;
   }
+
   .form-btn {
     grid-column: 3/4;
     margin-top: -0.6rem;
@@ -144,16 +129,19 @@ const Wrapper = styled.section`
       color: #ffffff;
     }
   }
-  @media (min-width: 992px) {
+
+  @media (min-width: 768px) {
+    .form {
+    }
     .form-center {
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
+      grid-template-columns: repeat(2, 1fr);
       column-gap: 1rem;
     }
   }
-  @media (min-width: 1120px) {
+
+  @media (min-width: 1024px) {
     .form-center {
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 `;

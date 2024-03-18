@@ -73,4 +73,22 @@ const Wrapper = styled.nav`
       align-self: center;
     }
   }
+
+  @media (max-width: 1024px) {
+    .nav-container {
+      padding: 0 8rem; /* Adjust padding for 1024px and below */
+    }
+    .name-team {
+      font-size: 1.5rem; /* Adjust font size for 1024px and below */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 0 4rem; /* Adjust padding for 768px and below */
+    }
+    .name-team {
+      font-size: 1.2rem; /* Adjust font size for 768px and below */
+    }
+  }
 `;

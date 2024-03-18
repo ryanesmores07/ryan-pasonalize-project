@@ -60,7 +60,7 @@ const Wrapper = styled.section`
     grid-template-columns: 1fr;
   }
   .dashboard-page {
-    width: 90vw;
+    /* width: 90vw; */
     margin: 0 auto;
     padding: 2rem 0;
   }

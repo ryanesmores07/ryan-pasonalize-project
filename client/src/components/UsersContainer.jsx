@@ -31,6 +31,7 @@ const UsersContainer = () => {
 export default UsersContainer;
 
 const Wrapper = styled.section`
+  padding: 5rem;
   margin-bottom: 4rem;
   h2 {
     text-transform: none;
@@ -42,14 +43,13 @@ const Wrapper = styled.section`
   }
   .users {
     display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
   }
-  @media (min-width: 1120px) {
+  @media (min-width: 1024px) {
     .users {
       place-items: center;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 2rem;
       row-gap: 7rem;
     }
   }

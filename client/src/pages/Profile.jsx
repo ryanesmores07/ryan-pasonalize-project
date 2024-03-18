@@ -276,4 +276,54 @@ const Wrapper = styled.section`
       display: none;
     }
   }
+
+  /* Media query for 1024px */
+  @media (min-width: 1024px) {
+    .prompt-container {
+      padding-inline: 150px; /* Adjust padding for larger screens */
+    }
+    .photo-about-container {
+      padding: 80px 150px; /* Adjust padding for larger screens */
+      gap: 150px; /* Adjust gap between elements for larger screens */
+      .photo {
+        width: 500px; /* Adjust photo width for larger screens */
+        height: 500px; /* Adjust photo height for larger screens */
+      }
+      .about {
+        .name-container {
+          h1 {
+            font-size: 7rem; /* Adjust font size for larger screens */
+          }
+        }
+      }
+    }
+  }
+
+  /* Media query for 768px */
+  @media (min-width: 768px) {
+    .prompt-container {
+      padding-inline: 100px; /* Adjust padding for medium-sized screens */
+    }
+    .photo-about-container {
+      padding: 50px 100px; /* Adjust padding for medium-sized screens */
+      gap: 100px; /* Adjust gap between elements for medium-sized screens */
+      .about-me-container {
+        p {
+          font-size: 1rem;
+          line-height: 2;
+        }
+      }
+      .photo {
+        width: 300px; /* Adjust photo width for medium-sized screens */
+        height: 300px; /* Adjust photo height for medium-sized screens */
+      }
+      .about {
+        .name-container {
+          h1 {
+            font-size: 5rem; /* Adjust font size for medium-sized screens */
+          }
+        }
+      }
+    }
+  }
 `;

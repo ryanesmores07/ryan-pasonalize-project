@@ -44,11 +44,18 @@ const Wrapper = styled.section`
     .form-input {
       font-size: 1.6rem;
       padding-left: 1rem;
-      width: 380px;
+      /* width: 100%; */
       height: 45px;
       background-color: var(--light-blue);
       border-radius: 5px;
       border-style: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .form-row {
+      .form-input {
+      }
     }
   }
 `;

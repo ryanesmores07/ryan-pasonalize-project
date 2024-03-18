@@ -47,10 +47,10 @@ const Wrapper = styled.article`
       width: 80px;
       height: 100px;
       overflow: hidden;
-      transition: all 0.2s ease;
+      transition: all 0.2s ease-in;
       &:hover {
-        transform: translateY(-3%);
-        box-shadow: var(--shadow-3);
+        transform: scale(1.05);
+        box-shadow: var(--shadow-2);
       }
     }
 
@@ -59,11 +59,11 @@ const Wrapper = styled.article`
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transition: transform 0.5s ease;
+      transition: transform 0.2s ease-in-out;
     }
 
     .avatar-container:hover .avatar {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 
     h3 {

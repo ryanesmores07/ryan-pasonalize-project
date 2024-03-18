@@ -85,7 +85,7 @@ const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
     // File to be uploaded
     const myNewCroppedFile = base64StringtoFile(imageData64, myFileName);
     // download file
-    // downloadBase64File(imageData64, myFileName);
+    downloadBase64File(imageData64, myFileName);
     setCroppedImg(myNewCroppedFile);
     setCropEnabled(false);
     setImgSrc("");
@@ -144,11 +144,11 @@ const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
             }}
           />
           <br />
+          <button className="btn" onClick={handleCrop}>
+            Crop Photo
+          </button>
           <button className="btn" onClick={handleDownloadClick}>
             Download
-          </button>
-          <button className="btn" onClick={handleCrop}>
-            Crop Photo?
           </button>
         </>
       )}

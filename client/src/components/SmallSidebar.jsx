@@ -64,13 +64,18 @@ const Wrapper = styled.aside`
   }
   .close-btn {
     position: absolute;
-    top: 50px;
+    top: 10px;
     left: 10px;
     background: transparent;
     border-color: transparent;
     font-size: 3rem;
     color: var(--dark-red);
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      color: var(--red);
+    }
   }
   .nav-links {
     padding-top: 2rem;

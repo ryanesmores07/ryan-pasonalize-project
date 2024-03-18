@@ -60,13 +60,19 @@ const Wrapper = styled.section`
       top: 196px;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
+      align-items: stretch;
       gap: 18px;
       background-color: #ffffff;
       box-shadow: inset 0 4px 0 0 #b60005;
       border-radius: 5px;
 
+      img {
+        margin: 0 auto;
+        width: 16rem;
+      }
+
       h4 {
+        margin: 0 auto;
         font-size: 3.5rem;
         font-weight: 400;
       }

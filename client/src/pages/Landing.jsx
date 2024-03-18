@@ -24,8 +24,8 @@ const Landing = () => {
             <h1>PASONALIZE</h1>
             <div className="divider"></div>
             <p>
-              Meet other members of other departments in the company. Make new
-              friends and mingle!
+              Meet other members of other departments in the company. <br />
+              Make new friends and mingle!
             </p>
           </div>
           <div className="buttons">
@@ -58,9 +58,9 @@ const Landing = () => {
 };
 
 const Wrapper = styled.section`
+  overflow-x: hidden; /* Hide horizontal overflow */
   .container {
-    min-height: 1024px;
-    min-width: 1024px;
+    min-height: 100vh; /* Use viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,17 +71,17 @@ const Wrapper = styled.section`
 
     .left-section {
       width: 50%;
-      margin-left: 120px;
+      margin-left: 12rem;
       margin-top: 30rem;
       .text-container {
         h2 {
-          max-width: 70%;
+          /* max-width: 70%; */
           font-size: 4.5rem;
           font-weight: var(--font-weight-black);
         }
         h1 {
           color: var(--red);
-          font-size: 8rem;
+          font-size: 7rem;
           font-weight: var(--font-weight-black);
         }
         .divider::before {
@@ -89,23 +89,23 @@ const Wrapper = styled.section`
           display: block;
           margin-top: 0.4rem;
           height: 5px;
-          width: 261px;
+          width: 26rem;
           background-color: var(--red);
         }
         p {
           max-width: 527px;
           margin-top: 1.4rem;
-          font-size: 1.9rem;
+          font-size: 1.3rem;
         }
       }
       .buttons {
         display: flex;
-        gap: 3rem;
-        margin-top: 5rem;
+        gap: 2rem;
+        margin-top: 3rem;
         .register-btn,
         .login-btn {
           font-size: 1.6rem;
-          width: 183px;
+          width: 17rem;
           height: 5.6rem;
           border-radius: 50rem;
           border-style: none;
@@ -113,29 +113,30 @@ const Wrapper = styled.section`
           font-family: "Montserrat";
           cursor: pointer;
           box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
-          transition: background-color 0.3s ease, color 0.3s ease;
+          transition: all 0.3s ease;
+        }
+        .register-btn {
+          background-color: var(--blue);
+          color: #ffffff;
           &:hover {
             background-color: var(--dark-blue);
             color: #ffffff;
           }
         }
-        .register-btn {
-          color: #ffffff;
-          background-color: var(--blue);
-        }
-        .login-btn {
+
+        .login-btn:hover {
+          background-color: var(--dark-blue);
           border-color: var(--blue);
-          border: 1.5px solid var(--blue);
-          color: var(--blue);
-          background-color: rgba(54, 169, 236, 0.05);
+          color: #ffffff;
         }
       }
 
       .small-image-and-text-container {
         gap: 1rem;
-        margin-top: 13rem;
+        margin-top: 10rem;
         display: flex;
         align-items: center;
+        padding-bottom: 3rem;
         .small-image {
         }
         p {
@@ -148,6 +149,56 @@ const Wrapper = styled.section`
       justify-content: flex-end;
       width: 50%;
       .image-container {
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      align-items: stretch;
+
+      .left-section {
+        /* width: 100%; */
+        margin-left: 3rem;
+        .buttons {
+          gap: 2rem;
+          margin-top: 3rem;
+        }
+        .small-image-and-text-container {
+          margin-top: 8rem;
+        }
+      }
+      .right-section {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      min-width: auto;
+      padding: 2rem;
+    }
+    .left-section {
+      margin-top: 3rem;
+      .text-container {
+        h2 {
+          font-size: 3.5rem;
+        }
+        h1 {
+          font-size: 6rem;
+        }
+        p {
+          font-size: 1.7rem;
+        }
+      }
+      .buttons {
+        margin-top: 3rem;
+      }
+      .small-image-and-text-container {
+        margin-top: 6rem;
       }
     }
   }
