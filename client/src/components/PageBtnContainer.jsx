@@ -134,7 +134,6 @@ const PageBtnContainer = () => {
 export default PageBtnContainer;
 
 const Wrapper = styled.section`
-  margin-right: 2rem;
   height: 6rem;
   margin-top: 7rem;
   font-size: 1.5rem;
@@ -193,5 +192,9 @@ const Wrapper = styled.section`
     display: grid;
     place-items: center;
     cursor: text;
+  }
+
+  @media (min-width: 768px) {
+    /* justify-content: left; */
   }
 `;

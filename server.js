@@ -17,7 +17,7 @@ import { fileURLToPath } from "url";
 
 // middlewares
 import errorHandlerMiddleware from "./middleware/errorHandlerMiddleware.js";
-import { authenticateUser, isLoggedIn } from "./middleware/authMiddleware.js";
+import { authenticateUser } from "./middleware/authMiddleware.js";
 
 const app = express();
 const port = process.env.PORT || 5100;

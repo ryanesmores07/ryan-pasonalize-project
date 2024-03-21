@@ -56,7 +56,7 @@ const Wrapper = styled.nav`
     }
   }
   .nav-container {
-    padding: 0 12rem;
+    padding: 0 16rem;
     display: flex;
     justify-content: space-between;
     height: 145px;

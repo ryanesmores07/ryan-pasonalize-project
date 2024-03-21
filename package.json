@@ -28,7 +28,7 @@
     "express-validator": "^7.0.1",
     "helmet": "^7.0.0",
     "http-status-codes": "^2.2.0",
-    "jsonwebtoken": "^9.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.0.5",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",

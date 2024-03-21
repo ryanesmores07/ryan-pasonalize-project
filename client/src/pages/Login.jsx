@@ -6,6 +6,19 @@ import styled from "styled-components";
 import bgImage from "../assets/images/RegisterAndLoginPage/blue-blob-bg.png";
 import logo from "../assets/images/RegisterAndLoginPage/pasonalize.png";
 
+export const loader = async () => {
+  try {
+    const { data } = await customFetch.get("/users/current-user");
+
+    if (data) {
+      return redirect("/dashboard");
+    }
+    return;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
@@ -78,6 +91,7 @@ const Wrapper = styled.section`
       }
       p {
         font-size: 1.5rem;
+        align-self: center;
       }
     }
   }

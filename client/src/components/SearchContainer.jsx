@@ -10,6 +10,14 @@ import { useAllUsersContext } from "../pages/AllUsers";
 import styled from "styled-components";
 
 const SearchContainer = () => {
+  const resetFormValues = () => {
+    // Resetting values to "all"
+    document.getElementsByName("jobBranch")[0].value = "all";
+    document.getElementsByName("bloodType")[0].value = "all";
+    document.getElementsByName("jobDepartment")[0].value = "all";
+    document.getElementsByName("sort")[0].value = "newest";
+  };
+
   const { searchValues } = useAllUsersContext();
   const { search, jobBranch, jobDepartment, bloodType, sort } = searchValues;
   const submit = useSubmit();
@@ -64,7 +72,11 @@ const SearchContainer = () => {
             list={[...Object.values(USER_SORT_BY)]}
             onChange={(e) => submit(e.currentTarget.form)}
           />
-          <Link to="/dashboard" className="btn form-btn delete-btn">
+          <Link
+            to="/dashboard"
+            className="btn form-btn delete-btn"
+            onClick={resetFormValues}
+          >
             Reset Search Values
           </Link>
         </div>

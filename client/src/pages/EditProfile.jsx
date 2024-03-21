@@ -119,6 +119,7 @@ const EditProfile = () => {
             list={Object.values(BLOOD_TYPE)}
           />
           <FormRowSelect
+            testUrl="https://love-language.co/ja"
             name="loveLanguage"
             labelText="love language"
             defaultValue={user.loveLanguage}

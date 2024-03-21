@@ -13,7 +13,9 @@ import {
 } from "./pages";
 
 import { action as registerAction } from "./pages/Register";
+import { loader as registerLoader } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+import { loader as loginLoader } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
 import { loader as editProfileLoader } from "./pages/EditProfile";
@@ -32,11 +34,13 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
         action: registerAction,
+        loader: registerLoader,
       },
       {
         path: "login",
         element: <Login />,
         action: loginAction,
+        loader: loginLoader,
       },
       {
         path: "profile",

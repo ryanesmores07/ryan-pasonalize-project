@@ -75,7 +75,7 @@ const Wrapper = styled.section`
       margin-top: 30rem;
       .text-container {
         h2 {
-          /* max-width: 70%; */
+          max-width: 70%;
           font-size: 4.5rem;
           font-weight: var(--font-weight-black);
         }
@@ -140,7 +140,7 @@ const Wrapper = styled.section`
         .small-image {
         }
         p {
-          font-size: 1.7rem;
+          font-size: 1.3rem;
         }
       }
     }
@@ -159,8 +159,12 @@ const Wrapper = styled.section`
       align-items: stretch;
 
       .left-section {
-        /* width: 100%; */
         margin-left: 3rem;
+        .text-container {
+          h2 {
+            max-width: 90%;
+          }
+        }
         .buttons {
           gap: 2rem;
           margin-top: 3rem;

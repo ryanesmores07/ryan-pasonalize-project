@@ -13,8 +13,8 @@ const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
   };
   return (
     <Wrapper>
-      <div className="container">
-        <div className="avatar-container" onClick={handleOnClick}>
+      <div className="container" onClick={handleOnClick}>
+        <div className="avatar-container">
           {avatar ? (
             <img src={avatar} alt="avatar" className="avatar" />
           ) : (
@@ -40,18 +40,20 @@ const Wrapper = styled.article`
     align-items: flex-end;
     gap: 1rem;
     width: 281px;
+    padding: 1rem;
+    box-shadow: var(--shadow-1);
+    cursor: pointer;
+
+    &:hover .avatar {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-2);
+    }
 
     .avatar-container {
       box-shadow: var(--shadow-1);
-      cursor: pointer;
       width: 80px;
       height: 100px;
       overflow: hidden;
-      transition: all 0.2s ease-in;
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: var(--shadow-2);
-      }
     }
 
     .avatar {
@@ -59,11 +61,7 @@ const Wrapper = styled.article`
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .avatar-container:hover .avatar {
-      transform: scale(1.2);
+      transition: transform 0.2s ease-in;
     }
 
     h3 {

@@ -4,6 +4,8 @@ import {
   BadRequestError,
 } from "../errors/customErrors.js";
 import { verifyJWT } from "../utils/tokenUtils.js";
+import User from "../model/UserModel.js";
+import jwt from "jsonwebtoken";
 
 export const authenticateUser = (req, res, next) => {
   const { token } = req.cookies;
@@ -17,14 +19,27 @@ export const authenticateUser = (req, res, next) => {
   }
 };
 
-export function isLoggedIn(req, res, next) {
-  const { token } = req.cookies;
-  if (token) {
-    // Redirect client-side to "/dashboard"
-    console.log("there is a token");
+export const isLoggedIn = async (req, res, next) => {
+  // 1) Verify Token
+  if (req.cookies.token) {
+    try {
+      const decoded = await jwt.verify(
+        req.cookies.token,
+        process.env.JWT_SECRET
+      );
 
-    return res.redirect("/dashboard");
-  } else {
-    next(); // Continue to the next middleware if there is no token
+      // 2) Check if user still exists
+      const currentUser = await User.findById(decoded.userId);
+
+      if (!currentUser) {
+        return next();
+      }
+
+      // There is a logged in user
+      res.locals.user = currentUser;
+    } catch (error) {
+      return next();
+    }
   }
-}
+  next();
+};
