@@ -43,6 +43,8 @@ export const getAllUsers = async (req, res) => {
     queryObject.bloodType = bloodType;
   }
 
+  queryObject.active = true;
+
   const sortOptions = {
     newest: "-yearEmployed",
     oldest: "yearEmployed",
@@ -136,6 +138,9 @@ export const updateUser = async (req, res) => {
 export const showStats = async (req, res) => {
   try {
     const stats = await User.aggregate([
+      // Exclude documents with active: false
+      { $match: { active: { $ne: false } } },
+      // Group by jobDepartment and calculate count
       { $group: { _id: "$jobDepartment", count: { $sum: 1 } } },
     ]);
 

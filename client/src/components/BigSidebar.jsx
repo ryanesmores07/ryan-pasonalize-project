@@ -76,7 +76,7 @@ const Wrapper = styled.aside`
     }
 
     .nav-link:focus {
-      padding-left: 6rem;
+      /* padding-left: 6rem; */
       color: var(--dark-blue);
     }
 
