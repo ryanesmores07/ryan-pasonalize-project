@@ -211,7 +211,7 @@ const Wrapper = styled.section`
       }
       .about-me-container {
         p {
-          margin-top: 1rem;
+          margin-top: 1;
         }
         margin-top: 3rem;
       }
@@ -317,8 +317,10 @@ const Wrapper = styled.section`
       /* gap: 100px; */
       .about-me-container {
         p {
-          font-size: 1rem;
-          line-height: 2;
+          margin-top: 1rem;
+
+          font-size: 1.5rem;
+          line-height: 1.5;
         }
       }
       .photo {

@@ -12,6 +12,7 @@ import styled from "styled-components";
 const SearchContainer = () => {
   const resetFormValues = () => {
     // Resetting values to "all"
+    document.getElementsByName("search")[0].value = "";
     document.getElementsByName("jobBranch")[0].value = "all";
     document.getElementsByName("bloodType")[0].value = "all";
     document.getElementsByName("jobDepartment")[0].value = "all";

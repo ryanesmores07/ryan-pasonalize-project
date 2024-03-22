@@ -13,7 +13,6 @@ export const loader = async () => {
     if (data) {
       return redirect("/dashboard");
     }
-    return;
   } catch (error) {
     return null;
   }

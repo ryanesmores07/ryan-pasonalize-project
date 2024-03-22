@@ -8,7 +8,7 @@ import {
   BLOOD_TYPE,
   LOVE_LANGUAGE,
 } from "../../../utils/constants";
-import { Form, useNavigation, redirect } from "react-router-dom";
+import { Form, useNavigation, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
@@ -27,12 +27,12 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const file = formData.get("avatar");
 
-  // if (file && file.size > 2 * 1024 * 1024) {
-  //   toast.error(
-  //     "Image size too large. Please select an image smaller than 2MB."
-  //   );
-  //   return null;
-  // }
+  if (file && file.size > 2 * 1024 * 1024) {
+    toast.error(
+      "Image size too large. Please select an image smaller than 2MB."
+    );
+    return null;
+  }
 
   try {
     await customFetch.patch("/users/update-user", formData);
@@ -45,7 +45,34 @@ export const action = async ({ request }) => {
 };
 
 const EditProfile = () => {
+  const handleDelete = async () => {
+    const firstConfirmation = window.confirm(
+      "Do you really want to delete your profile? 😞"
+    );
+    if (!firstConfirmation) {
+      console.log("User canceled the deletion");
+      return;
+    }
+    const finalConfirmation = window.confirm(
+      "Are you absolutely sure? This action is irreversible."
+    );
+    if (finalConfirmation) {
+      try {
+        await customFetch.delete("/users/delete-user");
+
+        console.log("User deleted successfully");
+        navigate("/");
+      } catch (error) {
+        console.error("Error deleting user:", error);
+      }
+    } else {
+      console.log("User canceled the deletion");
+      return;
+    }
+  };
+
   const isRequired = false;
+  const navigate = useNavigate();
   const { user } = useLoaderData();
 
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
@@ -126,10 +153,10 @@ const EditProfile = () => {
             list={Object.values(LOVE_LANGUAGE)}
           />
           <FormRow
-            labelText="year and month joined"
+            labelText="year joined"
             type="text"
             name="yearEmployed"
-            placeholder="e.g. 2020-01"
+            placeholder="e.g. 2020"
             defaultValue={user.yearEmployed}
           />
           <FormRow
@@ -176,6 +203,9 @@ const EditProfile = () => {
           </button>
         </div>
       </Form>
+      <button type="button" className="delete-btn " onClick={handleDelete}>
+        Delete Profile
+      </button>
     </Wrapper>
   );
 };
@@ -191,6 +221,8 @@ const Wrapper = styled.section`
     margin-bottom: 2rem;
   }
   .form {
+    position: relative;
+
     margin: 0;
     border-radius: 0;
     box-shadow: none;
@@ -253,6 +285,19 @@ const Wrapper = styled.section`
       background-color: var(--dark-blue);
       color: #ffffff;
     }
+  }
+
+  .delete-btn {
+    background: none;
+    margin-top: 2rem;
+    border: none;
+    color: var(--off-black);
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .delete-btn:hover {
+    color: var(--red);
   }
 
   @media (max-width: 1024px) {

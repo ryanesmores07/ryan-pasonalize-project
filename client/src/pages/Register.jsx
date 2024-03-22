@@ -1,4 +1,4 @@
-import { Form, redirect, useNavigation, Link } from "react-router-dom";
+import { Form, redirect, useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FormRow, SubmitBtn } from "../components";
 import { toast } from "react-toastify";
@@ -33,6 +33,7 @@ export const action = async ({ request }) => {
 };
 
 const Register = () => {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -51,7 +52,7 @@ const Register = () => {
       await customFetch.post("/auth/register", data);
       toast.success("Registration successful");
       await customFetch.post("/auth/login", data);
-      window.location.reload();
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error?.response?.data?.msg);
     }
