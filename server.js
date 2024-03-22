@@ -38,11 +38,15 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.status(200).json({ status: "success", data: req.body });
+  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
 });
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+});
 
 app.use("*", (req, res) => {
   res.status(404).json({
