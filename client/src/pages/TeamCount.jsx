@@ -13,7 +13,6 @@ export const loader = async () => {
 
 const TeamCount = () => {
   const { stats } = useLoaderData();
-  console.log(stats);
   return (
     <>
       <StatsContainer defaultStats={stats} />
