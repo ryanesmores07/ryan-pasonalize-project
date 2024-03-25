@@ -24,6 +24,7 @@ export const loader = (queryClient) => async () => {
   try {
     return queryClient.ensureQueryData(userQuery);
   } catch (error) {
+    navigate("/");
     return redirect("/");
   }
 };

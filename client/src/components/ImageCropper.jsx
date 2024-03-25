@@ -15,7 +15,7 @@ import styled from "styled-components";
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
 
-const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
+const ImageCropper = ({ type, name, onSubmit }) => {
   const imgRef = useRef(null);
   const inputRef = useRef(null);
   const previewCanvasRef = useRef(null);
@@ -86,7 +86,6 @@ const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
     const myNewCroppedFile = base64StringtoFile(imageData64, myFileName);
     // download file
     downloadBase64File(imageData64, myFileName);
-    setCroppedImg(myNewCroppedFile);
     setCropEnabled(false);
     setImgSrc("");
   };
@@ -122,6 +121,7 @@ const ImageCropper = ({ type, name, setCroppedImg, onSubmit }) => {
             minWidth={MIN_DIMENSION}
           >
             <img
+              onClick={onImageLoad}
               ref={imgRef}
               src={imgSrc}
               alt="upload"
