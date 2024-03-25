@@ -313,8 +313,9 @@ const Wrapper = styled.section`
       width: 100%;
     }
     .photo-about-container {
+      width: 100%;
       padding: 50px 100px;
-      /* gap: 100px; */
+      justify-content: flex-start;
       .about-me-container {
         p {
           margin-top: 1rem;

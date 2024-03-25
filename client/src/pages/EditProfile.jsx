@@ -12,7 +12,7 @@ import { Form, useNavigation, redirect, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export const loader = async () => {
   try {
@@ -23,26 +23,29 @@ export const loader = async () => {
   }
 };
 
-export const action = async ({ request }) => {
-  const formData = await request.formData();
-  const file = formData.get("avatar");
+export const action =
+  (queryClient) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const file = formData.get("avatar");
 
-  if (file && file.size > 2 * 1024 * 1024) {
-    toast.error(
-      "Image size too large. Please select an image smaller than 2MB."
-    );
-    return null;
-  }
+    if (file && file.size > 2 * 1024 * 1024) {
+      toast.error(
+        "Image size too large. Please select an image smaller than 2MB."
+      );
+      return null;
+    }
 
-  try {
-    await customFetch.patch("/users/update-user", formData);
-    toast.success("Profile updated successfully");
-    return redirect("/profile");
-  } catch (error) {
-    toast.error(error?.response?.data?.msg);
-  }
-  return null;
-};
+    try {
+      await customFetch.patch("/users/update-user", formData);
+      queryClient.invalidateQueries("user");
+      toast.success("Profile updated successfully");
+      return redirect("/profile");
+    } catch (error) {
+      toast.error(error?.response?.data?.msg);
+      return null;
+    }
+  };
 
 const EditProfile = () => {
   const handleDelete = async () => {

@@ -1,14 +1,28 @@
 import styled from "styled-components";
-import { Outlet, redirect, useLoaderData, useNavigate } from "react-router-dom";
-import { SmallSidebar, BigSidebar, Navbar } from "../components/";
+import {
+  Outlet,
+  redirect,
+  useLoaderData,
+  useNavigate,
+  useNavigation,
+} from "react-router-dom";
+import { SmallSidebar, BigSidebar, Navbar, Loading } from "../components/";
 import { createContext, useContext, useState } from "react";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
-export const loader = async () => {
-  try {
+const userQuery = {
+  queryKey: ["user"],
+  queryFn: async () => {
     const { data } = await customFetch.get("/users/current-user");
     return data;
+  },
+};
+
+export const loader = (queryClient) => async () => {
+  try {
+    return queryClient.ensureQueryData(userQuery);
   } catch (error) {
     return redirect("/");
   }
@@ -16,9 +30,11 @@ export const loader = async () => {
 
 const DashboardContext = createContext();
 
-const Dashboard = () => {
-  const { user } = useLoaderData();
+const Dashboard = ({ queryClient }) => {
+  const { user } = useQuery(userQuery).data;
   const navigate = useNavigate();
+  const navigation = useNavigation();
+  const isPageLoading = navigation.state === "loading";
   const [showSidebar, setShowSidebar] = useState(false);
 
   const toggleSidebar = () => {
@@ -28,6 +44,7 @@ const Dashboard = () => {
   const logoutUser = async () => {
     navigate("/");
     await customFetch.get("/auth/logout");
+    queryClient.invalidateQueries();
     toast.success("Logging out...");
   };
 
@@ -42,7 +59,7 @@ const Dashboard = () => {
           <div>
             <Navbar />
             <div className="dashboard-page">
-              <Outlet context={{ user }} />
+              {isPageLoading ? <Loading /> : <Outlet context={{ user }} />}
             </div>
           </div>
         </main>

@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   Error,
   HomeLayout,
@@ -11,6 +13,7 @@ import {
   AllUsers,
   TeamCount,
 } from "./pages";
+import ErrorElement from "./components/ErrorElement";
 
 import { action as registerAction } from "./pages/Register";
 import { loader as registerLoader } from "./pages/Register";
@@ -22,6 +25,14 @@ import { loader as editProfileLoader } from "./pages/EditProfile";
 import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
 import { loader as teamCountLoader } from "./pages/TeamCount";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -39,7 +50,7 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
-        action: loginAction,
+        action: loginAction(queryClient),
         loader: loginLoader,
       },
       {
@@ -54,8 +65,8 @@ const router = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard />,
-        loader: dashboardLoader,
+        element: <Dashboard queryClient={queryClient} />,
+        loader: dashboardLoader(queryClient),
         children: [
           {
             index: true,
@@ -65,13 +76,14 @@ const router = createBrowserRouter([
           {
             path: "team-count",
             element: <TeamCount />,
-            loader: teamCountLoader,
+            loader: teamCountLoader(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "edit-profile",
             element: <EditProfile />,
             loader: editProfileLoader,
-            action: editProfileAction,
+            action: editProfileAction(queryClient),
           },
         ],
       },
@@ -80,7 +92,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

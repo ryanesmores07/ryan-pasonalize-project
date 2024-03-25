@@ -1,7 +1,7 @@
 {
-  "name": "pasona-me",
+  "name": "pasonalize",
   "version": "1.0.0",
-  "description": "[pasona-lize]",
+  "description": "[pasonalize]",
   "main": "index.js",
   "type": "module",
   "scripts": {

@@ -13,3 +13,4 @@ export { default as ImageCropper } from "./ImageCropper";
 export { default as ProfileNav } from "./ProfileNav";
 export { default as ProfileLogoutContainer } from "./ProfileLogoutContainer";
 export { default as PageBtnContainer } from "./PageBtnContainer";
+export { default as Loading } from "./Loading";
