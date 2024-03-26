@@ -17,17 +17,18 @@ const Error = () => {
       </Wrapper>
     );
   }
-  if (error.response.statusText === "Unauthorized") {
+  if (error.response.status === 401) {
+    console.log(error);
     return (
       <Wrapper>
         <div>
-          <h3>You need to be logged in in order to view this page!</h3>
+          <h1>You need to be logged in in order to view this page!</h1>
           <Link to="/">Back home</Link>
         </div>
       </Wrapper>
     );
   }
-
+  console.log(error);
   return (
     <Wrapper>
       <div>
