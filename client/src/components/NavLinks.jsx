@@ -29,7 +29,7 @@ const NavLinks = ({ isBigSidebar }) => {
           <span className="icon">
             <ImProfile />
           </span>
-          Profile
+          プロファイル
         </Link>
       </div>
     </>

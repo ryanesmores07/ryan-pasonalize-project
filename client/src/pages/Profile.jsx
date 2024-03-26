@@ -1,31 +1,40 @@
 import styled from "styled-components";
 import customFetch from "../utils/customFetch";
 import { useLoaderData, useNavigate } from "react-router-dom";
-
 import ProfileNav from "../components/ProfileNav";
+import { useQuery } from "@tanstack/react-query";
 
-export const loader = async ({ params }) => {
-  if (params && params.id) {
-    try {
-      const { data } = await customFetch.get(`/users/${params.id}`);
-      return data;
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      return redirect("/");
-    }
-  }
-
-  try {
+export const profileQuery = {
+  queryKey: ["profile"],
+  queryFn: async () => {
     const { data } = await customFetch.get("/users/current-user");
     return data;
-  } catch (error) {
-    console.error("Error fetching current user data:", error);
-    return redirect("/");
-  }
+  },
 };
 
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    if (params && params.id) {
+      try {
+        const { data } = await customFetch.get(`/users/${params.id}`);
+        return data;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return redirect("/");
+      }
+    }
+
+    try {
+      return queryClient.ensureQueryData(profileQuery);
+    } catch (error) {
+      console.error("Error fetching current user data:", error);
+      return redirect("/");
+    }
+  };
+
 const Profile = () => {
-  const { user } = useLoaderData();
+  const { user } = useQuery(profileQuery).data;
 
   return (
     <Wrapper>
@@ -60,7 +69,7 @@ const Profile = () => {
           <div className="left-prompt">
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Team:</h4>
+                <h4>チーム:</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobDepartment}</p>
@@ -68,7 +77,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Position:</h4>
+                <h4>職位:</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobPosition}</p>
@@ -76,7 +85,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Branch:</h4>
+                <h4>勤務先:</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobBranch}</p>
@@ -84,7 +93,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Year Employed:</h4>
+                <h4>入社年:</h4>
               </div>
               <div className="p-value">
                 <p>{user.yearEmployed}</p>
@@ -92,7 +101,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Zodiac Sign:</h4>
+                <h4>星座:</h4>
               </div>
               <div className="p-value">
                 <p>{user.zodiacSign}</p>
@@ -110,7 +119,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Blood Type:</h4>
+                <h4>血液型:</h4>
               </div>
               <div className="p-value">
                 <p>{user.bloodType}</p>
@@ -118,7 +127,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Favorite Hobby:</h4>
+                <h4>大好きな趣味:</h4>
               </div>
               <div className="p-value">
                 <p>{user.hobby}</p>
@@ -134,7 +143,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Hometown:</h4>
+                <h4>実家:</h4>
               </div>
               <div className="p-value">
                 <p>{user.hometown}</p>

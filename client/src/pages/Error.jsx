@@ -18,7 +18,6 @@ const Error = () => {
     );
   }
   if (error.response.status === 401) {
-    console.log(error);
     return (
       <Wrapper>
         <div>
@@ -28,7 +27,6 @@ const Error = () => {
       </Wrapper>
     );
   }
-  console.log(error);
   return (
     <Wrapper>
       <div>

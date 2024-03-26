@@ -112,24 +112,24 @@ const EditProfile = () => {
           />
           <FormRowSelect
             name="jobBranch"
-            labelText="branch"
+            labelText="勤務先"
             defaultValue={user.jobBranch}
             list={Object.values(JOB_BRANCH)}
           />
           <FormRowSelect
             name="jobDepartment"
-            labelText="team"
+            labelText="チーム"
             defaultValue={user.jobDepartment}
             list={Object.values(JOB_DEPARTMENT)}
           />
           <FormRowSelect
             name="jobPosition"
-            labelText="position"
+            labelText="職位"
             defaultValue={user.jobPosition}
             list={Object.values(JOB_POSITION)}
           />
           <FormRow
-            labelText="favorite hobby"
+            labelText="1番大好きな趣味"
             type="text"
             name="hobby"
             placeholder="e.g. karaoke"
@@ -138,13 +138,13 @@ const EditProfile = () => {
           />
           <FormRowSelect
             name="zodiacSign"
-            labelText="zodiac sign"
+            labelText="星座"
             defaultValue={user.zodiacSign}
             list={Object.values(ZODIAC_SIGN)}
           />
           <FormRowSelect
             name="bloodType"
-            labelText="blood type"
+            labelText="血液型"
             defaultValue={user.bloodType}
             list={Object.values(BLOOD_TYPE)}
           />
@@ -156,14 +156,14 @@ const EditProfile = () => {
             list={Object.values(LOVE_LANGUAGE)}
           />
           <FormRow
-            labelText="year joined"
+            labelText="入社年"
             type="text"
             name="yearEmployed"
             placeholder="e.g. 2020"
             defaultValue={user.yearEmployed}
           />
           <FormRow
-            labelText="Hometown"
+            labelText="実家"
             type="text"
             name="hometown"
             defaultValue={user.hometown}
@@ -238,6 +238,7 @@ const Wrapper = styled.section`
     margin-bottom: 3rem;
     color: rgba(0, 0, 0, 0.7);
     .form-label {
+      font-weight: 700;
       font-size: 1.3rem;
       min-width: 35ch;
     }
@@ -254,6 +255,7 @@ const Wrapper = styled.section`
   }
   .text-area {
     .text-label {
+      font-weight: 700;
       text-transform: capitalize;
       color: rgba(0, 0, 0, 0.7);
       display: block;
@@ -303,13 +305,12 @@ const Wrapper = styled.section`
     color: var(--red);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1280px) {
     padding: 3rem 1rem 4rem; /* Adjust padding for 1024px and below */
     .form-row .form-label {
       min-width: 20ch; /* Adjust min-width for 1024px and below */
     }
   }
-
   @media (max-width: 768px) {
     padding: 3rem 0.5rem 4rem; /* Adjust padding for 768px and below */
     .form-row .form-label {

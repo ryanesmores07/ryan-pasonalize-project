@@ -36,32 +36,33 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <Form className="form">
-        {/* <h5 className="form-title">search form</h5> */}
+        <h5 className="form-title">ユーザー検索</h5>
         <div className="form-center">
           <FormRow
             type="search"
             name="search"
+            labelText="検索"
             defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
             })}
           />
           <FormRowSelect
-            labelText="branch"
+            labelText="勤務先"
             name="jobBranch"
             list={["all", ...Object.values(JOB_BRANCH)]}
             defaultValue={jobBranch}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
-            labelText="blood type"
+            labelText="血液型"
             name="bloodType"
             list={["all", ...Object.values(BLOOD_TYPE)]}
             defaultValue={bloodType}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
-            labelText="job department"
+            labelText="チーム"
             name="jobDepartment"
             list={["all", ...Object.values(JOB_DEPARTMENT)]}
             defaultValue={jobDepartment}
@@ -69,6 +70,7 @@ const SearchContainer = () => {
           />
           <FormRowSelect
             name="sort"
+            labelText="並べ替え"
             defaultValue={sort}
             list={[...Object.values(USER_SORT_BY)]}
             onChange={(e) => submit(e.currentTarget.form)}
@@ -90,7 +92,6 @@ export default SearchContainer;
 const Wrapper = styled.section`
   border-radius: var(--border-radius);
   width: 100%;
-  background: var(--background-secondary-color);
   padding: 3rem 0;
   h5 {
     font-size: 3rem;
@@ -105,17 +106,23 @@ const Wrapper = styled.section`
     width: 100%;
   }
 
+  .form-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--blue);
+  }
+
   .form-row {
     margin-bottom: 3rem;
     color: rgba(0, 0, 0, 0.7);
     .form-label {
       font-size: 1.3rem;
       min-width: 35ch;
+      font-weight: 700;
     }
     .form-input {
       font-size: 1.3rem;
-      width: 100%;
-      height: 45px;
+      /* width: 100%; */
       background-color: var(--off-white);
       border-radius: 5px;
       border-style: none;
@@ -143,18 +150,16 @@ const Wrapper = styled.section`
     }
   }
 
-  @media (min-width: 768px) {
-    .form {
-    }
-    .form-center {
-      grid-template-columns: repeat(2, 1fr);
-      column-gap: 1rem;
+  @media (max-width: 1280px) {
+    padding: 3rem 1rem 4rem; /* Adjust padding for 1024px and below */
+    .form-row .form-label {
+      min-width: 20ch; /* Adjust min-width for 1024px and below */
     }
   }
-
-  @media (min-width: 1024px) {
-    .form-center {
-      grid-template-columns: repeat(3, 1fr);
+  @media (max-width: 768px) {
+    padding: 3rem 0.5rem 4rem; /* Adjust padding for 768px and below */
+    .form-row .form-label {
+      min-width: 15ch; /* Adjust min-width for 768px and below */
     }
   }
 `;

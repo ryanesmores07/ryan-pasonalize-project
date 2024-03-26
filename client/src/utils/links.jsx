@@ -4,9 +4,9 @@ import { ImProfile } from "react-icons/im";
 import { TbUserEdit } from "react-icons/tb";
 
 const links = [
-  { text: "all members", path: ".", icon: <FaPeopleGroup /> },
-  { text: "Team count", path: "team-count", icon: <IoBarChartSharp /> },
-  { text: "edit profile", path: "edit-profile", icon: <TbUserEdit /> },
+  { text: "全員のユーザー", path: ".", icon: <FaPeopleGroup /> },
+  { text: "チームユーザー数", path: "team-count", icon: <IoBarChartSharp /> },
+  { text: "自己プロファイル編集", path: "edit-profile", icon: <TbUserEdit /> },
   // { text: "profile", path: "profile", icon: <ImProfile /> },
 ];
 

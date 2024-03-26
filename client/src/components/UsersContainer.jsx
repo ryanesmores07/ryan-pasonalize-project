@@ -10,15 +10,13 @@ const UsersContainer = () => {
   if (users.length === 0) {
     return (
       <Wrapper>
-        <h2>No users to display...</h2>
+        <h2>表示するユーザーがいません...</h2>
       </Wrapper>
     );
   }
   return (
     <Wrapper>
-      <h5>
-        {totalUsers} user{users.length > 1 && "s"} found
-      </h5>
+      <h5>{totalUsers}人のユーザーが見つかりました</h5>
       <div className="users">
         {users.map((user) => {
           return <User key={user._id} {...user} />;
@@ -37,6 +35,7 @@ const Wrapper = styled.section`
   }
   & > h5 {
     font-weight: 700;
+    color: var(--off-black);
     font-size: 2.5rem;
     margin-bottom: 5rem;
   }
