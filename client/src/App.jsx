@@ -18,6 +18,7 @@ import ErrorElement from "./components/ErrorElement";
 import { action as registerAction } from "./pages/Register";
 import { loader as registerLoader } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
+import { action as deleteAccountAction } from "./pages/DeleteAccunt";
 import { loader as loginLoader } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
-        loader: profileLoader(queryClient),
+        loader: profileLoader,
       },
       {
         path: ":id",
@@ -71,7 +72,8 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AllUsers />,
-            loader: allUsersLoader,
+            loader: allUsersLoader(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "team-count",
@@ -84,6 +86,10 @@ const router = createBrowserRouter([
             element: <EditProfile />,
             loader: editProfileLoader,
             action: editProfileAction(queryClient),
+          },
+          {
+            path: "delete-account",
+            action: deleteAccountAction,
           },
         ],
       },

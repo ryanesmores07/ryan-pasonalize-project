@@ -28,7 +28,11 @@ const withValidationErrors = (validateValues) => {
 };
 
 export const validationRegisterInput = withValidationErrors([
-  body("firstName").notEmpty().withMessage("first name is required"),
+  body("firstName")
+    .notEmpty()
+    .withMessage("first name is required")
+    .isLength({ max: 10 })
+    .withMessage("first name must be at most 10 characters long"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -45,7 +49,11 @@ export const validationRegisterInput = withValidationErrors([
     .withMessage("password is required")
     .isLength({ min: 8 })
     .withMessage("password must be at least 8 characters long"),
-  body("lastName").notEmpty().withMessage("last name is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .isLength({ max: 10 })
+    .withMessage("last name must be at most 10 characters long"),
 ]);
 
 export const validateIdParam = withValidationErrors([
@@ -62,7 +70,11 @@ export const validateIdParam = withValidationErrors([
 ]);
 
 export const validateUpdateUserInput = withValidationErrors([
-  body("firstName").notEmpty().withMessage("name is required"),
+  body("firstName")
+    .notEmpty()
+    .withMessage("name is required")
+    .isLength({ max: 10 })
+    .withMessage("first name must be at most 10 characters long"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -74,23 +86,44 @@ export const validateUpdateUserInput = withValidationErrors([
         throw new BadRequestError("email already exists");
       }
     }),
-  body("lastName").notEmpty().withMessage("last name is required"),
+  body("lastName")
+    .notEmpty()
+    .withMessage("last name is required")
+    .isLength({ max: 10 })
+    .withMessage("last name must be at most 10 characters long"),
   body("hobby")
     .isLength({ max: 20 })
     .withMessage("Hobby must be at most 20 characters long"),
+  body("nickname")
+    .isLength({ max: 15 })
+    .withMessage("nickname must be at most 15 characters long"),
+  body("celebrityCrush")
+    .isLength({ max: 10 })
+    .withMessage("nickname must be at most 10 characters long"),
+  body("hometown")
+    .isLength({ max: 15 })
+    .withMessage("hometown must be at most 15 characters long"),
+  body("aboutMe")
+    .isLength({ max: 500 })
+    .withMessage("hometown must be at most 500 characters long"),
   body("yearEmployed").custom(async (value, { req }) => {
     if (value === undefined || value === null || value === "") {
       // If the value is undefined, null, or an empty string, it's considered valid
       return true;
     }
+
+    const currentYear = new Date().getFullYear(); // Get the current year
+
     if (!/^\d+$/.test(value)) {
       // If the value is not a valid number, return false with an error message
       throw new BadRequestError("Year must be a number");
     }
     if (!/^\d{4}$/.test(value)) {
-      throw new Error("Input a valid year");
+      throw new Error("有効な年を入力してください");
     }
-
+    if (parseInt(value, 10) > currentYear) {
+      throw new Error("現在の年より大きい年は使用できません");
+    }
     return true; // Return true to indicate the validation passed
   }),
 ]);

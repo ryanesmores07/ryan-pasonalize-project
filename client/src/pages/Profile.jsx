@@ -12,29 +12,28 @@ export const profileQuery = {
   },
 };
 
-export const loader =
-  (queryClient) =>
-  async ({ params }) => {
-    if (params && params.id) {
-      try {
-        const { data } = await customFetch.get(`/users/${params.id}`);
-        return data;
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-        return redirect("/");
-      }
-    }
-
+export const loader = async ({ params }) => {
+  if (params && params.id) {
     try {
-      return queryClient.ensureQueryData(profileQuery);
+      const { data } = await customFetch.get(`/users/${params.id}`);
+      return data;
     } catch (error) {
-      console.error("Error fetching current user data:", error);
+      console.error("Error fetching user data:", error);
       return redirect("/");
     }
-  };
+  }
+
+  try {
+    const { data } = await customFetch.get("/users/current-user");
+    return data;
+  } catch (error) {
+    console.error("Error fetching current user data:", error);
+    return redirect("/");
+  }
+};
 
 const Profile = () => {
-  const { user } = useQuery(profileQuery).data;
+  const { user } = useLoaderData();
 
   return (
     <Wrapper>
@@ -61,7 +60,7 @@ const Profile = () => {
             </div>
             <div className="about-me-container">
               <h4>About me:</h4>
-              <p>{user.aboutMe}</p>
+              <p className="about-me-text">{user.aboutMe}</p>
             </div>
           </div>
         </div>
@@ -219,8 +218,10 @@ const Wrapper = styled.section`
         }
       }
       .about-me-container {
-        p {
+        .about-me-text {
           margin-top: 1;
+
+          overflow-wrap: break-word; /* Allow the text to wrap */
         }
         margin-top: 3rem;
       }

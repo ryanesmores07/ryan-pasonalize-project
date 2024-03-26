@@ -29,12 +29,12 @@ export const action =
     const formData = await request.formData();
     const file = formData.get("avatar");
 
-    if (file && file.size > 2 * 1024 * 1024) {
-      toast.error(
-        "Image size too large. Please select an image smaller than 2MB."
-      );
-      return null;
-    }
+    // if (file && file.size > 2 * 1024 * 1024) {
+    //   toast.error(
+    //     "Image size too large. Please select an image smaller than 2MB."
+    //   );
+    //   return null;
+    // }
 
     try {
       await customFetch.patch("/users/update-user", formData);
@@ -48,32 +48,6 @@ export const action =
   };
 
 const EditProfile = () => {
-  const handleDelete = async () => {
-    const firstConfirmation = window.confirm(
-      "Do you really want to delete your profile? 😞"
-    );
-    if (!firstConfirmation) {
-      console.log("User canceled the deletion");
-      return;
-    }
-    const finalConfirmation = window.confirm(
-      "Are you absolutely sure? This action is irreversible."
-    );
-    if (finalConfirmation) {
-      try {
-        await customFetch.delete("/users/delete-user");
-
-        console.log("User deleted successfully");
-        navigate("/");
-      } catch (error) {
-        console.error("Error deleting user:", error);
-      }
-    } else {
-      console.log("User canceled the deletion");
-      return;
-    }
-  };
-
   const isRequired = false;
   const navigate = useNavigate();
   const { user } = useLoaderData();
@@ -151,7 +125,7 @@ const EditProfile = () => {
           <FormRowSelect
             testUrl="https://love-language.co/ja"
             name="loveLanguage"
-            labelText="love language"
+            labelText="ラブランゲージ"
             defaultValue={user.loveLanguage}
             list={Object.values(LOVE_LANGUAGE)}
           />
@@ -206,9 +180,11 @@ const EditProfile = () => {
           </button>
         </div>
       </Form>
-      <button type="button" className="delete-btn " onClick={handleDelete}>
-        Delete Profile
-      </button>
+      <Form method="post" action={`../delete-account`}>
+        <button type="submit" className="delete-btn">
+          Delete Profile
+        </button>
+      </Form>
     </Wrapper>
   );
 };
@@ -218,7 +194,6 @@ export default EditProfile;
 const Wrapper = styled.section`
   border-radius: var(--border-radius);
   width: 100%;
-  background: var(--background-secondary-color);
   padding: 3rem 2rem 4rem;
   .form-title {
     margin-bottom: 2rem;

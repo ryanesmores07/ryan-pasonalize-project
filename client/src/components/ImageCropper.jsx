@@ -3,6 +3,7 @@ import ReactCrop, {
   convertToPixelCrop,
   makeAspectCrop,
 } from "react-image-crop";
+import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import setCanvasPreview from "./setCanvasPreview";
 import {
@@ -10,7 +11,7 @@ import {
   extractImageFileExtensionFromBase64,
   downloadBase64File,
 } from "./ResuableUtils";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -144,7 +145,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
             }}
           />
           <br />
-          <button className="btn" onClick={handleCrop}>
+          <button className="btn crop-button" onClick={handleCrop}>
             Crop Photo
           </button>
           <button className="btn" onClick={handleDownloadClick}>
@@ -158,13 +159,34 @@ const ImageCropper = ({ type, name, onSubmit }) => {
 
 export default ImageCropper;
 
-const Wrapper = styled.section`
-  button {
-    margin-right: 1rem;
+const blink = keyframes`
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
 
+const Wrapper = styled.section`
+  .crop-button {
+    margin-right: 1rem;
+    cursor: pointer;
+    display: inline;
+    background-color: var(--green);
+    color: var(--off-white);
+    animation: ${blink} 1s ease-in-out infinite;
+    &:hover {
+      background-color: var(--dark-green);
+    }
+  }
+
+  button {
     &:hover {
       background-color: var(--dark-blue);
-      color: #ffffff;
     }
   }
 `;

@@ -64,7 +64,6 @@ const UserSchema = new mongoose.Schema(
     },
     aboutMe: {
       type: String,
-      maxlength: 500,
       default: "",
     },
     active: {

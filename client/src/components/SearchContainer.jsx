@@ -107,9 +107,10 @@ const Wrapper = styled.section`
   }
 
   .form-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--blue);
+    font-weight: 500;
+    color: var(--off-black);
   }
 
   .form-row {
