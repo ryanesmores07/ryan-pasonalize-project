@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import customFetch from "../utils/customFetch";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate, redirect } from "react-router-dom";
 import ProfileNav from "../components/ProfileNav";
 import { useQuery } from "@tanstack/react-query";
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Error = () => {
   const error = useRouteError();
+  console.log(error);
 
   if (error.status === 404) {
     return (

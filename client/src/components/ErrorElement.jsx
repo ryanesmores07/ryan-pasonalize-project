@@ -1,10 +1,15 @@
-import { useRouteError } from "react-router-dom";
+import { useRouteError, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const ErrorElement = () => {
   const error = useRouteError();
   console.log(error);
-  return <ErrorMessage>There was an error...</ErrorMessage>;
+  return (
+    <>
+      <ErrorMessage>There was an error...</ErrorMessage>
+      <Link to="/">Back to homepage</Link>
+    </>
+  );
 };
 
 export default ErrorElement;
