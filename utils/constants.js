@@ -4,6 +4,7 @@ export const JOB_DEPARTMENT = {
   POWER_PLATFORM: "power-platform",
   WEB_AI: "web-ai",
   INFRASTRUCTURE: "infrastructure",
+  OTHERS: "others",
 };
 
 export const JOB_POSITION = {
@@ -12,6 +13,7 @@ export const JOB_POSITION = {
   SUB_LEADER: "sub-leader",
   DEVELOPER: "developer",
   TRAINEE: "trainee",
+  OTHERS: "others",
 };
 
 export const JOB_BRANCH = {
@@ -20,6 +22,7 @@ export const JOB_BRANCH = {
   FUKUOKA: "fukuoka",
   TOKYO: "tokyo",
   OSAKA: "osaka",
+  OTHERS: "others",
 };
 
 export const USER_SORT_BY = {

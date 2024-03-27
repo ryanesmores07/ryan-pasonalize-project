@@ -5,6 +5,7 @@ import {
   powerplat,
   infra,
   webai,
+  followers,
 } from "../assets/images/DepartmentIcons/dept-icons";
 
 const StatsContainer = ({ defaultStats }) => {
@@ -36,6 +37,13 @@ const StatsContainer = ({ defaultStats }) => {
       icon: <img src={infra} />,
       color: "var(--purple)",
       bcg: "var(--light-purple)",
+    },
+    {
+      title: "その他",
+      count: defaultStats?.others || 0,
+      icon: <img src={followers} />,
+      color: "orangered",
+      bcg: "orange",
     },
   ];
 

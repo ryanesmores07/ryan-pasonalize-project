@@ -1,7 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../model/UserModel.js";
 import cloudinary from "cloudinary";
-import sharp from "sharp";
 import { formatImage } from "../middleware/multerMiddleware.js";
 
 export const getCurrentUser = async (req, res) => {

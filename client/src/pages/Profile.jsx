@@ -293,6 +293,13 @@ const Wrapper = styled.section`
       display: none;
     }
   }
+  .others {
+    margin-left: 0px;
+    background-color: orange;
+    &::after {
+      display: none;
+    }
+  }
 
   /* Media query for 1024px */
   @media (min-width: 1024px) {

@@ -263,6 +263,7 @@ textarea:not([rows]) {
     opacity: 0.4;
     background-color: var(--light-yellow);
     border-radius: var(--border-radius);
+    border: 1px solid var(--yellow);
     display: block;
   }
 }
@@ -283,6 +284,8 @@ textarea:not([rows]) {
     opacity: 0.2;
     background-color: var(--light-pink);
     border-radius: var(--border-radius);
+    border: 1px solid var(--pink);
+
     display: block;
   }
 }
@@ -302,6 +305,8 @@ textarea:not([rows]) {
     background-color: var(--light-purple);
     opacity: 0.2;
     border-radius: var(--border-radius);
+    border: 1px solid var(--purple);
+
     display: block;
   }
 }
@@ -320,7 +325,28 @@ textarea:not([rows]) {
     width: 145px;
     opacity: 0.3;
     background-color: var(--light-green);
+    border: 1px solid var(--off-black);
+    border-radius: var(--green);
+    display: block;
+  }
+}
+.others {
+  font-weight: 500;
+  font-size: 1.5rem;
+  margin-left: 14px;
+  color: orangered;
+  &::after {
+    content: "";
+    position: relative;
+    top: -21px;
+    z-index: -1;
+    left: -14px;
+    height: 2.6rem;
+    width: 145px;
+    opacity: 0.2;
+    background-color: orange;
     border-radius: var(--border-radius);
+    border: 1px solid orangered;
     display: block;
   }
 }

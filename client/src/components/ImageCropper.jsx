@@ -136,6 +136,13 @@ const ImageCropper = ({ type, name, onSubmit }) => {
       )}
       {imgSrc && (
         <>
+          <button className="crop-button" onClick={handleCrop}>
+            <LuArrowBigRightDash
+              style={{ fontSize: "3rem", transform: "translateY(-3px)" }}
+            />
+            <span>イメージを切り取る</span>
+          </button>
+          <br />
           <canvas
             ref={previewCanvasRef}
             style={{
@@ -146,12 +153,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
             }}
           />
           <br />
-          <button className="crop-button" onClick={handleCrop}>
-            <LuArrowBigRightDash
-              style={{ fontSize: "3rem", transform: "translateY(-3px)" }}
-            />
-            <span>イメージを切り取る</span>
-          </button>
+
           <button className="btn" onClick={handleDownloadClick}>
             ダウンロード
           </button>
@@ -177,6 +179,7 @@ const blink = keyframes`
 
 const Wrapper = styled.section`
   button {
+    font-size: 1.5rem;
     background-color: var(--green);
     &:hover {
       background-color: var(--dark-green);

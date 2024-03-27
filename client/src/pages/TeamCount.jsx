@@ -17,8 +17,8 @@ export const loader = (queryClient) => async () => {
 
 const TeamCount = () => {
   const { data } = useQuery(teamCountQuery);
-
   const { stats } = data;
+
   return (
     <>
       <StatsContainer defaultStats={stats} />
