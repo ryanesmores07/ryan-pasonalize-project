@@ -1,5 +1,4 @@
 import { FormRow, FormRowSelect, ImageCropper } from "../components";
-import { useLoaderData, useSubmit } from "react-router-dom";
 import {
   JOB_DEPARTMENT,
   JOB_POSITION,
@@ -8,20 +7,16 @@ import {
   BLOOD_TYPE,
   LOVE_LANGUAGE,
 } from "../../../utils/constants";
-import { Form, useNavigation, redirect, useNavigate } from "react-router-dom";
+import {
+  Form,
+  useNavigation,
+  redirect,
+  useOutletContext,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
 import { useState } from "react";
-
-export const loader = async () => {
-  try {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
-  } catch (error) {
-    return redirect("/dashboard");
-  }
-};
 
 export const action =
   (queryClient) =>
@@ -49,9 +44,7 @@ export const action =
 
 const EditProfile = () => {
   const isRequired = false;
-  const navigate = useNavigate();
-  const { user } = useLoaderData();
-
+  const { user } = useOutletContext();
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";

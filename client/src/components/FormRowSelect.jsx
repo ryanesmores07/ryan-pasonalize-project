@@ -15,7 +15,7 @@ const FormRowSelect = ({
         {testUrl && (
           <BlinkingSpan>
             <a href={testUrl} target="_blank" rel="noopener noreferrer">
-              テストを受けてください❤️
+              テストはここへ❤️
             </a>
           </BlinkingSpan>
         )}
@@ -55,8 +55,13 @@ const blink = keyframes`
 const BlinkingSpan = styled.span`
   font-weight: 700;
   position: absolute;
-  transform: translateY(-1rem) rotate(-7deg);
+  transform: translateY(-1.3rem) rotate(-7deg);
   font-size: 1rem;
   color: var(--pink);
   animation: ${blink} 0.8s ease-out infinite;
+  transition: all ease;
+  &:hover {
+    animation: none;
+    font-size: 1.1rem;
+  }
 `;

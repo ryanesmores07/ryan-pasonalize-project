@@ -4,36 +4,36 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import ProfileNav from "../components/ProfileNav";
 import { useQuery } from "@tanstack/react-query";
 
-export const profileQuery = {
-  queryKey: ["profile"],
-  queryFn: async () => {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
-  },
-};
-
-export const loader = async ({ params }) => {
-  if (params && params.id) {
-    try {
-      const { data } = await customFetch.get(`/users/${params.id}`);
+const profileQuery = (params) => {
+  const id = params?.id || "current-user";
+  return {
+    queryKey: ["profile", id],
+    queryFn: async () => {
+      const { data } = await customFetch.get(`/users/${id}`);
       return data;
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      return redirect("/");
-    }
-  }
-
-  try {
-    const { data } = await customFetch.get("/users/current-user");
-    return data;
-  } catch (error) {
-    console.error("Error fetching current user data:", error);
-    return redirect("/");
-  }
+    },
+  };
 };
+
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    if (params) {
+      try {
+        await queryClient.ensureQueryData(profileQuery(params));
+        return params;
+      } catch (error) {
+        console.error("Error fetching current user data:", error);
+        return redirect("/");
+      }
+    }
+  };
 
 const Profile = () => {
-  const { user } = useLoaderData();
+  const params = useLoaderData();
+  const {
+    data: { user },
+  } = useQuery(profileQuery(params));
 
   return (
     <Wrapper>

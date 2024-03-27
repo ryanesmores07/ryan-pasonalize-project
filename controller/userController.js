@@ -84,7 +84,6 @@ export const updateUser = async (req, res) => {
 
   if (req.file) {
     const file = await formatImage(req.file);
-    console.log(file);
     const response = await cloudinary.v2.uploader.upload(file);
     newUser.avatar = response.secure_url;
     newUser.avatarPublicId = response.public_id;

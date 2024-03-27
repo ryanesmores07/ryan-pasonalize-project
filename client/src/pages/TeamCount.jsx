@@ -1,6 +1,5 @@
 import StatsContainer from "../components/StatsContainer";
 import customFetch from "../utils/customFetch";
-import { useLoaderData } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 const teamCountQuery = {

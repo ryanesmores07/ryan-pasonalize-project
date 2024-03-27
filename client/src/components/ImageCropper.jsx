@@ -3,6 +3,7 @@ import ReactCrop, {
   convertToPixelCrop,
   makeAspectCrop,
 } from "react-image-crop";
+import { LuArrowBigRightDash } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import setCanvasPreview from "./setCanvasPreview";
@@ -145,11 +146,14 @@ const ImageCropper = ({ type, name, onSubmit }) => {
             }}
           />
           <br />
-          <button className="btn crop-button" onClick={handleCrop}>
-            Crop Photo
+          <button className="crop-button" onClick={handleCrop}>
+            <LuArrowBigRightDash
+              style={{ fontSize: "3rem", transform: "translateY(-3px)" }}
+            />
+            <span>イメージを切り取る</span>
           </button>
           <button className="btn" onClick={handleDownloadClick}>
-            Download
+            ダウンロード
           </button>
         </>
       )}
@@ -172,21 +176,29 @@ const blink = keyframes`
 `;
 
 const Wrapper = styled.section`
-  .crop-button {
-    margin-right: 1rem;
-    cursor: pointer;
-    display: inline;
+  button {
     background-color: var(--green);
-    color: var(--off-white);
-    animation: ${blink} 1s ease-in-out infinite;
     &:hover {
       background-color: var(--dark-green);
     }
   }
-
-  button {
+  .crop-button {
+    display: flex;
+    margin-right: 1rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--red);
+    background-color: transparent;
+    animation: ${blink} 1s ease-in-out infinite;
+    transition: all 0.01s ease;
     &:hover {
-      background-color: var(--dark-blue);
+      background-color: transparent;
+      transform: scale(1.1);
+      animation: none;
+      color: var(--dark-red);
+
+      filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.5));
     }
   }
 `;

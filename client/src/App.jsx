@@ -22,7 +22,7 @@ import { action as deleteAccountAction } from "./pages/DeleteAccunt";
 import { loader as loginLoader } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
-import { loader as editProfileLoader } from "./pages/EditProfile";
+
 import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
 import { loader as teamCountLoader } from "./pages/TeamCount";
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <Profile />,
-        loader: profileLoader,
+        loader: profileLoader(queryClient),
       },
       {
         path: "dashboard",
@@ -84,7 +84,6 @@ const router = createBrowserRouter([
           {
             path: "edit-profile",
             element: <EditProfile />,
-            loader: editProfileLoader,
             action: editProfileAction(queryClient),
           },
           {
