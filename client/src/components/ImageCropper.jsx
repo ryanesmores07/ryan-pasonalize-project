@@ -99,7 +99,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
   return (
     <Wrapper className="image-upload-container">
       <label htmlFor={name} className="form-label">
-        Select a profile photo (max 2MB):
+        プロフィール写真を選択してください
       </label>
       <input
         ref={inputRef}
