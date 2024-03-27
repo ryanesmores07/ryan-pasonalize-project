@@ -73,8 +73,8 @@ export const validateUpdateUserInput = withValidationErrors([
   body("firstName")
     .notEmpty()
     .withMessage("name is required")
-    .isLength({ max: 10 })
-    .withMessage("first name must be at most 10 characters long"),
+    .isLength({ max: 15 })
+    .withMessage("first name must be at most 15 characters long"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
@@ -89,8 +89,8 @@ export const validateUpdateUserInput = withValidationErrors([
   body("lastName")
     .notEmpty()
     .withMessage("last name is required")
-    .isLength({ max: 10 })
-    .withMessage("last name must be at most 10 characters long"),
+    .isLength({ max: 15 })
+    .withMessage("last name must be at most 15 characters long"),
   body("hobby")
     .isLength({ max: 20 })
     .withMessage("Hobby must be at most 20 characters long"),
@@ -98,14 +98,14 @@ export const validateUpdateUserInput = withValidationErrors([
     .isLength({ max: 15 })
     .withMessage("nickname must be at most 15 characters long"),
   body("celebrityCrush")
-    .isLength({ max: 10 })
-    .withMessage("nickname must be at most 10 characters long"),
-  body("hometown")
     .isLength({ max: 15 })
-    .withMessage("hometown must be at most 15 characters long"),
+    .withMessage("name must be at most 15 characters long"),
+  body("hometown")
+    .isLength({ max: 30 })
+    .withMessage("hometown must be at most 30 characters long"),
   body("aboutMe")
     .isLength({ max: 500 })
-    .withMessage("hometown must be at most 500 characters long"),
+    .withMessage("about me must be at most 500 characters long"),
   body("yearEmployed").custom(async (value, { req }) => {
     if (value === undefined || value === null || value === "") {
       // If the value is undefined, null, or an empty string, it's considered valid
@@ -122,7 +122,7 @@ export const validateUpdateUserInput = withValidationErrors([
       throw new Error("有効な年を入力してください");
     }
     if (parseInt(value, 10) > currentYear) {
-      throw new Error("現在の年より大きい年は使用できません");
+      throw new Error("有効な年を入力してください");
     }
     return true; // Return true to indicate the validation passed
   }),

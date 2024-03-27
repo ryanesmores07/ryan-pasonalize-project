@@ -38,7 +38,7 @@ export const action =
 
     try {
       await customFetch.patch("/users/update-user", formData);
-      queryClient.invalidateQueries("user");
+      queryClient.invalidateQueries(["user"]);
       toast.success("Profile updated successfully");
       return redirect("/profile");
     } catch (error) {

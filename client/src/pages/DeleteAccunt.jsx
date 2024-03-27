@@ -2,7 +2,7 @@ import { redirect } from "react-router-dom";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
 
-export const action = async () => {
+export const action = (queryClient) => async () => {
   const firstConfirmation = window.confirm(
     "Do you really want to delete your profile? 😞"
   );
@@ -16,6 +16,7 @@ export const action = async () => {
   if (finalConfirmation) {
     try {
       await customFetch.delete("/users/delete-user");
+      queryClient.invalidateQueries(["users"]);
       toast.success("User deleted successfully");
       return redirect("/");
     } catch (error) {

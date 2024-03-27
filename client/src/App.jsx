@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
-        loader: profileLoader,
+        loader: profileLoader(queryClient),
       },
       {
         path: ":id",
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
           },
           {
             path: "delete-account",
-            action: deleteAccountAction,
+            action: deleteAccountAction(queryClient),
           },
         ],
       },
