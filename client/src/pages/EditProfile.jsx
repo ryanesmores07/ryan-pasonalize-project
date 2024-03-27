@@ -80,19 +80,19 @@ const EditProfile = () => {
           <FormRowSelect
             name="jobBranch"
             labelText="勤務先"
-            defaultValue={JOB_BRANCH.OTHERS}
+            defaultValue={user.jobBranch}
             list={Object.values(JOB_BRANCH)}
           />
           <FormRowSelect
             name="jobDepartment"
             labelText="チーム"
-            defaultValue={JOB_DEPARTMENT.OTHERS}
+            defaultValue={user.jobDepartment}
             list={Object.values(JOB_DEPARTMENT)}
           />
           <FormRowSelect
             name="jobPosition"
             labelText="職位"
-            defaultValue={JOB_POSITION.OTHERS}
+            defaultValue={user.jobPosition}
             list={Object.values(JOB_POSITION)}
           />
           <FormRow

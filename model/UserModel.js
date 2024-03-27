@@ -35,17 +35,17 @@ const UserSchema = new mongoose.Schema(
     jobBranch: {
       type: String,
       enum: Object.values(JOB_BRANCH),
-      // default: JOB_BRANCH.DEFAULT,
+      default: JOB_BRANCH.OTHERS,
     },
     jobPosition: {
       type: String,
       enum: Object.values(JOB_POSITION),
-      // default: JOB_POSITION.DEFAULT,
+      default: JOB_POSITION.OTHERS,
     },
     jobDepartment: {
       type: String,
       enum: Object.values(JOB_DEPARTMENT),
-      // default: JOB_DEPARTMENT.DEFAULT,
+      default: JOB_DEPARTMENT.OTHERS,
     },
     zodiacSign: {
       type: String,
