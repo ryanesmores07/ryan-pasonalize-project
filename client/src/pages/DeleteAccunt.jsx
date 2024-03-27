@@ -24,6 +24,6 @@ export const action = (queryClient) => async () => {
     }
   } else {
     console.log("User canceled the deletion");
-    return;
+    return redirect("/dashboard/edit-profile");
   }
 };

@@ -267,10 +267,10 @@ const Wrapper = styled.section`
     color: var(--off-black);
     cursor: pointer;
     padding: 0;
-  }
-
-  .delete-btn:hover {
-    color: var(--red);
+    &:hover {
+      transform: scale(1.2);
+      color: var(--red);
+    }
   }
 
   @media (max-width: 1280px) {
