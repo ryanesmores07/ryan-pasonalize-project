@@ -6,6 +6,8 @@ import morgan from "morgan";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cloudinary from "cloudinary";
+import helmet from "helmet";
+import mongSanitize from "express-mongo-sanitize";
 
 // routers
 import userRouter from "./routes/userRouter.js";
@@ -34,9 +36,10 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 app.use(express.static(path.resolve(__dirname, "./client/dist")));
-
 app.use(cookieParser());
 app.use(express.json());
+app.use(helmet());
+app.use(mongSanitize());
 
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./public", "index.html"));
