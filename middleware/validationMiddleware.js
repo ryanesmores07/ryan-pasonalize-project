@@ -98,8 +98,8 @@ export const validateUpdateUserInput = withValidationErrors([
     .isLength({ max: 15 })
     .withMessage("nickname must be at most 15 characters long"),
   body("celebrityCrush")
-    .isLength({ max: 15 })
-    .withMessage("name must be at most 15 characters long"),
+    .isLength({ max: 20 })
+    .withMessage("name must be at most 20 characters long"),
   body("hometown")
     .isLength({ max: 30 })
     .withMessage("hometown must be at most 30 characters long"),
