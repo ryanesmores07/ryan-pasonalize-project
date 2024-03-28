@@ -5,10 +5,16 @@ import {
   validationRegisterInput,
   validateLoginInput,
 } from "../middleware/validationMiddleware.js";
-import { isLoggedIn } from "../middleware/authMiddleware.js";
+import rateLimiter from "express-rate-limit";
 
-router.post("/register", validationRegisterInput, register);
-router.post("/login", validateLoginInput, login);
+const apiLimiter = rateLimiter({
+  windowMs: 15 * 60 * 1000,
+  max: 15,
+  message: { msg: "IP rate limit exceeded, retry in 15 minutes" },
+});
+
+router.post("/register", apiLimiter, validationRegisterInput, register);
+router.post("/login", apiLimiter, validateLoginInput, login);
 router.get("/logout", logout);
 
 export default router;

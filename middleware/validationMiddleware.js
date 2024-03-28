@@ -73,8 +73,8 @@ export const validateUpdateUserInput = withValidationErrors([
   body("firstName")
     .notEmpty()
     .withMessage("name is required")
-    .isLength({ max: 15 })
-    .withMessage("first name must be at most 15 characters long"),
+    .isLength({ max: 10 })
+    .withMessage("first name must be at most 10 characters long"),
   body("email")
     .notEmpty()
     .withMessage("email is required")
