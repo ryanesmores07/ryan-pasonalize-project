@@ -99,7 +99,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
   return (
     <Wrapper className="image-upload-container">
       <label htmlFor={name} className="form-label">
-        プロフィール写真を選択してください
+        プロフィール写真
       </label>
       <input
         ref={inputRef}
