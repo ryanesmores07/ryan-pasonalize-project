@@ -31,7 +31,7 @@ npm run dev
 
 ```jsx
 const App = () => {
-  return <h1>Jobify App</h1>;
+  return <h1>Pasonalize</h1>;
 };
 export default App;
 ```
