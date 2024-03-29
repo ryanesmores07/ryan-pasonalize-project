@@ -80,7 +80,7 @@ const SearchContainer = () => {
             className="btn form-btn delete-btn"
             onClick={resetFormValues}
           >
-            Reset Search Values
+            検索値をリセットする
           </Link>
         </div>
       </Form>
