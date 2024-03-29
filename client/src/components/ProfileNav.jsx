@@ -34,9 +34,9 @@ const ProfileNav = ({ user }) => {
             {user.jobDepartment + " " + "team"}
           </span>
         </div>
-        <div className="btn-container">
+        {/* <div className="btn-container">
           <ProfileLogoutContainer user={user} logoutUser={logoutUser} />
-        </div>
+        </div> */}
       </nav>
     </Wrapper>
   );
