@@ -95,13 +95,13 @@ const Wrapper = styled.section`
         p {
           max-width: 527px;
           margin-top: 1.4rem;
-          font-size: 1.3rem;
+          font-size: 1.9rem;
         }
       }
       .buttons {
         display: flex;
         gap: 2rem;
-        margin-top: 3rem;
+        margin-top: 5.5rem;
         .register-btn,
         .login-btn {
           font-size: 1.6rem;
@@ -133,14 +133,17 @@ const Wrapper = styled.section`
 
       .small-image-and-text-container {
         gap: 1rem;
-        margin-top: 10rem;
+        margin-top: 13rem;
+        margin-bottom: 10rem;
         display: flex;
         align-items: center;
         padding-bottom: 3rem;
+
         .small-image {
+          width: 120px;
         }
         p {
-          font-size: 1.3rem;
+          font-size: 1.7rem;
         }
       }
     }
