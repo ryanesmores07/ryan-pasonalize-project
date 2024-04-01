@@ -36,6 +36,7 @@ export default User;
 
 const Wrapper = styled.article`
   .container {
+    background-color: var(--light-blue);
     display: flex;
     align-items: flex-end;
     gap: 1rem;
