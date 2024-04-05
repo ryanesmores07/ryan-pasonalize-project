@@ -14,7 +14,7 @@ const ProfileNav = ({ user }) => {
     <Wrapper>
       <nav className={`${user.jobDepartment} nav-container`}>
         <Link to="/dashboard" className="btn return">
-          <IoMdReturnLeft /> ダッシュボードへ
+          <IoMdReturnLeft /> Return
         </Link>
         <div className="name-team">
           <h4>
@@ -47,7 +47,7 @@ export default ProfileNav;
 const Wrapper = styled.nav`
   position: relative;
   .return {
-    font-size: 1rem;
+    font-size: 1.5rem;
     position: absolute;
     color: var(--off-black);
     background-color: var(--light-pink);

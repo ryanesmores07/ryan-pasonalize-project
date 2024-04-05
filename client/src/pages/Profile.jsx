@@ -3,6 +3,7 @@ import customFetch from "../utils/customFetch";
 import { useLoaderData, useNavigate, redirect } from "react-router-dom";
 import ProfileNav from "../components/ProfileNav";
 import { useQuery } from "@tanstack/react-query";
+import avatarTemp from "../assets/images/UserPage/default.jpg";
 
 const profileQuery = (params) => {
   const id = params?.id || "current-user";
@@ -41,8 +42,13 @@ const Profile = () => {
       <div className="container">
         <div className="photo-about-container">
           <div className="photo">
-            <img src={user.avatar} alt="avatar" className="avatar" />
+            {user.avatar ? (
+              <img src={user.avatar} alt="avatar" className="avatar" />
+            ) : (
+              <img src={avatarTemp} alt="avatar" className="avatar" />
+            )}
           </div>
+
           <div className="about">
             <div className="name-container">
               <h1>
