@@ -96,45 +96,6 @@ export const updateUser = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "update user" });
 };
 
-// export const updateUser = async (req, res) => {
-//   try {
-//     const newUser = { ...req.body };
-//     delete newUser.password;
-
-//     if (req.file) {
-//       // Resize and compress the image
-//       const compressedImagePath = `${req.file.path}_compressed`;
-
-//       await sharp(req.file.path)
-//         .resize(500, 500) // Resize to 500x500 dimensions
-//         .jpeg({ quality: 70 }) // Adjust quality as needed
-//         .toFile(compressedImagePath);
-
-//       // Upload the compressed image to Cloudinary
-//       const response = await cloudinary.v2.uploader.upload(compressedImagePath);
-
-//       // Delete the compressed image from the server
-//       await fs.unlink(compressedImagePath);
-
-//       newUser.avatar = response.secure_url;
-//       newUser.avatarPublicId = response.public_id;
-//     }
-
-//     const updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
-
-//     if (req.file && updatedUser.avatarPublicId) {
-//       await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
-//     }
-
-//     return res.status(StatusCodes.OK).json({ msg: "User updated" });
-//   } catch (error) {
-//     console.error("Error updating user:", error);
-//     return res
-//       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-//       .json({ error: "Internal server error" });
-//   }
-// };
-
 export const showStats = async (req, res) => {
   try {
     const stats = await User.aggregate([

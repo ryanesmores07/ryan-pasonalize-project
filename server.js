@@ -10,6 +10,7 @@ import cloudinary from "cloudinary";
 // routers
 import userRouter from "./routes/userRouter.js";
 import authRouter from "./routes/authRouter.js";
+import eventRouter from "./routes/eventRouter.js";
 
 // public
 import path, { dirname } from "path";
@@ -43,6 +44,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", authenticateUser, userRouter);
+app.use("/api/v1/events", authenticateUser, eventRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));

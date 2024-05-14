@@ -20,6 +20,9 @@ const withValidationErrors = (validateValues) => {
         if (errorMessages[0].startsWith("not authorized")) {
           throw new UnauthorizedError("not authorized to access this route");
         }
+        if (errorMessages[0].startsWith("no job")) {
+          throw new NotFoundError(errorMessages);
+        }
         throw new BadRequestError(errorMessages);
       }
       next();
@@ -135,4 +138,13 @@ export const validateLoginInput = withValidationErrors([
     .isEmail()
     .withMessage("invalid email format"),
   body("password").notEmpty().withMessage("password is required"),
+]);
+
+export const validateEventInput = withValidationErrors([
+  body("event").notEmpty().withMessage("Event name is required"),
+  body("date")
+    .notEmpty()
+    .withMessage("Date is required")
+    .isDate({ format: "YYYY-MM-DD" })
+    .withMessage("Date must be in valid format (YYYY-MM-DD)"),
 ]);
