@@ -8,3 +8,5 @@ export { default as EditProfile } from "./EditProfile";
 export { default as Dashboard } from "./Dashboard";
 export { default as AllUsers } from "./AllUsers";
 export { default as TeamCount } from "./TeamCount";
+export { default as Events } from "./Events";
+export { default as AddEvent } from "./AddEvent";

@@ -2,6 +2,8 @@ import ProfileLogoutContainer from "./ProfileLogoutContainer";
 import styled from "styled-components";
 import { useLoaderData, useNavigate, Link } from "react-router-dom";
 import { IoMdReturnLeft } from "react-icons/io";
+import customFetch from "../utils/customFetch";
+import { toast } from "react-toastify";
 
 const ProfileNav = ({ user }) => {
   const navigate = useNavigate();
@@ -50,7 +52,7 @@ const Wrapper = styled.nav`
     font-size: 1.5rem;
     position: absolute;
     color: var(--off-black);
-    background-color: var(--light-pink);
+    background-color: var(--light-blue);
     left: -0.5rem;
     top: 6rem;
     padding: 0.5rem;

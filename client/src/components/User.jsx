@@ -1,6 +1,5 @@
 import { FaBriefcase } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import JobInfo from "./JobInfo";
 import { Form } from "react-router-dom";
 import styled from "styled-components";
 import avatarTemp from "../assets/images/UserPage/default.jpg";

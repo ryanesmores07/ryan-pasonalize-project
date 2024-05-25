@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import heroImage from "../assets/images/LandingPage/bg-hero.png";
 import smallImage from "../assets/images/LandingPage/three-small-images.png";
-import { useEffect } from "react";
 
 const Landing = () => {
   const navigate = useNavigate();

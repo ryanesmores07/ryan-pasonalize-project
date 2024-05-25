@@ -12,6 +12,9 @@ import {
   EditProfile,
   AllUsers,
   TeamCount,
+  AddEvent,
+  EditEvent,
+  Events,
 } from "./pages";
 import ErrorElement from "./components/ErrorElement";
 
@@ -22,10 +25,12 @@ import { action as deleteAccountAction } from "./pages/DeleteAccunt";
 import { loader as loginLoader } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
-
 import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
 import { loader as teamCountLoader } from "./pages/TeamCount";
+import { loader as eventsLoader } from "./pages/Events";
+import { action as addEventAction } from "./pages/AddEvent";
+import { action as deleteEventAction } from "./pages/DeleteEvent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -88,8 +93,26 @@ const router = createBrowserRouter([
             action: editProfileAction(queryClient),
           },
           {
+            path: "add-event",
+            element: <AddEvent />,
+            action: addEventAction(queryClient),
+          },
+          {
+            path: "events",
+            element: <Events />,
+            loader: eventsLoader(queryClient),
+          },
+          {
+            path: "edit-event/:id",
+            element: <EditEvent />,
+          },
+          {
             path: "delete-account",
             action: deleteAccountAction(queryClient),
+          },
+          {
+            path: "delete-event/:id",
+            action: deleteEventAction(queryClient),
           },
         ],
       },

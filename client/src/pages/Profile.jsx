@@ -52,7 +52,6 @@ const Profile = () => {
           <div className="about">
             <div className="name-container">
               <h1>
-                {" "}
                 {user.firstName.charAt(0).toUpperCase() +
                   user.firstName.slice(1)}{" "}
                 {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
