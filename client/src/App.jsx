@@ -13,7 +13,6 @@ import {
   AllUsers,
   TeamCount,
   AddEvent,
-  EditEvent,
   Events,
 } from "./pages";
 import ErrorElement from "./components/ErrorElement";
@@ -101,10 +100,6 @@ const router = createBrowserRouter([
             path: "events",
             element: <Events />,
             loader: eventsLoader(queryClient),
-          },
-          {
-            path: "edit-event/:id",
-            element: <EditEvent />,
           },
           {
             path: "delete-account",
