@@ -1,7 +1,8 @@
 import customFetch from "../utils/customFetch";
-import { EventsContainer } from "../components";
+import { EventsContainer, SearchContainer } from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
+import styled from "styled-components";
 
 const eventsQuery = {
   queryKey: ["events"],
@@ -20,12 +21,16 @@ const EventsContext = createContext();
 const Events = () => {
   const { data } = useQuery(eventsQuery);
   return (
-    <EventsContext.Provider value={{ data }}>
-      {/* <SearchContainer /> */}
-      <EventsContainer />
-    </EventsContext.Provider>
+    <Wrapper>
+      <EventsContext.Provider value={{ data }}>
+        {/* <SearchContainer /> */}
+        <EventsContainer />
+      </EventsContext.Provider>
+    </Wrapper>
   );
 };
 
 export const useEventsContext = () => useContext(EventsContext);
 export default Events;
+
+const Wrapper = styled.section``;

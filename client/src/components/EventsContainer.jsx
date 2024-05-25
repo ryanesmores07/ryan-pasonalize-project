@@ -16,7 +16,9 @@ const EventsContainer = () => {
 
   return (
     <Wrapper>
-      <h5>{/* {totalEvents} event{data.length > 1 && "s"} found */}Events</h5>
+      <h2>
+        {data.length} total event{data.length > 1 && "s"} found
+      </h2>
       <Event data={data} />
       {/* <PageBtnContainer /> */}
     </Wrapper>
@@ -24,4 +26,9 @@ const EventsContainer = () => {
 };
 export default EventsContainer;
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  padding: 3rem 0;
+  h2 {
+    margin-bottom: 2rem;
+  }
+`;

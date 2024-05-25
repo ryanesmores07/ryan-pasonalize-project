@@ -12,10 +12,6 @@ const router = Router();
 
 router.route("/").get(getAllEvents).post(validateEventInput, createEvent);
 
-router
-  .route("/:id")
-  .delete(deleteEvent)
-  .patch(validateEventInput, updateEvent)
-  .get(getSingleEvent);
+router.route("/:id").delete(deleteEvent).patch(updateEvent).get(getSingleEvent);
 
 export default router;

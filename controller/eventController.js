@@ -8,7 +8,6 @@ export const getAllEvents = async (req, res) => {
       path: "createdBy",
       select: "avatar firstName lastName",
     });
-    console.log("events with user data");
     res.status(StatusCodes.OK).send(events);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({

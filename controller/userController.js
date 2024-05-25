@@ -3,22 +3,6 @@ import User from "../model/UserModel.js";
 import cloudinary from "cloudinary";
 import { formatImage } from "../middleware/multerMiddleware.js";
 
-export const getCurrentUser = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.userId });
-  const userWithoutPassword = user.toJSON();
-
-  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
-};
-
-export const deleteMe = async (req, res) => {
-  await User.findByIdAndUpdate(req.user.userId, { active: false });
-
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-};
-
 export const getAllUsers = async (req, res) => {
   const { search, jobBranch, bloodType, jobDepartment, sort } = req.query;
   const queryObject = {};
@@ -68,6 +52,22 @@ export const getAllUsers = async (req, res) => {
   res
     .status(StatusCodes.OK)
     .json({ totalUsers, numOfPages, currentPage: page, users });
+};
+
+export const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  const userWithoutPassword = user.toJSON();
+
+  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
+};
+
+export const deleteMe = async (req, res) => {
+  await User.findByIdAndUpdate(req.user.userId, { active: false });
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
 };
 
 export const getSingleUser = async (req, res) => {

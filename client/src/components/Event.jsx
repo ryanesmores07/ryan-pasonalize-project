@@ -11,13 +11,17 @@ import { formatDate } from "../utils/formatDate";
 import styled, { keyframes } from "styled-components";
 import * as Popover from "@radix-ui/react-popover";
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { FiEdit3 } from "react-icons/fi";
 import { Form } from "react-router-dom";
+import EditEvent from "./EditEvent";
 
 const Event = ({ data }) => {
+  const handleEdit = (id) => {
+    return <EditEvent />;
+  };
+
   return (
     <Wrapper>
-      <StyledTeme radius="full" hasBackground={false}>
+      <StyledTeme radius="small" hasBackground={false}>
         {data.map((item) => {
           const { _id: id, event, dateTime, description, createdBy } = item;
 
@@ -61,6 +65,7 @@ const Event = ({ data }) => {
                   <Box className="delete-edit">
                     <Form method="post" action={`../delete-event/${id}`}>
                       <IconButton
+                        radius="full"
                         size="1"
                         type="submit"
                         color="red"
@@ -70,16 +75,7 @@ const Event = ({ data }) => {
                         <RiDeleteBin5Line />
                       </IconButton>
                     </Form>
-
-                    <IconButton
-                      size="1"
-                      type="submit"
-                      color="indigo"
-                      variant="soft"
-                      style={{ cursor: "pointer" }}
-                    >
-                      <FiEdit3 />
-                    </IconButton>
+                    <EditEvent item={item} />
                   </Box>
                 </Flex>
               </Card>
@@ -114,23 +110,7 @@ const slideUp = keyframes`
   }
 `;
 
-const Wrapper = styled.section`
-  .box {
-    margin-bottom: 2rem;
-  }
-
-  .texts {
-    width: 200px;
-  }
-
-  .delete-edit {
-    display: flex;
-    gap: 2rem;
-    flex-direction: column;
-
-    align-items: flex-end;
-  }
-`;
+const Wrapper = styled.section``;
 
 // Style for Popover.Content
 const StyledPopoverContent = styled(Popover.Content)`
@@ -165,8 +145,24 @@ const StyledPopoverTrigger = styled(Popover.Trigger)`
 `;
 
 const StyledTeme = styled(Theme)`
+  min-height: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-content: start;
   place-items: center;
+
+  .box {
+    margin-bottom: 2rem;
+  }
+
+  .texts {
+    width: 200px;
+  }
+
+  .delete-edit {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    align-items: flex-end;
+  }
 `;

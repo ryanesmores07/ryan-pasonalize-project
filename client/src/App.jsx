@@ -30,6 +30,7 @@ import { loader as teamCountLoader } from "./pages/TeamCount";
 import { loader as eventsLoader } from "./pages/Events";
 import { action as addEventAction } from "./pages/AddEvent";
 import { action as deleteEventAction } from "./pages/DeleteEvent";
+import { action as editEventAction } from "./pages/EditEvent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
           {
             path: "delete-event/:id",
             action: deleteEventAction(queryClient),
+          },
+          {
+            path: "edit-event/:id",
+            action: editEventAction(queryClient),
           },
         ],
       },
