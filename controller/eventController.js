@@ -4,8 +4,11 @@ import mongoose from "mongoose";
 
 export const getAllEvents = async (req, res) => {
   try {
-    const events = await Event.find();
-    console.log("events");
+    const events = await Event.find().populate({
+      path: "createdBy",
+      select: "avatar firstName lastName",
+    });
+    console.log("events with user data");
     res.status(StatusCodes.OK).send(events);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
@@ -115,6 +118,25 @@ export const updateEvent = async (req, res) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       status: "error",
       message: "Could not update event",
+    });
+  }
+};
+
+export const getSingleEvent = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const event = await Event.findById(id);
+    if (!event) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        status: "error",
+        message: "Event not found",
+      });
+    }
+    res.status(StatusCodes.OK).json(event);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      status: "error",
+      message: "Could not get event",
     });
   }
 };

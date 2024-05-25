@@ -1,4 +1,5 @@
 import { body, param, validationResult } from "express-validator";
+import { parse, isValid } from "date-fns";
 import {
   BadRequestError,
   NotFoundError,
@@ -141,10 +142,26 @@ export const validateLoginInput = withValidationErrors([
 ]);
 
 export const validateEventInput = withValidationErrors([
-  body("event").notEmpty().withMessage("Event name is required"),
-  body("date")
+  body("event")
     .notEmpty()
-    .withMessage("Date is required")
-    .isDate({ format: "YYYY-MM-DD" })
-    .withMessage("Date must be in valid format (YYYY-MM-DD)"),
+    .withMessage("Event is required")
+    .isLength({ max: 20 })
+    .withMessage("Event must be at most 20 characters long"),
+  body("description")
+    .notEmpty()
+    .withMessage("Description is required")
+    .isLength({ max: 500 })
+    .withMessage("description must be at most 500 characters long"),
+  body("dateTime")
+    .notEmpty()
+    .withMessage("Date and time are required")
+    .custom((value) => {
+      const parsedDate = parse(value, "MM/dd/yyyy, h:mm a", new Date());
+      if (!isValid(parsedDate)) {
+        throw new Error(
+          "Date and time must be in valid format (MM/DD/YYYY, h:mm A)"
+        );
+      }
+      return true;
+    }),
 ]);
