@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import mongoose from "mongoose";
 
 export const getAllEvents = async (req, res) => {
+  // const {search, eventStatus, sort,}
   try {
     const events = await Event.find().populate({
       path: "createdBy",

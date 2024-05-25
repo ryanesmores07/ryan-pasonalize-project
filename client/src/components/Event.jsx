@@ -48,7 +48,7 @@ const Event = ({ data }) => {
                     <Popover.Root>
                       <StyledPopoverTrigger>
                         <Text as="div" size="2" color="blue">
-                          Event Info 👇
+                          Event Info ⬅
                         </Text>
                       </StyledPopoverTrigger>
                       <Popover.Portal>

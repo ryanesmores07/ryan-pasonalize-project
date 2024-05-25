@@ -39,7 +39,6 @@ const AddEvent = () => {
               name="dateTime"
               id="dateTime"
               labelText="time and date"
-              defaultValue=""
             />
           </div>
           <div className="text-area">
