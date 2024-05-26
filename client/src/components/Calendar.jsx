@@ -6,7 +6,9 @@ import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Calendar = ({ id, type, name, labelText, defaultValue }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date(defaultValue));
+  const [selectedDate, setSelectedDate] = useState(
+    new Date(defaultValue || new Date())
+  );
   return (
     <Wrapper>
       <div className="form-row">

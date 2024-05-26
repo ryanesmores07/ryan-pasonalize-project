@@ -17,3 +17,4 @@ export { default as EventsContainer } from "./EventsContainer";
 export { default as Event } from "./Event";
 export { default as Calendar } from "./Calendar";
 export { default as EditEvent } from "./EditEvent";
+export { default as EventSearchContainer } from "./EventSearchContainer";

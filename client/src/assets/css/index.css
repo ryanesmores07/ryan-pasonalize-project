@@ -350,3 +350,7 @@ textarea:not([rows]) {
     display: block;
   }
 }
+
+.radix-themes.rt-BaseDialogOverlay.rt-DialogOverlay {
+  z-index: 2;
+}

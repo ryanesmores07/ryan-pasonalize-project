@@ -1,5 +1,9 @@
 import customFetch from "../utils/customFetch";
-import { EventsContainer, SearchContainer } from "../components";
+import {
+  EventSearchContainer,
+  EventsContainer,
+  SearchContainer,
+} from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
 import styled from "styled-components";
@@ -23,7 +27,7 @@ const Events = () => {
   return (
     <Wrapper>
       <EventsContext.Provider value={{ data }}>
-        {/* <SearchContainer /> */}
+        <EventSearchContainer />
         <EventsContainer />
       </EventsContext.Provider>
     </Wrapper>

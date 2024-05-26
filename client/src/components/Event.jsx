@@ -53,10 +53,7 @@ const Event = ({ data }) => {
                       </StyledPopoverTrigger>
                       <Popover.Portal>
                         <StyledPopoverContent className="PopoverContent">
-                          <StyledDescription>
-                            {description}
-                            {/* <Link to={`../edit-event/${_id}`}>Edit</Link> */}
-                          </StyledDescription>
+                          <StyledDescription>{description}</StyledDescription>
                           <Popover.Arrow width="10" height="5" />
                         </StyledPopoverContent>
                       </Popover.Portal>

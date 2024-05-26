@@ -64,3 +64,10 @@ export const LOVE_LANGUAGE = {
   ACTS_OF_SERVICE: "尽くす行為",
   PHYSICAL_TOUCH: "スキンシップ",
 };
+
+// Events
+
+export const EVENT_TIME = {
+  FUTURE_EVENTS: "future events",
+  PAST_EVENTS: " past events",
+};
