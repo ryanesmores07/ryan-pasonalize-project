@@ -7,26 +7,43 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
 import styled from "styled-components";
+import { useLoaderData } from "react-router-dom";
 
-const eventsQuery = {
-  queryKey: ["events"],
-  queryFn: async () => {
-    const response = await customFetch.get("/events");
-    return response.data;
-  },
+const allEventsQuery = (params) => {
+  const { search, eventStatus, page, sort } = params;
+  return {
+    queryKey: [
+      "events",
+      search ?? "",
+      eventStatus ?? "all",
+      sort ?? "newest",
+      page ?? 1,
+    ],
+    queryFn: async () => {
+      const { data } = await customFetch.get("/events", {
+        params,
+      });
+      return data;
+    },
+  };
 };
 
-export const loader = (queryClient) => async () => {
-  const data = await queryClient.ensureQueryData(eventsQuery);
-  return null;
-};
+export const loader =
+  (queryClient) =>
+  async ({ request }) => {
+    const params = Object.fromEntries([
+      ...new URL(request.url).searchParams.entries(),
+    ]);
+    await queryClient.ensureQueryData(allEventsQuery(params));
+    return { searchValues: { ...params } };
+  };
 const EventsContext = createContext();
-
 const Events = () => {
-  const { data } = useQuery(eventsQuery);
+  const { searchValues } = useLoaderData();
+  const { data } = useQuery(allEventsQuery(searchValues));
   return (
     <Wrapper>
-      <EventsContext.Provider value={{ data }}>
+      <EventsContext.Provider value={{ data, searchValues }}>
         <EventSearchContainer />
         <EventsContainer />
       </EventsContext.Provider>

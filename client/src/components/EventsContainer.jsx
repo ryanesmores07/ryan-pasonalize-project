@@ -17,10 +17,10 @@ const EventsContainer = () => {
   return (
     <Wrapper>
       <h2>
-        {data.length} total event{data.length > 1 && "s"} found
+        {data.totalEvents} Event{data.totalEvents > 1 && "s"} Found
       </h2>
       <Event data={data} />
-      {/* <PageBtnContainer /> */}
+      {data.numOfPages > 1 && <PageBtnContainer />}
     </Wrapper>
   );
 };

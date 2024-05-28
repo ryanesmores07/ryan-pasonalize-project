@@ -1,20 +1,12 @@
 import { FormRow, FormRowSelect } from ".";
 import { Form, useSubmit, Link } from "react-router-dom";
-import { EVENT_TIME } from "../../../utils/constants";
-import { useAllUsersContext } from "../pages/AllUsers";
+import { EVENT_STATUS, EVENT_SORT_BY } from "../../../utils/constants";
 import styled from "styled-components";
+import { useEventsContext } from "../pages/Events";
 
 const EventSearchContainer = () => {
-  const resetFormValues = () => {
-    // Resetting values to "all"
-    document.getElementsByName("search")[0].value = "";
-    document.getElementsByName("jobBranch")[0].value = "all";
-    document.getElementsByName("bloodType")[0].value = "all";
-    document.getElementsByName("jobDepartment")[0].value = "all";
-    document.getElementsByName("sort")[0].value = "newest";
-  };
-
-  // const { searchValues } = useAllUsersContext();
+  const { searchValues } = useEventsContext();
+  const { search, eventStatus, sort } = searchValues;
 
   const submit = useSubmit();
 
@@ -43,19 +35,21 @@ const EventSearchContainer = () => {
             })}
           />
           <FormRowSelect
-            labelText="Event Time"
-            name="jobBranch"
-            list={["all", ...Object.values(EVENT_TIME)]}
-            defaultValue=""
+            labelText="Event Status"
+            name="eventStatus"
+            list={[...Object.values(EVENT_STATUS), "all"]}
+            defaultValue={eventStatus}
             onChange={(e) => submit(e.currentTarget.form)}
           />
-
-          <Link
-            to="/dashboard/events"
-            className="btn form-btn delete-btn"
-            onClick={resetFormValues}
-          >
-            検索値をリセットする
+          <FormRowSelect
+            name="sort"
+            labelText="sort"
+            defaultValue={sort}
+            list={[...Object.values(EVENT_SORT_BY)]}
+            onChange={(e) => submit(e.currentTarget.form)}
+          />
+          <Link to="/dashboard/events" className="btn form-btn delete-btn">
+            Reset
           </Link>
         </div>
       </Form>

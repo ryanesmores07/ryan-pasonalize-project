@@ -6,6 +6,8 @@ import {
   Avatar,
   Text,
   IconButton,
+  AlertDialog,
+  Button,
 } from "@radix-ui/themes";
 import { formatDate } from "../utils/formatDate";
 import styled, { keyframes } from "styled-components";
@@ -15,14 +17,10 @@ import { Form } from "react-router-dom";
 import EditEvent from "./EditEvent";
 
 const Event = ({ data }) => {
-  const handleEdit = (id) => {
-    return <EditEvent />;
-  };
-
   return (
     <Wrapper>
       <StyledTeme radius="small" hasBackground={false}>
-        {data.map((item) => {
+        {data.events.map((item) => {
           const { _id: id, event, dateTime, description, createdBy } = item;
 
           const { firstName, lastName, avatar } = createdBy;
@@ -59,19 +57,46 @@ const Event = ({ data }) => {
                       </Popover.Portal>
                     </Popover.Root>
                   </Box>
+                  {/* Delete Event */}
                   <Box className="delete-edit">
-                    <Form method="post" action={`../delete-event/${id}`}>
-                      <IconButton
-                        radius="full"
-                        size="1"
-                        type="submit"
-                        color="red"
-                        variant="soft"
-                        style={{ cursor: "pointer" }}
-                      >
-                        <RiDeleteBin5Line />
-                      </IconButton>
-                    </Form>
+                    <AlertDialog.Root>
+                      <AlertDialog.Trigger>
+                        <IconButton
+                          radius="full"
+                          size="1"
+                          color="red"
+                          variant="soft"
+                          style={{ cursor: "pointer" }}
+                        >
+                          <RiDeleteBin5Line />
+                        </IconButton>
+                      </AlertDialog.Trigger>
+                      <AlertDialog.Content maxWidth="450px">
+                        <AlertDialog.Title>Delete Event</AlertDialog.Title>
+                        <AlertDialog.Description size="2">
+                          Are you sure you want to delete this event?
+                        </AlertDialog.Description>
+
+                        <Flex gap="3" mt="4" justify="end">
+                          <AlertDialog.Cancel>
+                            <Button variant="soft" color="gray">
+                              Cancel
+                            </Button>
+                          </AlertDialog.Cancel>
+                          <AlertDialog.Action>
+                            <Form
+                              method="post"
+                              action={`../delete-event/${id}`}
+                            >
+                              <Button variant="solid" color="red" type="submit">
+                                Accept
+                              </Button>
+                            </Form>
+                          </AlertDialog.Action>
+                        </Flex>
+                      </AlertDialog.Content>
+                    </AlertDialog.Root>
+                    {/* Edit Event */}
                     <EditEvent item={item} />
                   </Box>
                 </Flex>

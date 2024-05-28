@@ -91,16 +91,19 @@ const router = createBrowserRouter([
             path: "edit-profile",
             element: <EditProfile />,
             action: editProfileAction(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "add-event",
             element: <AddEvent />,
             action: addEventAction(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "events",
             element: <Events />,
             loader: eventsLoader(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "delete-account",

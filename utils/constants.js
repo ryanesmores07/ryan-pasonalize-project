@@ -67,7 +67,12 @@ export const LOVE_LANGUAGE = {
 
 // Events
 
-export const EVENT_TIME = {
+export const EVENT_STATUS = {
   FUTURE_EVENTS: "future events",
   PAST_EVENTS: " past events",
+};
+
+export const EVENT_SORT_BY = {
+  NEWEST_FIRST: "newest",
+  OLDEST_FIRST: "oldest",
 };

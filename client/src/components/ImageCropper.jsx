@@ -139,7 +139,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
             <LuArrowBigRightDash
               style={{ fontSize: "3rem", transform: "translateY(-3px)" }}
             />
-            <span>イメージを切り取る</span>
+            <span>CROP IMAGE</span>
           </button>
           <br />
           <canvas

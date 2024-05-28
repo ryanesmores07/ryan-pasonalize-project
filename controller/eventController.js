@@ -3,14 +3,51 @@ import { StatusCodes } from "http-status-codes";
 import mongoose from "mongoose";
 
 export const getAllEvents = async (req, res) => {
-  // const {search, eventStatus, sort,}
+  const { search, eventStatus, sort } = req.query;
+  console.log(sort);
+
+  const queryObject = {};
+
   try {
-    const events = await Event.find().populate({
-      path: "createdBy",
-      select: "avatar firstName lastName",
+    if (search) {
+      queryObject.$or = [{ event: { $regex: search, $options: "i" } }];
+    }
+
+    if (eventStatus && eventStatus !== "all") {
+      queryObject.eventStatus = eventStatus;
+    }
+
+    const sortOptions = {
+      newest: "-dateTime",
+      oldest: "dateTime",
+    };
+
+    const sortKey = sortOptions[sort] || sortOptions.newest;
+
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 9;
+    const skip = (page - 1) * limit;
+
+    const events = await Event.find(queryObject)
+      .populate({
+        path: "createdBy",
+        select: "avatar firstName lastName",
+      })
+      .sort(sortKey)
+      .skip(skip)
+      .limit(limit);
+
+    const totalEvents = await Event.countDocuments(queryObject);
+    const numOfPages = Math.ceil(totalEvents / limit);
+
+    res.status(StatusCodes.OK).json({
+      totalEvents,
+      numOfPages,
+      currentPage: page,
+      events,
     });
-    res.status(StatusCodes.OK).send(events);
   } catch (error) {
+    console.log(error);
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       status: "error",
       message: "Could not retrieve events",
