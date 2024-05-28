@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 
 export const getAllEvents = async (req, res) => {
   const { search, eventStatus, sort } = req.query;
-  console.log(sort);
+
+  console.log(req.user);
 
   const queryObject = {};
 

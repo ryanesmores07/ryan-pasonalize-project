@@ -354,3 +354,7 @@ textarea:not([rows]) {
 .radix-themes.rt-BaseDialogOverlay.rt-DialogOverlay {
   z-index: 2;
 }
+
+.radix-themes.rt-BaseDialogOverlay.rt-AlertDialogOverlay {
+  z-index: 2;
+}

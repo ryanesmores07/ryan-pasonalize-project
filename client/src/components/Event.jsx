@@ -22,9 +22,9 @@ const Event = ({ data }) => {
       <StyledTeme radius="small" hasBackground={false}>
         {data.events.map((item) => {
           const { _id: id, event, dateTime, description, createdBy } = item;
-
           const { firstName, lastName, avatar } = createdBy;
           const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
+
           return (
             <Box maxWidth="300px" key={id} className="box">
               <Card>
