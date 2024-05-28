@@ -64,3 +64,15 @@ export const LOVE_LANGUAGE = {
   ACTS_OF_SERVICE: "尽くす行為",
   PHYSICAL_TOUCH: "スキンシップ",
 };
+
+// Events
+
+export const EVENT_STATUS = {
+  FUTURE_EVENTS: "future events",
+  PAST_EVENTS: " past events",
+};
+
+export const EVENT_SORT_BY = {
+  NEWEST_FIRST: "newest",
+  OLDEST_FIRST: "oldest",
+};

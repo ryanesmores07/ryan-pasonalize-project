@@ -1,16 +1,24 @@
-import {
-  HiChevronDoubleLeft,
-  HiChevronDoubleRight,
-  HiChevronLeft,
-} from "react-icons/hi";
-import { useLocation, Link, useNavigate } from "react-router-dom";
+import { HiChevronDoubleLeft, HiChevronDoubleRight } from "react-icons/hi";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAllUsersContext } from "../pages/AllUsers";
+import { useEventsContext } from "../pages/Events";
 import styled from "styled-components";
 
 const PageBtnContainer = () => {
-  const {
-    data: { numOfPages, currentPage },
-  } = useAllUsersContext();
+  const allUsersContext = useAllUsersContext();
+  const eventsContext = useEventsContext();
+  let context;
+
+  if (allUsersContext) {
+    context = allUsersContext.data;
+  }
+
+  if (eventsContext) {
+    context = eventsContext.data;
+  }
+
+  const { numOfPages, currentPage } = context;
+
   const pages = Array.from({ length: numOfPages }, (_, index) => {
     return index + 1;
   });

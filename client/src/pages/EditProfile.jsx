@@ -239,6 +239,7 @@ const Wrapper = styled.section`
       background-color: var(--off-white);
       border-radius: 5px;
       border-style: none;
+      resize: none;
     }
   }
 

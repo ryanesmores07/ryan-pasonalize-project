@@ -12,6 +12,8 @@ import {
   EditProfile,
   AllUsers,
   TeamCount,
+  AddEvent,
+  Events,
 } from "./pages";
 import ErrorElement from "./components/ErrorElement";
 
@@ -22,10 +24,13 @@ import { action as deleteAccountAction } from "./pages/DeleteAccunt";
 import { loader as loginLoader } from "./pages/Login";
 import { loader as dashboardLoader } from "./pages/Dashboard";
 import { loader as allUsersLoader } from "./pages/AllUsers";
-
 import { loader as profileLoader } from "./pages/Profile";
 import { action as editProfileAction } from "./pages/EditProfile";
 import { loader as teamCountLoader } from "./pages/TeamCount";
+import { loader as eventsLoader } from "./pages/Events";
+import { action as addEventAction } from "./pages/AddEvent";
+import { action as deleteEventAction } from "./pages/DeleteEvent";
+import { action as editEventAction } from "./pages/EditEvent";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -86,10 +91,31 @@ const router = createBrowserRouter([
             path: "edit-profile",
             element: <EditProfile />,
             action: editProfileAction(queryClient),
+            errorElement: <ErrorElement />,
+          },
+          {
+            path: "add-event",
+            element: <AddEvent />,
+            action: addEventAction(queryClient),
+            errorElement: <ErrorElement />,
+          },
+          {
+            path: "events",
+            element: <Events />,
+            loader: eventsLoader(queryClient),
+            errorElement: <ErrorElement />,
           },
           {
             path: "delete-account",
             action: deleteAccountAction(queryClient),
+          },
+          {
+            path: "delete-event/:id",
+            action: deleteEventAction(queryClient),
+          },
+          {
+            path: "edit-event/:id",
+            action: editEventAction(queryClient),
           },
         ],
       },

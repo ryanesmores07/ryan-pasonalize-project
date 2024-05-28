@@ -7,7 +7,7 @@ const ErrorElement = () => {
   return (
     <>
       <ErrorMessage>There was an error...</ErrorMessage>
-      <Link to="/">Back to homepage</Link>
+      <Link to="/dashboard">Back to homepage</Link>
     </>
   );
 };

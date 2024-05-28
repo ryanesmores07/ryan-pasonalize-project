@@ -3,22 +3,6 @@ import User from "../model/UserModel.js";
 import cloudinary from "cloudinary";
 import { formatImage } from "../middleware/multerMiddleware.js";
 
-export const getCurrentUser = async (req, res) => {
-  const user = await User.findOne({ _id: req.user.userId });
-  const userWithoutPassword = user.toJSON();
-
-  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
-};
-
-export const deleteMe = async (req, res) => {
-  await User.findByIdAndUpdate(req.user.userId, { active: false });
-
-  res.status(204).json({
-    status: "success",
-    data: null,
-  });
-};
-
 export const getAllUsers = async (req, res) => {
   const { search, jobBranch, bloodType, jobDepartment, sort } = req.query;
   const queryObject = {};
@@ -70,6 +54,22 @@ export const getAllUsers = async (req, res) => {
     .json({ totalUsers, numOfPages, currentPage: page, users });
 };
 
+export const getCurrentUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.userId });
+  const userWithoutPassword = user.toJSON();
+
+  res.status(StatusCodes.OK).json({ user: userWithoutPassword });
+};
+
+export const deleteMe = async (req, res) => {
+  await User.findByIdAndUpdate(req.user.userId, { active: false });
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+};
+
 export const getSingleUser = async (req, res) => {
   const { id } = req.params;
   const user = await User.findById(id);
@@ -95,45 +95,6 @@ export const updateUser = async (req, res) => {
 
   res.status(StatusCodes.OK).json({ msg: "update user" });
 };
-
-// export const updateUser = async (req, res) => {
-//   try {
-//     const newUser = { ...req.body };
-//     delete newUser.password;
-
-//     if (req.file) {
-//       // Resize and compress the image
-//       const compressedImagePath = `${req.file.path}_compressed`;
-
-//       await sharp(req.file.path)
-//         .resize(500, 500) // Resize to 500x500 dimensions
-//         .jpeg({ quality: 70 }) // Adjust quality as needed
-//         .toFile(compressedImagePath);
-
-//       // Upload the compressed image to Cloudinary
-//       const response = await cloudinary.v2.uploader.upload(compressedImagePath);
-
-//       // Delete the compressed image from the server
-//       await fs.unlink(compressedImagePath);
-
-//       newUser.avatar = response.secure_url;
-//       newUser.avatarPublicId = response.public_id;
-//     }
-
-//     const updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
-
-//     if (req.file && updatedUser.avatarPublicId) {
-//       await cloudinary.v2.uploader.destroy(updatedUser.avatarPublicId);
-//     }
-
-//     return res.status(StatusCodes.OK).json({ msg: "User updated" });
-//   } catch (error) {
-//     console.error("Error updating user:", error);
-//     return res
-//       .status(StatusCodes.INTERNAL_SERVER_ERROR)
-//       .json({ error: "Internal server error" });
-//   }
-// };
 
 export const showStats = async (req, res) => {
   try {

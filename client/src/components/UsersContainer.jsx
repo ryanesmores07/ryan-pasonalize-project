@@ -16,7 +16,9 @@ const UsersContainer = () => {
   }
   return (
     <Wrapper>
-      <h5>{totalUsers}人のユーザーが見つかりました</h5>
+      <h2>
+        {totalUsers} User{totalUsers > 1 && "s"} Found
+      </h2>
       <div className="users">
         {users.map((user) => {
           return <User key={user._id} {...user} />;
@@ -29,8 +31,10 @@ const UsersContainer = () => {
 export default UsersContainer;
 
 const Wrapper = styled.section`
-  margin-bottom: 4rem;
+  padding: 3rem 0;
+
   h2 {
+    margin-bottom: 2rem;
     text-transform: none;
   }
   & > h5 {

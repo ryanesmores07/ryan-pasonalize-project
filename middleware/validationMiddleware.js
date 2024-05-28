@@ -1,4 +1,5 @@
 import { body, param, validationResult } from "express-validator";
+import { parse, isValid } from "date-fns";
 import {
   BadRequestError,
   NotFoundError,
@@ -19,6 +20,9 @@ const withValidationErrors = (validateValues) => {
         }
         if (errorMessages[0].startsWith("not authorized")) {
           throw new UnauthorizedError("not authorized to access this route");
+        }
+        if (errorMessages[0].startsWith("no job")) {
+          throw new NotFoundError(errorMessages);
         }
         throw new BadRequestError(errorMessages);
       }
@@ -135,4 +139,29 @@ export const validateLoginInput = withValidationErrors([
     .isEmail()
     .withMessage("invalid email format"),
   body("password").notEmpty().withMessage("password is required"),
+]);
+
+export const validateEventInput = withValidationErrors([
+  body("event")
+    .notEmpty()
+    .withMessage("Event is required")
+    .isLength({ max: 20 })
+    .withMessage("Event must be at most 20 characters long"),
+  body("description")
+    .notEmpty()
+    .withMessage("Description is required")
+    .isLength({ max: 500 })
+    .withMessage("description must be at most 500 characters long"),
+  body("dateTime")
+    .notEmpty()
+    .withMessage("Date and time are required")
+    .custom((value) => {
+      const parsedDate = parse(value, "MM/dd/yyyy, h:mm a", new Date());
+      if (!isValid(parsedDate)) {
+        throw new Error(
+          "Date and time must be in valid format (MM/DD/YYYY, h:mm A)"
+        );
+      }
+      return true;
+    }),
 ]);
