@@ -16,6 +16,8 @@ export const getAllEvents = async (req, res) => {
 
     if (eventStatus && eventStatus !== "all") {
       queryObject.eventStatus = eventStatus;
+    } else if (!eventStatus) {
+      queryObject.eventStatus = "future events";
     }
 
     const sortOptions = {

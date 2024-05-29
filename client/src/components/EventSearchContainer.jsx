@@ -29,7 +29,7 @@ const EventSearchContainer = () => {
             type="search"
             name="search"
             labelText="Search"
-            defaultValue=""
+            defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
             })}

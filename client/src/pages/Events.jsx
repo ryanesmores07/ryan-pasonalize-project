@@ -15,7 +15,7 @@ const allEventsQuery = (params) => {
     queryKey: [
       "events",
       search ?? "",
-      eventStatus ?? "all",
+      eventStatus ?? "future_events",
       sort ?? "newest",
       page ?? 1,
     ],
