@@ -15,6 +15,10 @@ const EventSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    usersJoined: [{
+      type: mongoose.Types.ObjectId,
+      ref: "User"
+    }] // Array of user IDs
   },
   { timestamps: true }
 );
