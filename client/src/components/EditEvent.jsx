@@ -24,7 +24,7 @@ const EditEvent = ({ item }) => {
         <Dialog.Trigger>
           <IconButton
             radius="full"
-            size="1"
+            size="2"
             type="submit"
             color="indigo"
             variant="soft"

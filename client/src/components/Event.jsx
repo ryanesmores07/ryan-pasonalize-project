@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Theme,
   Box,
@@ -15,18 +16,45 @@ import * as Popover from "@radix-ui/react-popover";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Form } from "react-router-dom";
 import EditEvent from "./EditEvent";
+import customFetch from "../utils/customFetch";
 
 const Event = ({ data }) => {
+  const [events, setEvents] = useState(data.events);
+  const handleJoinEvent = async (eventId) => {
+    try {
+      const response = await customFetch.post(`/events/${eventId}/join`, {});
+      const updatedUsersJoined = response.data;
+
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event._id === eventId
+            ? { ...event, usersJoined: updatedUsersJoined }
+            : event
+        )
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error("Error joining event:", error);
+    }
+  };
+
   return (
     <Wrapper>
-      <StyledTeme radius="small" hasBackground={false}>
+      <StyledTheme radius="small" hasBackground={false}>
         {data.events.map((item) => {
-          const { _id: id, event, dateTime, description, createdBy } = item;
+          const {
+            _id: id,
+            event,
+            dateTime,
+            description,
+            createdBy,
+            usersJoined,
+          } = item;
           const { firstName, lastName, avatar } = createdBy;
           const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
 
           return (
-            <Box maxWidth="300px" key={id} className="box">
+            <Box maxWidth="320px" key={id} className="box">
               <Card>
                 <Flex gap="3" align="center" justify="center">
                   <Avatar
@@ -56,55 +84,90 @@ const Event = ({ data }) => {
                         </StyledPopoverContent>
                       </Popover.Portal>
                     </Popover.Root>
+                    <Popover.Root>
+                      <StyledPopoverTrigger>
+                        <Text as="div" size="2" color="blue">
+                          Users Joined ⬅
+                        </Text>
+                      </StyledPopoverTrigger>
+                      <Popover.Portal>
+                        <StyledPopoverContent className="PopoverContent">
+                          {!usersJoined.length ? (
+                            <StyledDescription>
+                              No Joined Users..
+                            </StyledDescription>
+                          ) : (
+                            usersJoined.map((user, index) => {
+                              return (
+                                <StyledDescription key={index}>
+                                  {user.firstName}
+                                </StyledDescription>
+                              );
+                            })
+                          )}
+                          <Popover.Arrow width="10" height="5" />
+                        </StyledPopoverContent>
+                      </Popover.Portal>
+                    </Popover.Root>
                   </Box>
                   {/* Delete Event */}
-                  <Box className="delete-edit">
-                    <AlertDialog.Root>
-                      <AlertDialog.Trigger>
-                        <IconButton
-                          radius="full"
-                          size="1"
-                          color="red"
-                          variant="soft"
-                          style={{ cursor: "pointer" }}
-                        >
-                          <RiDeleteBin5Line />
-                        </IconButton>
-                      </AlertDialog.Trigger>
-                      <AlertDialog.Content maxWidth="450px">
-                        <AlertDialog.Title>Delete Event</AlertDialog.Title>
-                        <AlertDialog.Description size="2">
-                          Are you sure you want to delete this event?
-                        </AlertDialog.Description>
+                  <Box className="btn-container">
+                    <div className="delete-edit">
+                      <AlertDialog.Root>
+                        <AlertDialog.Trigger>
+                          <IconButton
+                            radius="full"
+                            size="2"
+                            color="red"
+                            variant="soft"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <RiDeleteBin5Line />
+                          </IconButton>
+                        </AlertDialog.Trigger>
+                        <AlertDialog.Content maxWidth="450px">
+                          <AlertDialog.Title>Delete Event</AlertDialog.Title>
+                          <AlertDialog.Description size="2">
+                            Are you sure you want to delete this event?
+                          </AlertDialog.Description>
 
-                        <Flex gap="3" mt="4" justify="end">
-                          <AlertDialog.Cancel>
-                            <Button variant="soft" color="gray">
-                              Cancel
-                            </Button>
-                          </AlertDialog.Cancel>
-                          <AlertDialog.Action>
-                            <Form
-                              method="post"
-                              action={`../delete-event/${id}`}
-                            >
-                              <Button variant="solid" color="red" type="submit">
-                                Accept
+                          <Flex gap="3" mt="4" justify="end">
+                            <AlertDialog.Cancel>
+                              <Button variant="soft" color="gray">
+                                Cancel
                               </Button>
-                            </Form>
-                          </AlertDialog.Action>
-                        </Flex>
-                      </AlertDialog.Content>
-                    </AlertDialog.Root>
-                    {/* Edit Event */}
-                    <EditEvent item={item} />
+                            </AlertDialog.Cancel>
+                            <AlertDialog.Action>
+                              <Form
+                                method="post"
+                                action={`../delete-event/${id}`}
+                              >
+                                <Button
+                                  variant="solid"
+                                  color="red"
+                                  type="submit"
+                                >
+                                  Accept
+                                </Button>
+                              </Form>
+                            </AlertDialog.Action>
+                          </Flex>
+                        </AlertDialog.Content>
+                      </AlertDialog.Root>
+                      {/* Edit Event */}
+                      <EditEvent item={item} />
+                    </div>
+                    <Button onClick={() => handleJoinEvent(id)}>
+                      Join
+                      {/* <Link to={"../events"}>Join</Link> */}
+                    </Button>
                   </Box>
                 </Flex>
               </Card>
             </Box>
           );
         })}
-      </StyledTeme>
+      </StyledTheme>
     </Wrapper>
   );
 };
@@ -159,6 +222,7 @@ const StyledDescription = styled.p`
   font-size: 1.5rem;
   line-height: 1.5;
   max-width: 300px;
+  text-transform: capitalize;
 `;
 
 const StyledPopoverTrigger = styled(Popover.Trigger)`
@@ -166,7 +230,7 @@ const StyledPopoverTrigger = styled(Popover.Trigger)`
   cursor: pointer;
 `;
 
-const StyledTeme = styled(Theme)`
+const StyledTheme = styled(Theme)`
   min-height: 0;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -179,12 +243,18 @@ const StyledTeme = styled(Theme)`
 
   .texts {
     width: 200px;
+    text-transform: capitalize;
   }
 
   .delete-edit {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
+  }
+
+  .btn-container {
+    display: flex;
     flex-direction: column;
+    gap: 3rem;
     align-items: flex-end;
   }
 `;

@@ -5,8 +5,6 @@ import mongoose from "mongoose";
 export const getAllEvents = async (req, res) => {
   const { search, eventStatus, sort } = req.query;
 
-  console.log(req.user);
-
   const queryObject = {};
 
   try {
@@ -35,6 +33,10 @@ export const getAllEvents = async (req, res) => {
       .populate({
         path: "createdBy",
         select: "avatar firstName lastName",
+      })
+      .populate({
+        path: "usersJoined",
+        select: "firstName",
       })
       .sort(sortKey)
       .skip(skip)
@@ -177,6 +179,75 @@ export const getSingleEvent = async (req, res) => {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       status: "error",
       message: "Could not get event",
+    });
+  }
+};
+
+// New endpoint to join an event
+export const joinEvent = async (req, res) => {
+  const { eventId } = req.params;
+  const userId = req.user.userId;
+
+  if (!mongoose.Types.ObjectId.isValid(eventId)) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      status: "error",
+      message: "Invalid event ID",
+    });
+  }
+
+  try {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        status: "error",
+        message: "Event not found",
+      });
+    }
+
+    if (!event.usersJoined.includes(userId)) {
+      event.usersJoined.push(userId);
+      await event.save();
+    }
+
+    res.status(StatusCodes.OK).json(event.usersJoined);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      status: "error",
+      message: "Could not join event",
+    });
+  }
+};
+
+// New endpoint to get users who joined an event
+export const getUsersJoined = async (req, res) => {
+  const { eventId } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(eventId)) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      status: "error",
+      message: "Invalid event ID",
+    });
+  }
+
+  try {
+    const event = await Event.findById(eventId).populate(
+      "usersJoined",
+      "firstName lastName email"
+    );
+
+    if (!event) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        status: "error",
+        message: "Event not found",
+      });
+    }
+
+    res.status(StatusCodes.OK).json(event.usersJoined);
+  } catch (error) {
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      status: "error",
+      message: "Could not get users joined",
     });
   }
 };
