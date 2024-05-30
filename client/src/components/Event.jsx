@@ -50,11 +50,12 @@ const Event = ({ data }) => {
             createdBy,
             usersJoined,
           } = item;
+          console.log(dateTime);
           const { firstName, lastName, avatar } = createdBy;
           const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
 
           return (
-            <Box maxWidth="320px" key={id} className="box">
+            <Box maxWidth="300px" key={id} className="box">
               <Card>
                 <Flex gap="3" align="center" justify="center">
                   <Avatar
