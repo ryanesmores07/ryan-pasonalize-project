@@ -77,13 +77,7 @@ const Event = ({ data }) => {
           );
 
           return (
-            <Box
-              maxWidth="330px"
-              height="132px"
-              maxHeight="132px"
-              key={id}
-              className="box"
-            >
+            <Box maxWidth="330px" height="132px" key={id} className="box">
               <Card>
                 <Flex gap="2" align="center" justify="center">
                   <Avatar
@@ -93,7 +87,13 @@ const Event = ({ data }) => {
                     fallback={initials}
                   />
                   <Box className="texts">
-                    <Text as="div" size="2" weight="bold">
+                    <Text
+                      style={{ height: "30px", lineHeight: "1" }}
+                      mb="1"
+                      as="div"
+                      size="3"
+                      weight="bold"
+                    >
                       {event}
                     </Text>
                     <Text as="div" size="2" color="gray">
