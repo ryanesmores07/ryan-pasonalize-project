@@ -69,7 +69,7 @@ export const LOVE_LANGUAGE = {
 
 export const EVENT_STATUS = {
   FUTURE_EVENTS: "future events",
-  PAST_EVENTS: " past events",
+  PAST_EVENTS: "past events",
 };
 
 export const EVENT_SORT_BY = {

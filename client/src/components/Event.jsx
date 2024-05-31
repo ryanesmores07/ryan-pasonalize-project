@@ -50,13 +50,20 @@ const Event = ({ data }) => {
             createdBy,
             usersJoined,
           } = item;
+          console.log(dateTime);
           const { firstName, lastName, avatar } = createdBy;
           const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
 
           return (
-            <Box maxWidth="320px" key={id} className="box">
+            <Box
+              maxWidth="330px"
+              height="132px"
+              maxHeight="132px"
+              key={id}
+              className="box"
+            >
               <Card>
-                <Flex gap="3" align="center" justify="center">
+                <Flex gap="2" align="center" justify="center">
                   <Avatar
                     size="4"
                     src={avatar}
@@ -64,7 +71,7 @@ const Event = ({ data }) => {
                     fallback={initials}
                   />
                   <Box className="texts">
-                    <Text as="div" size="3" weight="bold">
+                    <Text as="div" size="2" weight="bold">
                       {event}
                     </Text>
                     <Text as="div" size="2" color="gray">
@@ -78,7 +85,7 @@ const Event = ({ data }) => {
                         </Text>
                       </StyledPopoverTrigger>
                       <Popover.Portal>
-                        <StyledPopoverContent className="PopoverContent">
+                        <StyledPopoverContent>
                           <StyledDescription>{description}</StyledDescription>
                           <Popover.Arrow width="10" height="5" />
                         </StyledPopoverContent>
@@ -91,7 +98,7 @@ const Event = ({ data }) => {
                         </Text>
                       </StyledPopoverTrigger>
                       <Popover.Portal>
-                        <StyledPopoverContent className="PopoverContent">
+                        <StyledPopoverContent>
                           {!usersJoined.length ? (
                             <StyledDescription>
                               No Joined Users..
@@ -206,6 +213,8 @@ const StyledPopoverContent = styled(Popover.Content)`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation-duration: 0.6s;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   &[data-side="top"] {
     animation-name: ${slideUp};
@@ -242,7 +251,7 @@ const StyledTheme = styled(Theme)`
   }
 
   .texts {
-    width: 200px;
+    max-width: 170px;
     text-transform: capitalize;
   }
 
