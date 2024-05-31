@@ -188,7 +188,10 @@ const Event = ({ data }) => {
                     </div>
                     <Flex gap="2">
                       {isUserJoined ? (
-                        <Button onClick={() => handleUnjoinEvent(id)}>
+                        <Button
+                          color="red"
+                          onClick={() => handleUnjoinEvent(id)}
+                        >
                           Unjoin
                         </Button>
                       ) : (
