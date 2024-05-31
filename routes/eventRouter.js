@@ -6,7 +6,7 @@ import {
   getSingleEvent,
   updateEvent,
   joinEvent,
-  getUsersJoined,
+  unjoinEvent,
 } from "../controller/eventController.js";
 import { validateEventInput } from "../middleware/validationMiddleware.js";
 
@@ -17,6 +17,6 @@ router.route("/").get(getAllEvents).post(validateEventInput, createEvent);
 router.route("/:id").delete(deleteEvent).patch(updateEvent).get(getSingleEvent);
 
 router.route("/:eventId/join").post(joinEvent);
-router.route("/:eventId/usersJoined").get(getUsersJoined);
+router.route("/:eventId/unjoin").post(unjoinEvent);
 
 export default router;

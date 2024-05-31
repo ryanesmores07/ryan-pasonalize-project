@@ -17,8 +17,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { Form } from "react-router-dom";
 import EditEvent from "./EditEvent";
 import customFetch from "../utils/customFetch";
+import { useDashboardContext } from "../pages/Dashboard";
 
 const Event = ({ data }) => {
+  const { user: loggedInUser } = useDashboardContext();
   const [events, setEvents] = useState(data.events);
   const handleJoinEvent = async (eventId) => {
     try {
@@ -38,6 +40,24 @@ const Event = ({ data }) => {
     }
   };
 
+  const handleUnjoinEvent = async (eventId) => {
+    try {
+      const response = await customFetch.post(`/events/${eventId}/unjoin`, {});
+      const updatedUsersJoined = response.data;
+
+      setEvents((prevEvents) =>
+        prevEvents.map((event) =>
+          event._id === eventId
+            ? { ...event, usersJoined: updatedUsersJoined }
+            : event
+        )
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error("Error unjoining event:", error);
+    }
+  };
+
   return (
     <Wrapper>
       <StyledTheme radius="small" hasBackground={false}>
@@ -50,9 +70,11 @@ const Event = ({ data }) => {
             createdBy,
             usersJoined,
           } = item;
-          console.log(dateTime);
           const { firstName, lastName, avatar } = createdBy;
           const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`;
+          const isUserJoined = usersJoined.some(
+            (user) => user._id === loggedInUser._id
+          );
 
           return (
             <Box
@@ -164,10 +186,17 @@ const Event = ({ data }) => {
                       {/* Edit Event */}
                       <EditEvent item={item} />
                     </div>
-                    <Button onClick={() => handleJoinEvent(id)}>
-                      Join
-                      {/* <Link to={"../events"}>Join</Link> */}
-                    </Button>
+                    <Flex gap="2">
+                      {isUserJoined ? (
+                        <Button onClick={() => handleUnjoinEvent(id)}>
+                          Unjoin
+                        </Button>
+                      ) : (
+                        <Button onClick={() => handleJoinEvent(id)}>
+                          Join
+                        </Button>
+                      )}
+                    </Flex>
                   </Box>
                 </Flex>
               </Card>
@@ -263,6 +292,7 @@ const StyledTheme = styled(Theme)`
   .btn-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 3rem;
     align-items: flex-end;
   }
