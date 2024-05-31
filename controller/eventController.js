@@ -219,9 +219,10 @@ export const joinEvent = async (req, res) => {
   }
 };
 
-// New endpoint to get users who joined an event
-export const getUsersJoined = async (req, res) => {
+// New endpoint to unjoin an event
+export const unjoinEvent = async (req, res) => {
   const { eventId } = req.params;
+  const userId = req.user.userId;
 
   if (!mongoose.Types.ObjectId.isValid(eventId)) {
     return res.status(StatusCodes.BAD_REQUEST).json({
@@ -231,10 +232,7 @@ export const getUsersJoined = async (req, res) => {
   }
 
   try {
-    const event = await Event.findById(eventId).populate(
-      "usersJoined",
-      "firstName lastName email"
-    );
+    const event = await Event.findById(eventId);
 
     if (!event) {
       return res.status(StatusCodes.NOT_FOUND).json({
@@ -243,11 +241,17 @@ export const getUsersJoined = async (req, res) => {
       });
     }
 
+    const userIndex = event.usersJoined.indexOf(userId);
+    if (userIndex !== -1) {
+      event.usersJoined.splice(userIndex, 1);
+      await event.save();
+    }
+
     res.status(StatusCodes.OK).json(event.usersJoined);
   } catch (error) {
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       status: "error",
-      message: "Could not get users joined",
+      message: "Could not unjoin event",
     });
   }
 };
