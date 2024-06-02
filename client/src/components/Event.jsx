@@ -299,4 +299,15 @@ const StyledTheme = styled(Theme)`
     gap: 3rem;
     align-items: flex-end;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column layout on small and medium screens */
+    gap: 2rem; /* Adjusting gap between items for smaller screens */
+    justify-content: center; /* Center items on smaller screens */
+    text-align: center; /* Center text within items on smaller screens */
+
+    .btn-container {
+      align-items: center; /* Center button container on smaller screens */
+    }
+  }
 `;

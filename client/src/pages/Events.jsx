@@ -1,9 +1,5 @@
 import customFetch from "../utils/customFetch";
-import {
-  EventSearchContainer,
-  EventsContainer,
-  SearchContainer,
-} from "../components";
+import { EventSearchContainer, EventsContainer } from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
 import { useLoaderData } from "react-router-dom";
