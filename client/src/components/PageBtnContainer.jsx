@@ -147,18 +147,14 @@ const Wrapper = styled.section`
   font-size: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-
   .btn-container {
     background: var(--off-white);
     border-radius: var(--border-radius);
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
-
   .page-btn {
     background: transparent;
     border-color: transparent;
@@ -174,12 +170,10 @@ const Wrapper = styled.section`
       border-radius: var(--border-radius);
     }
   }
-
   .active {
     background: var(--dark-blue);
     color: var(--off-white);
   }
-
   .prev-btn,
   .next-btn {
     background: var(--off-white);
@@ -196,54 +190,19 @@ const Wrapper = styled.section`
     gap: 0.5rem;
     cursor: pointer;
   }
-
   .prev-btn:hover,
   .next-btn:hover {
     background: var(--dark-blue);
-    color: var (--off-white);
+    color: var(--off-white);
     transition: var(--transition);
   }
-
   .dots {
     display: grid;
     place-items: center;
     cursor: text;
   }
 
-  @media (max-width: 768px) {
-    justify-content: center;
-    .btn-container {
-      justify-content: center;
-      gap: 0.3rem;
-    }
-
-    .page-btn {
-      width: 35px;
-      height: 35px;
-      font-size: 1.2rem;
-    }
-
-    .prev-btn,
-    .next-btn {
-      width: 80px;
-      height: 35px;
-      font-size: 1.2rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.2rem;
-    .page-btn {
-      width: 30px;
-      height: 30px;
-      font-size: 1rem;
-    }
-
-    .prev-btn,
-    .next-btn {
-      width: 70px;
-      height: 30px;
-      font-size: 1rem;
-    }
+  @media (min-width: 768px) {
+    justify-content: flex-end;
   }
 `;

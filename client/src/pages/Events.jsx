@@ -6,7 +6,6 @@ import {
 } from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
-import styled from "styled-components";
 import { useLoaderData } from "react-router-dom";
 
 const allEventsQuery = (params) => {

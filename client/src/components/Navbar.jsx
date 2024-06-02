@@ -27,7 +27,7 @@ const Navbar = () => {
 export default Navbar;
 
 const Wrapper = styled.nav`
-  z-index: 1;
+  z-index: 99;
   height: 10rem; /* Adjusted height for smaller screens */
   display: flex;
   align-items: center;
