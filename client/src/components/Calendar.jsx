@@ -33,11 +33,11 @@ const Calendar = ({ id, type, name, labelText, defaultValue }) => {
 export default Calendar;
 
 const Wrapper = styled.section`
+  display: inline-block;
   .form-row {
     .form-label {
       text-transform: capitalize;
       color: rgba(0, 0, 0, 0.7);
-      display: block;
       margin-bottom: 7px;
       font-size: 1.3rem;
     }
@@ -45,12 +45,22 @@ const Wrapper = styled.section`
       font-size: 1.3rem;
       padding-left: 1rem;
       border-radius: 5px;
+      width: 100%;
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (max-width: 768px) {
     .form-row {
       .form-input {
+        font-size: 1.1rem; /* Decrease font size on smaller screens */
+      }
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .form-row {
+      .form-input {
+        font-size: 1.2rem; /* Adjust font size for medium-sized screens */
       }
     }
   }

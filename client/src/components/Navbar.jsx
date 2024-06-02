@@ -12,7 +12,7 @@ const Navbar = () => {
         <button type="button" className="toggle-btn" onClick={toggleSidebar}>
           <FaAlignLeft />
         </button>
-        <div>
+        <div className="logo-container">
           <Logo />
           <h4 className="logo-text">Dashboard</h4>
         </div>
@@ -28,18 +28,20 @@ export default Navbar;
 
 const Wrapper = styled.nav`
   z-index: 1;
-  height: 14.5rem;
+  height: 10rem; /* Adjusted height for smaller screens */
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
   background: var(--light-blue);
+
   .nav-center {
     display: flex;
     width: 90vw;
     align-items: center;
     justify-content: space-between;
   }
+
   .toggle-btn {
     background: transparent;
     border-color: transparent;
@@ -49,23 +51,46 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
   }
+
   .logo-text {
     display: none;
-    font-size: 3.5rem;
+    font-size: 2rem; /* Adjusted font size */
     font-weight: 500;
   }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Added gap for spacing */
+  }
+
   .logo {
     display: flex;
     align-items: center;
     width: 10rem;
   }
+
   .btn-container {
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 767px) {
+    .logo-container {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo-text {
+      display: block;
+    }
+  }
+
   @media (min-width: 992px) {
     position: sticky;
     top: 0;
+    height: 14.5rem; /* Adjusted height for larger screens */
     .nav-center {
       width: 90%;
     }
@@ -74,6 +99,7 @@ const Wrapper = styled.nav`
     }
     .logo-text {
       display: block;
+      font-size: 3.5rem; /* Adjusted font size */
     }
     .toggle-btn {
       font-size: 3rem;

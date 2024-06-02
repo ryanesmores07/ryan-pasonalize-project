@@ -42,16 +42,12 @@ const Events = () => {
   const { searchValues } = useLoaderData();
   const { data } = useQuery(allEventsQuery(searchValues));
   return (
-    <Wrapper>
-      <EventsContext.Provider value={{ data, searchValues }}>
-        <EventSearchContainer />
-        <EventsContainer />
-      </EventsContext.Provider>
-    </Wrapper>
+    <EventsContext.Provider value={{ data, searchValues }}>
+      <EventSearchContainer />
+      <EventsContainer />
+    </EventsContext.Provider>
   );
 };
 
 export const useEventsContext = () => useContext(EventsContext);
 export default Events;
-
-const Wrapper = styled.section``;
