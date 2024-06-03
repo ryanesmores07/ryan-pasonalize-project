@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import customFetch from "../utils/customFetch";
-import { useLoaderData, useNavigate, redirect } from "react-router-dom";
+import { useLoaderData, redirect } from "react-router-dom";
 import ProfileNav from "../components/ProfileNav";
 import { useQuery } from "@tanstack/react-query";
 import avatarTemp from "../assets/images/UserPage/default.jpg";
+import { useTranslation } from "react-i18next";
 
 const profileQuery = (params) => {
   const id = params?.id || "current-user";
@@ -35,6 +36,7 @@ const Profile = () => {
   const {
     data: { user },
   } = useQuery(profileQuery(params));
+  const { t } = useTranslation();
 
   return (
     <Wrapper>
@@ -57,14 +59,14 @@ const Profile = () => {
                 {user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}
               </h1>
               <h3>
-                Nickname:{" "}
+                {t("nickname")}:{" "}
                 <span style={{ color: "var(--off-black)" }}>
                   {'"' + user.nickname + '"'}
                 </span>
               </h3>
             </div>
             <div className="about-me-container">
-              <h4>About me:</h4>
+              <h4>{t("aboutMe")}:</h4>
               <p className="about-me-text">{user.aboutMe}</p>
             </div>
           </div>
@@ -73,7 +75,7 @@ const Profile = () => {
           <div className="left-prompt">
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>チーム:</h4>
+                <h4>{t("team")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobDepartment}</p>
@@ -81,7 +83,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>職位:</h4>
+                <h4>{t("position")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobPosition}</p>
@@ -89,7 +91,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>勤務先:</h4>
+                <h4>{t("workplace")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.jobBranch}</p>
@@ -97,7 +99,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>入社年:</h4>
+                <h4>{t("yearJoined")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.yearEmployed}</p>
@@ -105,7 +107,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>星座:</h4>
+                <h4>{t("zodiac")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.zodiacSign}</p>
@@ -115,7 +117,7 @@ const Profile = () => {
           <div className="right-prompt">
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Love Language:</h4>
+                <h4>{t("loveLanguage")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.loveLanguage}</p>
@@ -123,7 +125,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>血液型:</h4>
+                <h4>{t("blood")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.bloodType}</p>
@@ -131,7 +133,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>大好きな趣味:</h4>
+                <h4>{t("favoriteHobbyLabel")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.hobby}</p>
@@ -139,7 +141,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>Celebrity Crush:</h4>
+                <h4>{t("celebrityCrushLabel")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.celebrityCrush}</p>
@@ -147,7 +149,7 @@ const Profile = () => {
             </div>
             <div className="key-value-pair">
               <div className="h4-key">
-                <h4>実家:</h4>
+                <h4>{t("hometownLabel")}</h4>
               </div>
               <div className="p-value">
                 <p>{user.hometown}</p>
@@ -263,7 +265,7 @@ const Wrapper = styled.section`
       display: flex;
       font-weight: 400;
     }
-    &::after {
+    /* &::after {
       content: "";
       position: absolute;
       width: 80%;
@@ -271,7 +273,7 @@ const Wrapper = styled.section`
       opacity: 0.2;
       background-color: var(--blue);
       bottom: 0;
-    }
+    } */
   }
 
   .kintone {

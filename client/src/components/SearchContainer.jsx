@@ -8,6 +8,7 @@ import {
 } from "../../../utils/constants";
 import { useAllUsersContext } from "../pages/AllUsers";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const SearchContainer = () => {
   const resetFormValues = () => {
@@ -22,6 +23,7 @@ const SearchContainer = () => {
   const { searchValues } = useAllUsersContext();
   const { search, jobBranch, jobDepartment, bloodType, sort } = searchValues;
   const submit = useSubmit();
+  const { t } = useTranslation();
 
   const debounce = (onChange) => {
     let timeout;
@@ -37,33 +39,33 @@ const SearchContainer = () => {
   return (
     <Wrapper>
       <Form className="form">
-        <h5 className="form-title">ユーザー検索</h5>
+        <h5 className="form-title">{t("search")}</h5>
         <div className="form-center">
           <FormRow
             type="search"
             name="search"
-            labelText="検索"
+            labelText={t("search")}
             defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
             })}
           />
           <FormRowSelect
-            labelText="勤務先"
+            labelText={t("jobBranch")}
             name="jobBranch"
             list={["all", ...Object.values(JOB_BRANCH)]}
             defaultValue={jobBranch}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
-            labelText="血液型"
+            labelText={t("bloodType")}
             name="bloodType"
             list={["all", ...Object.values(BLOOD_TYPE)]}
             defaultValue={bloodType}
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <FormRowSelect
-            labelText="チーム"
+            labelText={t("jobDepartment")}
             name="jobDepartment"
             list={["all", ...Object.values(JOB_DEPARTMENT)]}
             defaultValue={jobDepartment}
@@ -71,7 +73,7 @@ const SearchContainer = () => {
           />
           <FormRowSelect
             name="sort"
-            labelText="並べ替え"
+            labelText={t("sort")}
             defaultValue={sort}
             list={[...Object.values(USER_SORT_BY)]}
             onChange={(e) => submit(e.currentTarget.form)}
@@ -81,7 +83,7 @@ const SearchContainer = () => {
             className="btn form-btn delete-btn"
             onClick={resetFormValues}
           >
-            検索値をリセットする
+            {t("resetValues")}
           </Link>
         </div>
       </Form>

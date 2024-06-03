@@ -34,18 +34,18 @@ export const USER_SORT_BY = {
 
 export const ZODIAC_SIGN = {
   // DEFAULT: "",
-  ARIES: "おひつじ座",
-  TAURUS: "おうし座",
-  GEMINI: "ふたご座",
-  CANCER: "かに座",
-  LEO: "しし座",
-  VIRGO: "おとめ座",
-  LIBRA: "てんびん座",
-  SCORPIO: "さそり座",
-  SAGITTARIUS: "いて座",
-  CAPRICORN: "やぎ座",
-  AQUARIUS: "みずがめ座",
-  PISCES: "うお座",
+  ARIES: "おひつじ座 / Aries",
+  TAURUS: "おうし座 / Taurus",
+  GEMINI: "ふたご座/ Gemini",
+  CANCER: "かに座 / Cancer",
+  LEO: "しし座 / Leo",
+  VIRGO: "おとめ座 / Virgo",
+  LIBRA: "てんびん座 / Libra",
+  SCORPIO: "さそり座 / Scorpio",
+  SAGITTARIUS: "いて座 / Sagittarius",
+  CAPRICORN: "やぎ座 / Capricorn",
+  AQUARIUS: "みずがめ座 / Aquarius",
+  PISCES: "うお座 / Pisces",
 };
 
 export const BLOOD_TYPE = {
@@ -58,11 +58,11 @@ export const BLOOD_TYPE = {
 
 export const LOVE_LANGUAGE = {
   // DEFAULT: "",
-  WORDS_OF_AFFIRMATION: "肯定的な言葉",
-  QUALITY_TIME: "充実した時間",
-  RECEIVING_GIFTS: "贈り物",
-  ACTS_OF_SERVICE: "尽くす行為",
-  PHYSICAL_TOUCH: "スキンシップ",
+  WORDS_OF_AFFIRMATION: "肯定的な言葉 / Words of Affirmation",
+  QUALITY_TIME: "充実した時間 / Quality Time",
+  RECEIVING_GIFTS: "贈り物 / Receiving Gifts",
+  ACTS_OF_SERVICE: "尽くす行為 / Acts of Service",
+  PHYSICAL_TOUCH: "スキンシップ / Physical Touch",
 };
 
 // Events

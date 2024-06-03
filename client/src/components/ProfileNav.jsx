@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate, Link } from "react-router-dom";
 import { IoMdReturnLeft } from "react-icons/io";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const ProfileNav = ({ user }) => {
   const navigate = useNavigate();
@@ -36,9 +37,9 @@ const ProfileNav = ({ user }) => {
             {user.jobDepartment + " " + "team"}
           </span>
         </div>
-        {/* <div className="btn-container">
-          <ProfileLogoutContainer user={user} logoutUser={logoutUser} />
-        </div> */}
+        <div className="btn-container">
+          <LanguageSwitcher />
+        </div>
       </nav>
     </Wrapper>
   );

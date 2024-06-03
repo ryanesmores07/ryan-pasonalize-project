@@ -18,3 +18,4 @@ export { default as Event } from "./Event";
 export { default as Calendar } from "./Calendar";
 export { default as EditEvent } from "./EditEvent";
 export { default as EventSearchContainer } from "./EventSearchContainer";
+export { default as LanguageSwitcher } from "./LanguageSwitcher";
