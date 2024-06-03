@@ -13,7 +13,7 @@ export const action =
       queryClient.invalidateQueries(["events"]);
       toast.success("Event updated successfully");
     } catch (error) {
-      toast.error(error?.response?.data?.message);
+      toast.error(error?.response?.data?.msg);
     }
     return redirect("/dashboard/events");
   };

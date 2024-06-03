@@ -97,6 +97,50 @@ const Wrapper = styled.section`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .container {
+      .form {
+        max-width: 90%;
+        top: 150px;
+        padding: 20px;
+
+        img {
+          width: 12rem;
+        }
+
+        h4 {
+          font-size: 2.5rem;
+        }
+
+        p {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      .form {
+        max-width: 95%;
+        top: 100px;
+        padding: 15px;
+
+        img {
+          width: 10rem;
+        }
+
+        h4 {
+          font-size: 2rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 `;
 
 export default Login;

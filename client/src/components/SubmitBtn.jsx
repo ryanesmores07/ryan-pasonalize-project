@@ -35,7 +35,7 @@ const Wrapper = styled.button`
   }
 
   @media screen and (max-width: 1024px) {
-    width: 300px; /* Adjust width for medium screens */
+    width: 100%; /* Adjust width for medium screens */
     height: 35px; /* Adjust height for medium screens */
     font-size: 1.4rem; /* Adjust font size for medium screens */
   }
