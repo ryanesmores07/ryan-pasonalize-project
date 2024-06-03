@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import customFetch from "../utils/customFetch";
 import styled from "styled-components";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const action =
   (queryClient) =>
@@ -48,113 +49,104 @@ const EditProfile = () => {
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+  const { t } = useTranslation();
 
   const handleAboutMeChange = (event) => {
     setAboutMe(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Your form submission logic here
-  };
-
   return (
     <Wrapper>
-      <Form
-        method="post"
-        className="form"
-        encType="multipart/form-data"
-        onSubmit={handleSubmit}
-      >
+      <Form method="post" className="form" encType="multipart/form-data">
         <div className="form-center">
           <FormRow
             type="text"
             name="firstName"
-            labelText="First Name"
+            labelText={t("firstName")}
             defaultValue={user.firstName}
           />
           <FormRow
             type="text"
             name="lastName"
-            labelText="Last Name"
+            labelText={t("lastName")}
             defaultValue={user.lastName}
           />
           <FormRow
             type="text"
             name="nickname"
-            labelText="Nickname"
+            labelText={t("nickname")}
             defaultValue={user.nickname}
           />
           <FormRow
-            labelText="Email"
+            labelText={t("email")}
             type="email"
             name="email"
             defaultValue={user.email}
           />
           <FormRowSelect
             name="jobBranch"
-            labelText="Job Branch"
+            labelText={t("jobBranch")}
             defaultValue={user.jobBranch}
             list={Object.values(JOB_BRANCH)}
           />
           <FormRowSelect
             name="jobDepartment"
-            labelText="Job Department"
+            labelText={t("jobDepartment")}
             defaultValue={user.jobDepartment}
             list={Object.values(JOB_DEPARTMENT)}
           />
           <FormRowSelect
             name="jobPosition"
-            labelText="Job Position"
+            labelText={t("jobPosition")}
             defaultValue={user.jobPosition}
             list={Object.values(JOB_POSITION)}
           />
           <FormRow
-            labelText="Favorite Hobby"
+            labelText={t("favoriteHobby")}
             type="text"
             name="hobby"
-            placeholder="e.g. Karaoke"
+            placeholder={t("favoriteHobbyPlaceholder")}
             defaultValue={user.hobby}
             isRequired={isRequired}
           />
           <FormRowSelect
             name="zodiacSign"
-            labelText="Zodiac Sign"
+            labelText={t("zodiacSign")}
             defaultValue={user.zodiacSign}
             list={Object.values(ZODIAC_SIGN)}
           />
           <FormRowSelect
             name="bloodType"
-            labelText="Blood Type"
+            labelText={t("bloodType")}
             defaultValue={user.bloodType}
             list={Object.values(BLOOD_TYPE)}
           />
           <FormRowSelect
             name="loveLanguage"
-            labelText="Love Language"
+            labelText={t("loveLanguage")}
             defaultValue={user.loveLanguage}
             list={Object.values(LOVE_LANGUAGE)}
           />
           <FormRow
-            labelText="Year Employed"
+            labelText={t("yearEmployed")}
             type="text"
             name="yearEmployed"
-            placeholder="e.g. 2020"
+            placeholder={t("yearEmployedPlaceholder")}
             defaultValue={user.yearEmployed}
           />
           <FormRow
-            labelText="Hometown"
+            labelText={t("hometown")}
             type="text"
             name="hometown"
             defaultValue={user.hometown}
-            placeholder="e.g. Tokyo, Japan"
+            placeholder={t("hometownPlaceholder")}
           />
           <FormRow
-            labelText="Celebrity Crush"
+            labelText={t("celebrityCrush")}
             type="text"
             name="celebrityCrush"
             defaultValue={user.celebrityCrush}
-            placeholder="e.g. Ryan Gosling"
+            placeholder={t("celebrityCrushPlaceholder")}
           />
           <div className="form-row">
             <ImageCropper
@@ -167,13 +159,13 @@ const EditProfile = () => {
           </div>
           <div className="text-area">
             <label htmlFor="aboutMe" className="text-label">
-              Tell us about yourself
+              {t("aboutMe")}
             </label>
             <textarea
               className="text-input"
               id="aboutMe"
               name="aboutMe"
-              placeholder="Tell us about yourself"
+              placeholder={t("aboutMePlaceholder")}
               value={aboutMe}
               onChange={handleAboutMeChange}
             />
@@ -183,13 +175,13 @@ const EditProfile = () => {
             className="btn btn-block form-btn"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Submitting..." : "Submit"}
+            {isSubmitting ? t("submitting") : t("submit")}
           </button>
         </div>
       </Form>
       <Form method="post" action="../delete-account">
         <button type="submit" className="delete-btn">
-          Delete Profile
+          {t("deleteProfile")}
         </button>
       </Form>
     </Wrapper>

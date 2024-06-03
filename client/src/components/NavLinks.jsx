@@ -1,11 +1,13 @@
 import { useDashboardContext } from "../pages/Dashboard";
 import { ImProfile } from "react-icons/im";
-import links from "../utils/links";
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
+import getLinks from "../utils/links";
+import { NavLink, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const NavLinks = ({ isBigSidebar }) => {
   const { toggleSidebar, user } = useDashboardContext();
+  const { t } = useTranslation();
+  const links = getLinks();
 
   return (
     <>
@@ -29,7 +31,7 @@ const NavLinks = ({ isBigSidebar }) => {
           <span className="icon">
             <ImProfile />
           </span>
-          プロファイル
+          {t("linksMyProfile")}
         </Link>
       </div>
     </>

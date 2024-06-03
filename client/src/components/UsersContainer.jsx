@@ -2,8 +2,10 @@ import User from "./User";
 import styled from "styled-components";
 import { useAllUsersContext } from "../pages/AllUsers";
 import PageBtnContainer from "./PageBtnContainer";
+import { useTranslation } from "react-i18next";
 
 const UsersContainer = () => {
+  const { t } = useTranslation();
   const {
     data: { users, totalUsers, numOfPages },
   } = useAllUsersContext();
@@ -11,16 +13,14 @@ const UsersContainer = () => {
   if (users.length === 0) {
     return (
       <Wrapper>
-        <h2>表示するユーザーがいません...</h2>
+        <h2>{t("noUserDisplay")}</h2>
       </Wrapper>
     );
   }
 
   return (
     <Wrapper>
-      <h2>
-        {totalUsers} User{totalUsers > 1 && "s"} Found
-      </h2>
+      <h2>{t("userFound", { totalUsers })}</h2>
       <div className="users">
         {users.map((user) => {
           return <User key={user._id} {...user} />;

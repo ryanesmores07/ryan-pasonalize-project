@@ -13,6 +13,7 @@ import {
   downloadBase64File,
 } from "./ResuableUtils";
 import styled, { keyframes } from "styled-components";
+import { useTranslation } from "react-i18next";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -26,6 +27,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
   const [cropEnabled, setCropEnabled] = useState(false);
   const [error, setError] = useState("");
   const [fileName, setFileName] = useState("");
+  const { t } = useTranslation();
 
   const onSelectFile = (e) => {
     const file = e.target.files?.[0];
@@ -99,7 +101,7 @@ const ImageCropper = ({ type, name, onSubmit }) => {
   return (
     <Wrapper className="image-upload-container">
       <label htmlFor={name} className="form-label">
-        Profile photo
+        {t("profilePhoto")}
       </label>
       <input
         ref={inputRef}

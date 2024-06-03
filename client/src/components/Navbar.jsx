@@ -1,8 +1,10 @@
 import { FaAlignLeft } from "react-icons/fa";
+import { BsArrowsFullscreen } from "react-icons/bs";
 import Logo from "../components/Logo";
 import { useDashboardContext } from "../pages/Dashboard";
 import LogoutContainer from "./LogoutContainer";
 import styled from "styled-components";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar = () => {
   const { toggleSidebar } = useDashboardContext();
@@ -10,13 +12,17 @@ const Navbar = () => {
     <Wrapper>
       <div className="nav-center">
         <button type="button" className="toggle-btn" onClick={toggleSidebar}>
-          <FaAlignLeft />
+          <FaAlignLeft className="icon-small" />
+          <FaAlignLeft className="icon-medium" />
+          <BsArrowsFullscreen className="icon-large" />
         </button>
+
         <div className="logo-container">
           <Logo />
           <h4 className="logo-text">Dashboard</h4>
         </div>
         <div className="btn-container">
+          <LanguageSwitcher />
           <LogoutContainer />
         </div>
       </div>
@@ -52,6 +58,18 @@ const Wrapper = styled.nav`
     align-items: center;
   }
 
+  .icon-small {
+    display: none;
+  }
+
+  .icon-medium {
+    display: none;
+  }
+
+  .icon-large {
+    display: none;
+  }
+
   .logo-text {
     display: none;
     font-size: 2rem; /* Adjusted font size */
@@ -72,6 +90,7 @@ const Wrapper = styled.nav`
 
   .btn-container {
     display: flex;
+    gap: 2rem;
     align-items: center;
   }
 
@@ -79,11 +98,26 @@ const Wrapper = styled.nav`
     .logo-container {
       display: none;
     }
+    .icon-small {
+      display: block;
+    }
+    .icon-medium {
+      display: none;
+    }
+    .icon-large {
+      display: none;
+    }
   }
 
-  @media (min-width: 768px) {
-    .logo-text {
+  @media (min-width: 768px) and (max-width: 991px) {
+    .icon-small {
+      display: none;
+    }
+    .icon-medium {
       display: block;
+    }
+    .icon-large {
+      display: none;
     }
   }
 
@@ -103,6 +137,15 @@ const Wrapper = styled.nav`
     }
     .toggle-btn {
       font-size: 3rem;
+    }
+    .icon-small {
+      display: none;
+    }
+    .icon-medium {
+      display: none;
+    }
+    .icon-large {
+      display: block;
     }
   }
 `;
