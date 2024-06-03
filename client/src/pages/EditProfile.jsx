@@ -48,89 +48,102 @@ const EditProfile = () => {
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
+
+  const handleAboutMeChange = (event) => {
+    setAboutMe(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Your form submission logic here
+  };
+
   return (
     <Wrapper>
-      <Form method="post" className="form" encType="multipart/form-data">
-        {/* <h4 className="form-title">Edit Profile</h4> */}
+      <Form
+        method="post"
+        className="form"
+        encType="multipart/form-data"
+        onSubmit={handleSubmit}
+      >
         <div className="form-center">
           <FormRow
             type="text"
             name="firstName"
-            labelText="first name"
+            labelText="First Name"
             defaultValue={user.firstName}
           />
           <FormRow
             type="text"
             name="lastName"
-            labelText="last name"
+            labelText="Last Name"
             defaultValue={user.lastName}
           />
           <FormRow
             type="text"
             name="nickname"
-            labelText="nickname"
+            labelText="Nickname"
             defaultValue={user.nickname}
           />
           <FormRow
-            labelText="email"
+            labelText="Email"
             type="email"
             name="email"
             defaultValue={user.email}
           />
           <FormRowSelect
             name="jobBranch"
-            labelText="勤務先"
+            labelText="Job Branch"
             defaultValue={user.jobBranch}
             list={Object.values(JOB_BRANCH)}
           />
           <FormRowSelect
             name="jobDepartment"
-            labelText="チーム"
+            labelText="Job Department"
             defaultValue={user.jobDepartment}
             list={Object.values(JOB_DEPARTMENT)}
           />
           <FormRowSelect
             name="jobPosition"
-            labelText="職位"
+            labelText="Job Position"
             defaultValue={user.jobPosition}
             list={Object.values(JOB_POSITION)}
           />
           <FormRow
-            labelText="1番大好きな趣味"
+            labelText="Favorite Hobby"
             type="text"
             name="hobby"
-            placeholder="e.g. karaoke"
+            placeholder="e.g. Karaoke"
             defaultValue={user.hobby}
             isRequired={isRequired}
           />
           <FormRowSelect
             name="zodiacSign"
-            labelText="星座"
+            labelText="Zodiac Sign"
             defaultValue={user.zodiacSign}
             list={Object.values(ZODIAC_SIGN)}
           />
           <FormRowSelect
             name="bloodType"
-            labelText="血液型"
+            labelText="Blood Type"
             defaultValue={user.bloodType}
             list={Object.values(BLOOD_TYPE)}
           />
           <FormRowSelect
-            testUrl="https://love-language.co/ja"
             name="loveLanguage"
-            labelText="ラブランゲージ"
+            labelText="Love Language"
             defaultValue={user.loveLanguage}
             list={Object.values(LOVE_LANGUAGE)}
           />
           <FormRow
-            labelText="入社年"
+            labelText="Year Employed"
             type="text"
             name="yearEmployed"
             placeholder="e.g. 2020"
             defaultValue={user.yearEmployed}
           />
           <FormRow
-            labelText="実家"
+            labelText="Hometown"
             type="text"
             name="hometown"
             defaultValue={user.hometown}
@@ -161,19 +174,20 @@ const EditProfile = () => {
               id="aboutMe"
               name="aboutMe"
               placeholder="Tell us about yourself"
-              defaultValue={aboutMe}
+              value={aboutMe}
+              onChange={handleAboutMeChange}
             />
           </div>
           <button
             type="submit"
-            className="btn btn-block form-btn "
+            className="btn btn-block form-btn"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "submitting..." : "submit"}
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </div>
       </Form>
-      <Form method="post" action={`../delete-account`}>
+      <Form method="post" action="../delete-account">
         <button type="submit" className="delete-btn">
           Delete Profile
         </button>
@@ -188,18 +202,20 @@ const Wrapper = styled.section`
   border-radius: var(--border-radius);
   width: 100%;
   padding: 3rem 2rem 4rem;
-  .form-title {
-    margin-bottom: 2rem;
-  }
-  .form {
-    position: relative;
 
+  .form {
     margin: 0;
     border-radius: 0;
     box-shadow: none;
     padding: 2rem;
     max-width: 100%;
     width: 100%;
+  }
+
+  .form-center {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
   .form-row {
@@ -221,34 +237,32 @@ const Wrapper = styled.section`
       padding-bottom: 10px;
     }
   }
+
   .text-area {
-    .text-label {
-      font-weight: 700;
-      text-transform: capitalize;
-      color: rgba(0, 0, 0, 0.7);
-      display: block;
-      margin-bottom: 7px;
-      font-size: 1.3rem;
-    }
-
-    .text-input {
-      font-size: 1.3rem;
-      padding-left: 1rem;
-      width: 100%;
-      height: 45px;
-      background-color: var(--off-white);
-      border-radius: 5px;
-      border-style: none;
-      resize: none;
-    }
+    margin-bottom: 3rem;
+    color: rgba(0, 0, 0, 0.7);
   }
 
-  .form-center {
-    display: grid;
-    place-content: center;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+  .text-label {
+    font-weight: 700;
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.7);
+    display: block;
+    margin-bottom: 7px;
+    font-size: 1.3rem;
   }
+
+  .text-input {
+    font-size: 1.3rem;
+    padding-left: 1rem;
+    width: 100%;
+    height: 120px; /* Increased height for text area */
+    background-color: var(--off-white);
+    border-radius: 5px;
+    border-style: none;
+    resize: none;
+  }
+
   .form-btn {
     grid-column: 3/4;
     margin-top: -0.6rem;
@@ -263,7 +277,6 @@ const Wrapper = styled.section`
 
   .delete-btn {
     background: none;
-    margin-top: 2rem;
     border: none;
     color: var(--off-black);
     cursor: pointer;
@@ -275,15 +288,29 @@ const Wrapper = styled.section`
   }
 
   @media (max-width: 1280px) {
-    padding: 3rem 1rem 4rem; /* Adjust padding for 1024px and below */
+    padding: 3rem 1rem 4rem;
     .form-row .form-label {
-      min-width: 20ch; /* Adjust min-width for 1024px and below */
+      min-width: 20ch;
     }
   }
+
+  @media (max-width: 1024px) {
+    .form-center {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .form-btn {
+      grid-column: 2/3;
+    }
+  }
+
   @media (max-width: 768px) {
-    padding: 3rem 0.5rem 4rem; /* Adjust padding for 768px and below */
-    .form-row .form-label {
-      min-width: 15ch; /* Adjust min-width for 768px and below */
+    padding: 3rem 0.5rem 4rem;
+    .form-center {
+      grid-template-columns: 1fr;
+    }
+    .form-btn {
+      grid-column: 1/2;
+      width: 100%;
     }
   }
 `;

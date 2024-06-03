@@ -60,11 +60,13 @@ export default StatsContainer;
 const Wrapper = styled.section`
   display: grid;
   row-gap: 5rem;
+
   @media (min-width: 768px) {
     padding: 2rem 5rem;
     grid-template-columns: 1fr 1fr;
     column-gap: 5rem;
   }
+
   @media (min-width: 1120px) {
     grid-template-columns: 1fr 1fr 1fr;
   }

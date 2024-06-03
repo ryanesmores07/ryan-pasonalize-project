@@ -162,22 +162,28 @@ const Wrapper = styled.section`
 
       .left-section {
         margin-left: 3rem;
+        margin-top: 15rem; /* Adjusted for better spacing on medium screens */
         .text-container {
           h2 {
             max-width: 90%;
+            font-size: 4rem; /* Adjust font size for medium screens */
+          }
+          h1 {
+            font-size: 6rem; /* Adjust font size for medium screens */
           }
         }
         .buttons {
           gap: 2rem;
-          margin-top: 3rem;
+          margin-top: 4rem; /* Adjust spacing for buttons */
         }
         .small-image-and-text-container {
-          margin-top: 8rem;
+          margin-top: 10rem; /* Adjust spacing for medium screens */
         }
       }
       .right-section {
         width: 100%;
         justify-content: center;
+        margin-top: 3rem; /* Adjust spacing for image on medium screens */
       }
     }
   }
@@ -186,25 +192,43 @@ const Wrapper = styled.section`
     .container {
       min-width: auto;
       padding: 2rem;
-    }
-    .left-section {
-      margin-top: 3rem;
-      .text-container {
-        h2 {
-          font-size: 3.5rem;
+      flex-direction: column; /* Ensure single-column layout */
+      .left-section {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5rem; /* Adjust for better spacing on small screens */
+        .text-container {
+          h2 {
+            max-width: 100%;
+            font-size: 3rem; /* Adjust font size for small screens */
+          }
+          h1 {
+            font-size: 5rem; /* Adjust font size for small screens */
+          }
+          p {
+            font-size: 1.5rem; /* Adjust font size for small screens */
+          }
         }
-        h1 {
-          font-size: 6rem;
+        .buttons {
+          flex-direction: column; /* Stack buttons vertically */
+          gap: 1.5rem;
+          margin-top: 3rem;
+          .register-btn,
+          .login-btn {
+            width: 100%; /* Full-width buttons for small screens */
+          }
         }
-        p {
-          font-size: 1.7rem;
+        .small-image-and-text-container {
+          flex-direction: column; /* Stack image and text vertically */
+          align-items: flex-start;
+          margin-top: 6rem; /* Adjust spacing for small screens */
+          p {
+            text-align: left;
+          }
         }
       }
-      .buttons {
-        margin-top: 3rem;
-      }
-      .small-image-and-text-container {
-        margin-top: 6rem;
+      .right-section {
+        display: none; /* Hide right section on small screens */
       }
     }
   }

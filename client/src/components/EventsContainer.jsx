@@ -31,4 +31,10 @@ const Wrapper = styled.section`
   h2 {
     margin-bottom: 2rem;
   }
+
+  @media (max-width: 768px) {
+    h2 {
+      margin-left: 2rem;
+    }
+  }
 `;

@@ -1,12 +1,7 @@
 import customFetch from "../utils/customFetch";
-import {
-  EventSearchContainer,
-  EventsContainer,
-  SearchContainer,
-} from "../components";
+import { EventSearchContainer, EventsContainer } from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, createContext } from "react";
-import styled from "styled-components";
 import { useLoaderData } from "react-router-dom";
 
 const allEventsQuery = (params) => {
@@ -42,16 +37,12 @@ const Events = () => {
   const { searchValues } = useLoaderData();
   const { data } = useQuery(allEventsQuery(searchValues));
   return (
-    <Wrapper>
-      <EventsContext.Provider value={{ data, searchValues }}>
-        <EventSearchContainer />
-        <EventsContainer />
-      </EventsContext.Provider>
-    </Wrapper>
+    <EventsContext.Provider value={{ data, searchValues }}>
+      <EventSearchContainer />
+      <EventsContainer />
+    </EventsContext.Provider>
   );
 };
 
 export const useEventsContext = () => useContext(EventsContext);
 export default Events;
-
-const Wrapper = styled.section``;

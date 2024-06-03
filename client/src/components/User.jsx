@@ -1,6 +1,4 @@
-import { FaBriefcase } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { Form } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import avatarTemp from "../assets/images/UserPage/default.jpg";
 
@@ -34,6 +32,10 @@ const User = ({ firstName, lastName, jobDepartment, _id, avatar }) => {
 export default User;
 
 const Wrapper = styled.article`
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0; /* Add margin to separate multiple users */
+
   .container {
     background-color: var(--light-blue);
     display: flex;
@@ -43,9 +45,10 @@ const Wrapper = styled.article`
     padding: 1rem;
     box-shadow: var(--shadow-1);
     cursor: pointer;
+    transition: transform 0.2s ease-in;
 
-    &:hover .avatar {
-      transform: scale(1.1);
+    &:hover {
+      transform: scale(1.02);
       box-shadow: var(--shadow-2);
     }
 
@@ -69,6 +72,9 @@ const Wrapper = styled.article`
       text-transform: capitalize;
       font-size: 2rem;
       margin-bottom: 9px;
+      span {
+        font-weight: normal;
+      }
     }
 
     .name-position-container {
@@ -96,5 +102,9 @@ const Wrapper = styled.article`
         display: block;
       }
     }
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center; /* Ensure the component is centered on small screens */
   }
 `;

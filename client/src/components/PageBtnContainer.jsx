@@ -147,7 +147,7 @@ const Wrapper = styled.section`
   font-size: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
   .btn-container {
@@ -203,6 +203,6 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 768px) {
-    /* justify-content: left; */
+    justify-content: flex-end;
   }
 `;

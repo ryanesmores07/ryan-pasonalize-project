@@ -13,7 +13,7 @@ export const action =
     try {
       await customFetch.post("/events", data);
       queryClient.invalidateQueries(["events"]);
-      toast.success("Event addedd successfully");
+      toast.success("Event added successfully");
       return redirect("/dashboard/events");
     } catch (error) {
       toast.error(error?.response?.data?.msg);
@@ -30,25 +30,25 @@ const AddEvent = () => {
             <FormRow
               type="text"
               name="event"
-              labelText="event"
+              labelText="Event"
               defaultValue=""
             />
             <Calendar
               type="date"
               name="dateTime"
               id="dateTime"
-              labelText="time and date"
+              labelText="Time and Date"
             />
           </div>
           <div className="text-area">
             <label htmlFor="description" className="text-label">
-              description
+              Description
             </label>
             <textarea
               className="text-input"
               id="description"
               name="description"
-              placeholder="description"
+              placeholder="Description"
               defaultValue=""
             />
           </div>
@@ -64,9 +64,7 @@ const Wrapper = styled.section`
   border-radius: var(--border-radius);
   width: 100%;
   padding: 3rem 2rem 4rem;
-  .form-title {
-    margin-bottom: 2rem;
-  }
+
   .form {
     position: relative;
     margin: 0;
@@ -80,11 +78,13 @@ const Wrapper = styled.section`
   .form-row {
     margin-bottom: 3rem;
     color: rgba(0, 0, 0, 0.7);
+
     .form-label {
       font-weight: 700;
       font-size: 1.3rem;
       min-width: 35ch;
     }
+
     .form-input {
       font-size: 1.3rem;
       width: 100%;
@@ -96,6 +96,7 @@ const Wrapper = styled.section`
       padding-bottom: 10px;
     }
   }
+
   .text-area {
     .text-label {
       font-weight: 700;
@@ -125,6 +126,7 @@ const Wrapper = styled.section`
     gap: 2rem;
     margin-bottom: 2rem;
   }
+
   .form-btn {
     display: grid;
     place-items: center;
@@ -148,16 +150,21 @@ const Wrapper = styled.section`
     }
   }
 
-  @media (max-width: 1280px) {
+  @media (max-width: 1024px) {
     padding: 3rem 1rem 4rem; /* Adjust padding for 1024px and below */
+    .form-center {
+      grid-template-columns: 1fr; /* Single column layout on medium screens */
+      gap: 1rem;
+    }
     .form-row .form-label {
-      min-width: 20ch; /* Adjust min-width for 1024px and below */
+      min-width: 20ch; /* Adjusted min-width for 1024px and below */
     }
   }
+
   @media (max-width: 768px) {
     padding: 3rem 0.5rem 4rem; /* Adjust padding for 768px and below */
     .form-row .form-label {
-      min-width: 15ch; /* Adjust min-width for 768px and below */
+      min-width: 15ch; /* Adjusted min-width for 768px and below */
     }
   }
 `;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { StarFilledIcon } from "@radix-ui/react-icons";
 import {
   Theme,
   Box,
@@ -77,8 +78,8 @@ const Event = ({ data }) => {
           );
 
           return (
-            <Box maxWidth="330px" height="132px" key={id} className="box">
-              <Card>
+            <Box maxWidth="300px" height="132px" key={id} className="box">
+              <StyledCard>
                 <Flex gap="2" align="center" justify="center">
                   <Avatar
                     size="4"
@@ -129,7 +130,22 @@ const Event = ({ data }) => {
                             usersJoined.map((user, index) => {
                               return (
                                 <StyledDescription key={index}>
-                                  {user.firstName}
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <StarFilledIcon />
+                                    <span
+                                      style={{
+                                        marginTop: ".2rem",
+                                        marginLeft: ".5rem",
+                                      }}
+                                    >
+                                      {user.firstName}
+                                    </span>
+                                  </div>
                                 </StyledDescription>
                               );
                             })
@@ -202,7 +218,7 @@ const Event = ({ data }) => {
                     </Flex>
                   </Box>
                 </Flex>
-              </Card>
+              </StyledCard>
             </Box>
           );
         })}
@@ -271,6 +287,10 @@ const StyledPopoverTrigger = styled(Popover.Trigger)`
   cursor: pointer;
 `;
 
+const StyledCard = styled(Card)`
+  padding: 1rem;
+`;
+
 const StyledTheme = styled(Theme)`
   min-height: 0;
   display: grid;
@@ -283,7 +303,7 @@ const StyledTheme = styled(Theme)`
   }
 
   .texts {
-    max-width: 170px;
+    max-width: 150px;
     text-transform: capitalize;
   }
 
@@ -298,5 +318,20 @@ const StyledTheme = styled(Theme)`
     justify-content: center;
     gap: 3rem;
     align-items: flex-end;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column layout on small and medium screens */
+    gap: 2rem; /* Adjusting gap between items for smaller screens */
+    justify-content: center; /* Center items on smaller screens */
+    text-align: center; /* Center text within items on smaller screens */
+
+    .btn-container {
+      align-items: center; /* Center button container on smaller screens */
+    }
   }
 `;
