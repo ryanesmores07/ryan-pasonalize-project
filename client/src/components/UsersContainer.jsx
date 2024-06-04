@@ -20,7 +20,9 @@ const UsersContainer = () => {
 
   return (
     <Wrapper>
-      <h2>{t("userFound", { totalUsers })}</h2>
+      <h2>
+        {totalUsers} User{totalUsers > 1 && "s"} Found
+      </h2>
       <div className="users">
         {users.map((user) => {
           return <User key={user._id} {...user} />;
