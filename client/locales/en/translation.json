@@ -26,10 +26,10 @@
   "hometown": "Hometown",
   "favoriteHobbyPlaceholder": "snowboarding",
   "yearEmployedPlaceholder": "2020",
-  "hometownPlaceholder":"Davao City, Philippines",
+  "hometownPlaceholder": "Davao City, Philippines",
   "celebrityCrushPlaceholder": "Tanaka Minami",
   "celebrityCrush": "Celebrity Crush",
-  "aboutMe": "Tell us about yourself",
+  "aboutMe": "Introduce yourself",
   "deleteProfile": "Delete Profile",
   "submit": "Submit",
   "submitting": "Submitting...",
@@ -43,5 +43,9 @@
   "favoriteHobbyLabel": "Favorite Hobby:",
   "celebrityCrushLabel": "Celebrity Crush:",
   "hometownLabel": "Hometown:",
-  "profilePhoto": "Profile Photo"
+  "profilePhoto": "Profile Photo",
+  "event": "Event",
+  "description": "Description",
+  "timeAndDate": "Time And Date",
+  "eventStatus": "Event Status"
 }

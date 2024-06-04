@@ -3,10 +3,12 @@ import { Form, useSubmit, Link } from "react-router-dom";
 import { EVENT_STATUS, EVENT_SORT_BY } from "../../../utils/constants";
 import styled from "styled-components";
 import { useEventsContext } from "../pages/Events";
+import { useTranslation } from "react-i18next";
 
 const EventSearchContainer = () => {
   const { searchValues } = useEventsContext();
   const { search, eventStatus, sort } = searchValues;
+  const { t } = useTranslation();
 
   const submit = useSubmit();
 
@@ -23,19 +25,19 @@ const EventSearchContainer = () => {
   return (
     <Wrapper>
       <Form className="form">
-        <h5 className="form-title">Event Search</h5>
+        <h5 className="form-title">{t("search")}</h5>
         <div className="form-center">
           <FormRow
             type="search"
             name="search"
-            labelText="Search"
+            labelText={t("search")}
             defaultValue={search}
             onChange={debounce((form) => {
               submit(form);
             })}
           />
           <FormRowSelect
-            labelText="Event Status"
+            labelText={t("eventStatus")}
             name="eventStatus"
             list={[...Object.values(EVENT_STATUS), "all"]}
             defaultValue={eventStatus}
@@ -43,7 +45,7 @@ const EventSearchContainer = () => {
           />
           <FormRowSelect
             name="sort"
-            labelText="sort"
+            labelText={t("sort")}
             defaultValue={sort}
             list={[...Object.values(EVENT_SORT_BY)]}
             onChange={(e) => submit(e.currentTarget.form)}

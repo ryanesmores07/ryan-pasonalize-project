@@ -45,7 +45,7 @@ const Wrapper = styled.article`
     padding: 1rem;
     box-shadow: var(--shadow-1);
     cursor: pointer;
-    transition: transform 0.2s ease-in;
+    transition: transform 0.1s ease;
 
     &:hover {
       transform: scale(1.02);

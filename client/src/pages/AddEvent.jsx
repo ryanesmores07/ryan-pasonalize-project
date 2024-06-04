@@ -3,6 +3,7 @@ import { Form, redirect } from "react-router-dom";
 import { Calendar, FormRow, SubmitBtn } from "../components";
 import customFetch from "../utils/customFetch";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const action =
   (queryClient) =>
@@ -22,6 +23,7 @@ export const action =
   };
 
 const AddEvent = () => {
+  const { t } = useTranslation();
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -30,25 +32,25 @@ const AddEvent = () => {
             <FormRow
               type="text"
               name="event"
-              labelText="Event"
+              labelText={t("event")}
               defaultValue=""
             />
             <Calendar
               type="date"
               name="dateTime"
               id="dateTime"
-              labelText="Time and Date"
+              labelText={t("timeAndDate")}
             />
           </div>
           <div className="text-area">
             <label htmlFor="description" className="text-label">
-              Description
+              {t("description")}
             </label>
             <textarea
               className="text-input"
               id="description"
               name="description"
-              placeholder="Description"
+              placeholder={t("description")}
               defaultValue=""
             />
           </div>

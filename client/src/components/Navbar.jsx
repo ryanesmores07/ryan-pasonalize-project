@@ -5,21 +5,31 @@ import { useDashboardContext } from "../pages/Dashboard";
 import LogoutContainer from "./LogoutContainer";
 import styled from "styled-components";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useState } from "react";
 
 const Navbar = () => {
   const { toggleSidebar } = useDashboardContext();
+  const [isScaled, setIsScaled] = useState(false);
+
+  const handleIconClick = () => {
+    setIsScaled(!isScaled);
+  };
+
   return (
     <Wrapper>
       <div className="nav-center">
         <button type="button" className="toggle-btn" onClick={toggleSidebar}>
           <FaAlignLeft className="icon-small" />
           <FaAlignLeft className="icon-medium" />
-          <BsArrowsFullscreen className="icon-large" />
+          <BsArrowsFullscreen
+            onClick={handleIconClick}
+            className={`icon-large ${isScaled ? "scaled" : ""}`}
+          />
         </button>
 
         <div className="logo-container">
           <Logo />
-          <h4 className="logo-text">Dashboard</h4>
+          {/* <h4 className="logo-text">Dashboard</h4> */}
         </div>
         <div className="btn-container">
           <LanguageSwitcher />
@@ -68,6 +78,16 @@ const Wrapper = styled.nav`
 
   .icon-large {
     display: none;
+    width: 2rem;
+    transition: transform 0.3s ease;
+  }
+
+  .icon-large:hover {
+    transform: scale(2);
+  }
+
+  .icon-large.scaled {
+    transform: scale(2);
   }
 
   .logo-text {
@@ -80,12 +100,6 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
     gap: 1rem; /* Added gap for spacing */
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    width: 10rem;
   }
 
   .btn-container {

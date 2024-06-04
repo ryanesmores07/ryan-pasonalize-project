@@ -41,7 +41,7 @@ const Wrapper = styled.aside`
     }
     .content {
       position: sticky;
-      top: 5rem;
+      top: 1rem;
     }
     .show-sidebar {
       margin-left: 0;
@@ -93,7 +93,8 @@ const Wrapper = styled.aside`
       background: var(--off-white);
     }
     .logo {
-      margin-left: 2.5rem;
+      margin-top: 7rem;
+      margin-left: 4rem;
     }
   }
 

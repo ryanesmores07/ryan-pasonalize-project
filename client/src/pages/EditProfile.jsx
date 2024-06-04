@@ -181,7 +181,7 @@ const EditProfile = () => {
         </div>
       </Form>
       <Form method="post" action="../delete-account">
-        <button type="submit" className="delete-btn">
+        <button type="submit" className="btn delete">
           {t("deleteProfile")}
         </button>
       </Form>
@@ -268,15 +268,12 @@ const Wrapper = styled.section`
     }
   }
 
-  .delete-btn {
-    background: none;
-    border: none;
-    color: var(--off-black);
-    cursor: pointer;
-    padding: 0;
+  .btn.delete {
+    margin-top: 2rem;
+    background-color: var(--red);
+    transition: all 0.1s ease;
     &:hover {
-      transform: scale(1.2);
-      color: var(--red);
+      transform: scale(1.03);
     }
   }
 

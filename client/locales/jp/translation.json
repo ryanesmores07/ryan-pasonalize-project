@@ -43,5 +43,9 @@
   "favoriteHobbyLabel": "大好きな趣味:",
   "celebrityCrushLabel": "好きな有名人:",
   "hometownLabel": "実家:",
-  "profilePhoto": "プロフィールの写真"
+  "profilePhoto": "プロフィールの写真",
+  "event": "イベント名",
+  "description": "イベントの説明",
+  "timeAndDate": "日時",
+  "eventStatus": "イベントの状況"
 }
