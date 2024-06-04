@@ -203,14 +203,13 @@ textarea:not([rows]) {
   border-radius: var(--border-radius);
   background: var(--off-white);
   border: 1px solid var(--grey-400);
-  color: var(--text-color);
+  color: var(--off-black);
 }
 .form-input,
 .form-select,
 .form-btn {
   font-size: 1.6rem;
   height: 45px;
-  border-style: none;
 }
 .form-row {
   margin-bottom: 1rem;
