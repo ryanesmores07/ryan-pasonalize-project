@@ -129,7 +129,7 @@ const Wrapper = styled.section`
       font-size: 1.3rem;
       background-color: var(--off-white);
       border-radius: 5px;
-      border-style: none;
+      /* border-style: none; */
       padding-top: 10px;
       padding-bottom: 10px;
     }

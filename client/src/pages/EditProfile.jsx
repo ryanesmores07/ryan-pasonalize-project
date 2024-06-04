@@ -224,8 +224,7 @@ const Wrapper = styled.section`
       width: 100%;
       height: 45px;
       background-color: var(--off-white);
-      border-radius: 5px;
-      border-style: none;
+      border-radius: var(--border-radius);
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -251,7 +250,7 @@ const Wrapper = styled.section`
     width: 100%;
     height: 120px; /* Increased height for text area */
     background-color: var(--off-white);
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     border-style: none;
     resize: none;
   }
