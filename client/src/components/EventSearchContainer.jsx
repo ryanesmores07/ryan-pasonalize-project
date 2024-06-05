@@ -51,7 +51,7 @@ const EventSearchContainer = () => {
             onChange={(e) => submit(e.currentTarget.form)}
           />
           <Link to="/dashboard/events" className="btn form-btn delete-btn">
-            Reset
+            {t("resetValues")}
           </Link>
         </div>
       </Form>
