@@ -19,10 +19,12 @@ import { Form } from "react-router-dom";
 import EditEvent from "./EditEvent";
 import customFetch from "../utils/customFetch";
 import { useDashboardContext } from "../pages/Dashboard";
+import { useTranslation } from "react-i18next";
 
 const Event = ({ data }) => {
   const { user: loggedInUser } = useDashboardContext();
   const [events, setEvents] = useState(data.events);
+  const { t } = useTranslation();
   const handleJoinEvent = async (eventId) => {
     try {
       const response = await customFetch.post(`/events/${eventId}/join`, {});
@@ -104,7 +106,7 @@ const Event = ({ data }) => {
                     <Popover.Root>
                       <StyledPopoverTrigger>
                         <Text as="div" size="2" color="blue">
-                          Event Info ⬅
+                          {t("eventInfo")} ⬅
                         </Text>
                       </StyledPopoverTrigger>
                       <Popover.Portal>
@@ -117,7 +119,7 @@ const Event = ({ data }) => {
                     <Popover.Root>
                       <StyledPopoverTrigger>
                         <Text as="div" size="2" color="blue">
-                          Users Joined ⬅
+                          {t("usersJoined")} ⬅
                         </Text>
                       </StyledPopoverTrigger>
                       <Popover.Portal>
@@ -171,15 +173,17 @@ const Event = ({ data }) => {
                           </IconButton>
                         </AlertDialog.Trigger>
                         <AlertDialog.Content maxWidth="450px">
-                          <AlertDialog.Title>Delete Event</AlertDialog.Title>
+                          <AlertDialog.Title>
+                            {t("deleteEvent")}
+                          </AlertDialog.Title>
                           <AlertDialog.Description size="2">
-                            Are you sure you want to delete this event?
+                            {t("deleteEventDescription")}
                           </AlertDialog.Description>
 
                           <Flex gap="3" mt="4" justify="end">
                             <AlertDialog.Cancel>
                               <Button variant="soft" color="gray">
-                                Cancel
+                                {t("cancelButton")}
                               </Button>
                             </AlertDialog.Cancel>
                             <AlertDialog.Action>
@@ -192,7 +196,7 @@ const Event = ({ data }) => {
                                   color="red"
                                   type="submit"
                                 >
-                                  Accept
+                                  {t("acceptButton")}
                                 </Button>
                               </Form>
                             </AlertDialog.Action>
@@ -208,11 +212,11 @@ const Event = ({ data }) => {
                           color="red"
                           onClick={() => handleUnjoinEvent(id)}
                         >
-                          Unjoin
+                          {t("unjoinButton")}
                         </Button>
                       ) : (
                         <Button onClick={() => handleJoinEvent(id)}>
-                          Join
+                          {t("joinButton")}
                         </Button>
                       )}
                     </Flex>

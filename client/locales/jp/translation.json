@@ -47,5 +47,17 @@
   "event": "イベント名",
   "description": "イベントの説明",
   "timeAndDate": "日時",
-  "eventStatus": "イベントの状況"
+  "eventStatus": "イベントの状況",
+  "joinButton": "参加",
+  "unjoinButton": "不参加",
+  "eventInfo": "イベント情報",
+  "usersJoined": "参加者",
+  "editEvent": "イベントを編集",
+  "editEventDescription": "イベント情報を編集する",
+  "title": "タイトル",
+  "cancelButton": "キャンセル",
+  "saveButton": "保存",
+  "deleteEvent": "イベントを消す",
+  "deleteEventDescription": "本当に消しても良いでしょうか？",
+  "acceptButton": "承諾"
 }
