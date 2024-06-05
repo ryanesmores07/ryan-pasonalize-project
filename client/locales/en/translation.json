@@ -47,5 +47,17 @@
   "event": "Event",
   "description": "Description",
   "timeAndDate": "Time And Date",
-  "eventStatus": "Event Status"
+  "eventStatus": "Event Status",
+  "joinButton": "Join",
+  "unjoinButton": "Unjoin",
+  "eventInfo": "Event Info",
+  "usersJoined": "Users Joined",
+  "editEvent": "Edit Event",
+  "editEventDescription": "Make changes to your event",
+  "title": "Title",
+  "cancelButton": "Cancel",
+  "saveButton": "Save",
+  "deleteEvent": "Delete Event",
+  "deleteEventDescription": "Are you sure you want to delete this event?",
+  "acceptButton": "Accept"
 }
