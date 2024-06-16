@@ -96,8 +96,7 @@ const Register = () => {
 
 const Wrapper = styled.section`
   .container {
-    min-height: 1024px;
-    max-width: 1440px;
+    min-height: 100vh;
     background-image: url(${bgImage});
     background-size: cover;
     background-position: center;
@@ -131,6 +130,46 @@ const Wrapper = styled.section`
       p {
         font-size: 1.5rem;
         align-self: center;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      .form {
+        padding: 30px 20px;
+        top: 150px;
+
+        img {
+          width: 14rem;
+        }
+
+        h4 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      .form {
+        padding: 20px 15px;
+        top: 100px;
+
+        img {
+          width: 12rem;
+        }
+
+        h4 {
+          font-size: 2.5rem;
+        }
+        p {
+          font-size: 1.2rem;
+        }
       }
     }
   }
