@@ -58,8 +58,8 @@ const Login = () => {
 
 const Wrapper = styled.section`
   .container {
-    min-height: 1024px;
-    max-width: 1440px;
+    min-height: 100vh;
+    /* max-width: 1440px; */
     background-image: url(${bgImage});
     background-size: cover;
     background-position: center;
